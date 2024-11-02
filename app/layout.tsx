@@ -1,10 +1,23 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+
 import "./globals.css";
 
 const proximaNova = localFont({
-  src: "./fonts/ProximaNF.otf",
+  src: "./fonts/ProximaNovaRegular.otf",
   variable: "--font-proxima-nova",
+  weight: "400 500 600 700 800 900",
+});
+
+export const proximaSemiBold = localFont({
+  src: "./fonts/ProximaNovaSemiBold.otf",
+  variable: "--font-proxima-nova-semi-bold",
+  weight: "400 500 600 700 800 900",
+});
+
+export const proximaBold = localFont({
+  src: "./fonts/ProximaNovaBold.otf",
+  variable: "--font-proxima-nova-bold",
   weight: "400 500 600 700 800 900",
 });
 
@@ -20,7 +33,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${proximaNova.variable}  antialiased`}>{children}</body>
+      <body
+        className={`${proximaNova.variable} ${proximaSemiBold.variable} ${proximaBold.variable}  antialiased`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
