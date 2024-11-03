@@ -21,6 +21,12 @@ export const proximaBold = localFont({
   weight: "400 500 600 700 800 900",
 });
 
+const avenir = localFont({
+  src: "./fonts/AvenirLTStd-Book.otf",
+  variable: "--font-avenir",
+  weight: "400 500 600 700 800 900",
+});
+
 export const metadata: Metadata = {
   title: "Marriott",
   description: "HienPhong's personal website",
@@ -34,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${proximaNova.variable} ${proximaSemiBold.variable} ${proximaBold.variable}  antialiased`}
+        className={`${proximaNova.variable} ${proximaSemiBold.variable} ${proximaBold.variable} ${avenir.variable}  antialiased`}
       >
         {children}
       </body>

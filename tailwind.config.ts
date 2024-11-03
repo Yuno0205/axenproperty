@@ -59,6 +59,7 @@ const config: Config = {
       fontFamily: {
         proximaSemiBold: ["var(--font-proxima-nova-semi-bold)", "sans-serif"],
         proximaBold: ["var(--font-proxima-nova-bold)", "sans-serif"],
+        avenir: ["var(--font-avenir)", "sans-serif"],
       },
     },
   },
