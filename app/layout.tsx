@@ -10,7 +10,7 @@ const proximaNova = localFont({
 });
 
 export const proximaSemiBold = localFont({
-  src: "./fonts/ProximaNovaSemiBold.otf",
+  src: "./fonts/ProximaNovaSemibold.otf",
   variable: "--font-proxima-nova-semi-bold",
   weight: "400 500 600 700 800 900",
 });
