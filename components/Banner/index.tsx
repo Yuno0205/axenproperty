@@ -1,6 +1,5 @@
-import textture from "@/public/static/images/texture-leaves.jpg";
-import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 export const Banner = () => {
   return (
     <section className="w-full flex items-center justify-center">

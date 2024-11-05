@@ -2,6 +2,7 @@ import { Banner } from "@/components/Banner";
 import { Decor } from "@/components/Decor";
 import { Header } from "@/components/Header";
 import { Moment } from "@/components/Moment";
+import MyCarousel from "@/components/MySlider";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Banner />
       <Moment />
       <Decor />
+      <MyCarousel />
     </>
   );
 }
