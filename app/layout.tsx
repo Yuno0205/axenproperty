@@ -9,7 +9,8 @@ const proximaNova = localFont({
   weight: "400 500 600 700 800 900",
 });
 
-export const proximaBold = localFont({
+// Xóa dòng này để không xuất proximaBold
+const proximaBold = localFont({
   src: "./fonts/ProximaNovaBold.otf",
   variable: "--font-proxima-nova-bold",
   weight: "400 500 600 700 800 900",
@@ -34,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable}  antialiased`}
+        className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable} antialiased`}
       >
         {children}
       </body>
