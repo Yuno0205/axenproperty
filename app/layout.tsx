@@ -9,12 +9,6 @@ const proximaNova = localFont({
   weight: "400 500 600 700 800 900",
 });
 
-export const proximaSemiBold = localFont({
-  src: "./fonts/ProximaNovaSemibold.otf",
-  variable: "--font-proxima-nova-semi-bold",
-  weight: "400 500 600 700 800 900",
-});
-
 export const proximaBold = localFont({
   src: "./fonts/ProximaNovaBold.otf",
   variable: "--font-proxima-nova-bold",
@@ -40,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${proximaNova.variable} ${proximaSemiBold.variable} ${proximaBold.variable} ${avenir.variable}  antialiased`}
+        className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable}  antialiased`}
       >
         {children}
       </body>
