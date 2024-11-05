@@ -2,6 +2,7 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Button } from "../ui/button";
 
 const MyCarousel: React.FC = () => {
   const responsive = {
@@ -40,7 +41,20 @@ const MyCarousel: React.FC = () => {
           ></div>
         </Carousel>
       </div>
-      <div className="py-20 px-16">1</div>
+      <div className="py-20 px-16 flex flex-col">
+        <span className="font-proximaBold mb-5 font-bold">
+          An Escape For Your Senses
+        </span>
+        <span className="avenir text-3xl">JW MARRIOTT X FLAMINGO ESTATE</span>
+        <span className="my-2.5">
+          JW Marriott and Flamingo Estate seamlessly entwine luxury hospitality
+          and elevated lifestyle experiences to create a journey exploring
+          scent, sound, and taste.
+        </span>
+        <Button variant={"outline"} className="w-40 mt-5 ">
+          <span className="font-bold text-base capitalize">Read more</span>
+        </Button>
+      </div>
     </div>
   );
 };
