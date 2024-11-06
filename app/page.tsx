@@ -1,6 +1,7 @@
 import { Banner } from "@/components/Banner";
 import { Decor } from "@/components/Decor";
 import { Discover } from "@/components/Discover";
+import Footer from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Inspire } from "@/components/Inspire";
 import { Moment } from "@/components/Moment";
@@ -15,6 +16,7 @@ export default function Home() {
       <Decor />
       <Discover />
       <Inspire />
+      <Footer />
     </Fragment>
   );
 }

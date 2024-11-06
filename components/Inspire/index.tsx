@@ -3,13 +3,14 @@ import camel from "@/public/static/images/Camelback-Inn_Alice_-JWMSr1960_1508x99
 import sky from "@/public/static/images/jw-skyline-view-madrid-36409-v2-scaled.jpg";
 import wander from "@/public/static/images/jw-wander-cover-27735-2000x2608-1-scaled.jpg";
 import subtle from "@/public/static/images/SubtleSophisticationCandle-e1563931126185.jpg";
+import logo from "@/public/static/images/1-color.png";
 import beach from "@/public/static/images/Beach-Wedding-1-min-1.jpg";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { CopyIcon } from "@radix-ui/react-icons";
 export const Inspire = () => {
   return (
-    <section className="w-full h-full">
+    <section className="w-full h-full pb-80">
       {/* Title */}
       <div className="container mx-auto w-full py-20 px-16 flex flex-col items-center justify-center gap-3">
         <div className="pt-4 px-4 pb-6">
@@ -142,6 +143,45 @@ export const Inspire = () => {
           </Button>
         </div>
         <Image src={beach} alt="beach" className="w-1/2 object-cover" />
+      </div>
+
+      {/* Horizontal */}
+      <div className="w-full h-full pb-6">
+        <div
+          style={{ backgroundPosition: "50% 50%", backgroundSize: "cover" }}
+          className="bg-[url('/static/images/InfinityPool_SJDJW.jpg')] h-[375px] w-full relative"
+        >
+          {/* <div className="absolute text-white bottom-14 left-5 py-2.5 text-sm">
+            JW Marriott® Istanbul Marmara Sea
+          </div> */}
+          <div
+            style={{ width: "calc(100% - 100px)" }}
+            className="absolute left-[50px] top-[320px] bg-white py-12 px-20 flex flex-col mx-auto items-center shadow-lg"
+          >
+            <div className="p-4 mb-5">
+              <Image src={logo} alt="logo" />
+            </div>
+            <span className="avenir text-4xl font-light uppercase">
+              EXPAND YOUR HORIZONS
+            </span>
+            <span className="pt-2.5 pb-5">
+              Overwater bungalows. Former palaces. Exclusive mountain escapes.
+              Marriott Bonvoy™ gives you unparalleled access to the largest
+              collection of luxury hotels worldwide.
+            </span>
+            <Button className=" my-5">
+              <span className="font-bold text-lg capitalize">Join now</span>
+              <CopyIcon />
+            </Button>
+            <Button className=" mb-5 hover:bg-white" variant="ghost">
+              <span className="font-bold text-lg capitalize hover:underline uppercase">
+                Sign in
+              </span>
+              <CopyIcon />
+            </Button>
+          </div>
+          {/* <div className="h-[1000px] pt-40">1tjhojfklfmlkfmlk</div> */}
+        </div>
       </div>
     </section>
   );
