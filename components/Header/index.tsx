@@ -12,7 +12,7 @@ import { Button } from "../ui/button";
 
 export const Header = () => {
   return (
-    <header className="w-full h-full">
+    <header className="w-full h-full bg-white">
       <section className="container mx-auto flex">
         <div className="w-2/5">
           <Link href="/" className="flex w-full h-full items-center px-4">

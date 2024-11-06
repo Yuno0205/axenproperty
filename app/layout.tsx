@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable} antialiased`}
+        className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable} antialiased bg-[#f4f4f4]`}
       >
         {children}
       </body>
