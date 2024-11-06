@@ -47,7 +47,7 @@ export const Decor = () => {
       </div>
       <div className="grid grid-cols-4 gap-2">
         {/* Cột bên phải */}
-        <div className="col-span-2 bg-green-200 py-10 px-5 flex flex-col justify-center gap-5 bg-[url('/static/images/Blackbackground.png')]">
+        <div className="col-span-2 bg-green-200 py-10 px-5 lg:p-16 flex flex-col justify-center gap-5 bg-[url('/static/images/Blackbackground.png')]">
           <span className="avenir text-2xl text-white uppercase">
             Be Together
           </span>
