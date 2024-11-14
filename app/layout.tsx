@@ -23,8 +23,8 @@ const avenir = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Marriott",
-  description: "HienPhong's personal website",
+  title: "Axen Property",
+  description: "Axen Property",
 };
 
 export default function RootLayout({
