@@ -2,7 +2,8 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Button } from "../ui/button";
+import logo from "@/public/static/images/new/logo.png";
+import Image from "next/image";
 
 const MyCarousel: React.FC = () => {
   const responsive = {
@@ -33,27 +34,29 @@ const MyCarousel: React.FC = () => {
         >
           <div
             style={{
-              backgroundImage: `url(/static/images/jw-jwmarriott-highres-14-15466.jpg)`,
-              backgroundPosition: "49.54% 62.06%",
+              backgroundImage: `url(/static/images/new/church.jpg)`,
+              backgroundPosition: "center",
               backgroundSize: "cover",
             }}
             className="w-full h-[365px]"
           ></div>
         </Carousel>
       </div>
-      <div className="py-20 px-16 flex flex-col">
-        <span className="font-proximaBold mb-5 font-bold">
-          An Escape For Your Senses
+      <div className="py-20 px-16 flex flex-col items-center">
+        {/* <span className="font-proximaBold mb-5 font-bold">
+          Comprehensive Real Estate Services
+        </span> */}
+        <Image src={logo} alt="logo" className="h-40 object-contain" />
+        <span className="avenir text-3xl">
+          Comprehensive Real Estate Services
         </span>
-        <span className="avenir text-3xl">JW MARRIOTT X FLAMINGO ESTATE</span>
         <span className="my-2.5">
-          JW Marriott and Flamingo Estate seamlessly entwine luxury hospitality
-          and elevated lifestyle experiences to create a journey exploring
-          scent, sound, and taste.
+          At Axen Property, we offer a full range of real estate services
+          designed to meet the needs of our clients and the community
         </span>
-        <Button variant={"outline"} className="w-40 mt-5 ">
+        {/* <Button variant={"outline"} className="w-40 mt-5 ">
           <span className="font-bold text-base capitalize">Read more</span>
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

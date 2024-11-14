@@ -14,15 +14,8 @@ export const Discover = () => {
   return (
     <div className="container mx-auto w-full">
       <MyCarousel />
-      {isPlayerVisible && (
-        <ReactPlayer
-          url="https://www.youtube.com/watch?v=Mlq9jrXbEFo&list=RDMlq9jrXbEFo&start_radio=1"
-          width="100%"
-          // height={475}
-          controls={true}
-        />
-      )}
-      <div className="py-20 px-16 flex flex-col text-white bg-[#575F57] gap-3">
+
+      {/* <div className="py-20 px-16 flex flex-col text-white bg-[#575F57] gap-3">
         <span className="avenir text-3xl font-light">
           THE JW GARDEN BY STUDIO LILY KWONG
         </span>
@@ -33,7 +26,7 @@ export const Discover = () => {
         <Button className="w-40 mt-5 ">
           <span className="font-bold text-lg capitalize">Learn more</span>
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };

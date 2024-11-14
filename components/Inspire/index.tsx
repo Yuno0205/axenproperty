@@ -1,6 +1,6 @@
 import icon from "@/public/static/images/icon.png";
-import camel from "@/public/static/images/Camelback-Inn_Alice_-JWMSr1960_1508x999.jpg";
-import sky from "@/public/static/images/jw-skyline-view-madrid-36409-v2-scaled.jpg";
+import apartment from "@/public/static/images/new/apartment2.jpg";
+import tower from "@/public/static/images/new/tower2.jpg";
 import wander from "@/public/static/images/jw-wander-cover-27735-2000x2608-1-scaled.jpg";
 import subtle from "@/public/static/images/SubtleSophisticationCandle-e1563931126185.jpg";
 import logo from "@/public/static/images/1-color.png";
@@ -12,7 +12,7 @@ export const Inspire = () => {
   return (
     <section className="w-full h-full pb-80">
       {/* Title */}
-      <div className="container mx-auto w-full py-20 px-16 flex flex-col items-center justify-center gap-3">
+      {/* <div className="container mx-auto w-full py-20 px-16 flex flex-col items-center justify-center gap-3">
         <div className="pt-4 px-4 pb-6">
           <span className="avenir text-3xl font-light">
             <Image src={icon} alt="icon" width={40} height={40} />
@@ -25,20 +25,22 @@ export const Inspire = () => {
           The JW Marriott experience is reflective of many of our founder&apos;s
           forward-thinking practices.
         </span>
-      </div>
+      </div> */}
 
       {/* Camel */}
       <div className="w-full h-[365px] relative">
-        <Image src={camel} alt="camel" className="w-full object-cover h-full" />
+        <Image
+          src={apartment}
+          alt="apartment"
+          className="w-full object-cover h-full"
+        />
         <div className="absolute bottom-[-50px] left-[50px] px-16 py-12 bg-white w-[665px] flex flex-col shadow-lg">
           <span className="avenir text-3xl font-light uppercase">
-            Our Heritage of Holistic Well-Being
+            Project Development
           </span>
           <span className="my-2.5">
-            Our founder, J. Willard Marriott, believed that taking care of
-            himself allowed him to better care for others. A family man who
-            deeply understood his impact on the those around him, his legacy
-            lives on at over 100 JW Marriott hotels around the globe.
+            We handle every step, from design to completion, ensuring each
+            project is a masterpiece.
           </span>
 
           <Button className="w-40 my-5 ">
@@ -51,20 +53,21 @@ export const Inspire = () => {
       <div className="py-16 mx-auto flex gap-2 px-12">
         <div className="w-1/2 bg-[url('/static/images/texture-5.png')] p-20 flex flex-col justify-center text-white">
           <span className="avenir text-3xl font-light uppercase ">
-            7 Days Of well-being
+            Real Estate Consultation
           </span>
           <span className="my-2.5">
-            Turn unique destinations into mindful and experiential paths through
-            deserts, beachfronts, cities, and safaris and discover all the
-            enriching ways to pursue the things you love.
+            Our expert team provides guidance to help clients choose the right
+            living space.
           </span>
-          <Button className="w-40 my-5 ">
-            <span className="font-bold text-lg capitalize">
-              Start the journey
-            </span>
+          <Button className="w-52 my-5">
+            <span className=" text-lg capitalize">Start the journey</span>
           </Button>
         </div>
-        <Image src={sky} alt="sky" className="w-1/2 object-cover" />
+        <Image
+          src={tower}
+          alt="tower"
+          className="w-1/2 object-cover h-[600px]"
+        />
       </div>
       {/* Collections */}
       <div className="mx-12 my-20">
