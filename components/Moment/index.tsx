@@ -10,14 +10,24 @@ export const Moment = () => {
   }, []);
 
   return (
-    <section className="w-full bg-[#f4f4f4] pt-[60px]">
-      <div className="px-16 py-20 flex flex-col items-center">
+    <section className="w-full bg-[#f4f4f4]">
+      <div className="px-4 py-20 flex flex-col items-center max-w-[1000px] mx-auto text-center">
         <span>
-          Well-being is more than one thing. It’s the moments you need it to be.
-          The moments you never expect. And the ones you never want to leave.
+          Axen Property is a pioneering real estate development company
+          dedicated to creating high-class living spaces that align with modern
+          lifestyles while preserving elegance and sustainability over time. We
+          are committed to providing our clients with more than just houses; we
+          deliver exceptional living experiences where youthful, dynamic
+          lifestyles blend seamlessly with refined beauty.
         </span>
         <br />
-        <span>JW MARRIOTT. STAY IN THE MOMENT®.</span>
+        <span>
+          In every project, Axen Property focuses meticulously on every detail,
+          from design to quality, ensuring each space is crafted as a work of
+          art that reflects creativity and a commitment to excellence. We
+          continually advance smart, sustainable real estate solutions to meet
+          the growing living demands of our clients and the broader community.
+        </span>
       </div>
       <div className="w-full">
         {isPlayerVisible && (
@@ -30,10 +40,16 @@ export const Moment = () => {
         )}
       </div>
       <div className="px-16 py-20 flex flex-col">
-        <span className="avenir text-2xl">CREATE MOMENTS OF CONNECTION</span>
+        <span className="avenir text-4xl">
+          OUR PRPJECTS:
+          <br />
+          Crafted for Elegance and Functionality
+        </span>
         <span className="pt-3">
-          In a story of golden hour, find meaning in the smallest of
-          interactions and hold onto moments that transform.
+          Explore our portfolio of completed, ongoing, and upcoming projects.
+          Each project reflects our dedication to quality, creativity, and
+          modern design. We invite you to witness how we turn visions into
+          beautiful, functional realities
         </span>
       </div>
     </section>

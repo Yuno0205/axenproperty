@@ -1,14 +1,14 @@
-import logo from "@/public/static/images/new/d3f5c1eda08b14c9a92e6b9b4652e9c3.png";
-import { ChevronDown, CopyIcon, Earth, UserIcon } from "lucide-react";
+import logo from "@/public/static/images/new/logo.png";
+import { ChevronDown, Earth } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { Button } from "../ui/button";
 
 export const Header = () => {
   return (
