@@ -1,11 +1,9 @@
 "use client";
-import ReactPlayer from "react-player";
-import MyCarousel from "../MySlider";
 import { useEffect, useState } from "react";
-import { Button } from "../ui/button";
+import MyCarousel from "../MySlider";
 
 export const Discover = () => {
-  const [isPlayerVisible, setPlayerVisible] = useState(false);
+  const [, setPlayerVisible] = useState(false);
 
   useEffect(() => {
     setPlayerVisible(true);

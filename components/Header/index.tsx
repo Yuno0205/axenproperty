@@ -16,7 +16,13 @@ export const Header = () => {
       <section className="container mx-auto flex">
         <div className="w-2/5">
           <Link href="/" className="flex w-full h-full items-center px-4">
-            <Image src={logo} alt="logo" width={173} height={58} />
+            <Image
+              src={logo}
+              alt="logo"
+              // width={173}
+              height={104}
+              className="object-contain"
+            />
           </Link>
         </div>
         <div className="w-3/5 pl-5 flex flex-col">

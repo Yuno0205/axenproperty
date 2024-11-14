@@ -34,7 +34,7 @@ export const Moment = () => {
           <ReactPlayer
             url="https://www.youtube.com/watch?v=Mlq9jrXbEFo&list=RDMlq9jrXbEFo&start_radio=1"
             width="100%"
-            height={475}
+            // height={475}
             controls={true}
           />
         )}

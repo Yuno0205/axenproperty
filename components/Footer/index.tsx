@@ -1,8 +1,6 @@
 // components/Footer.js
-import ggPlay from "@/public/static/images/google-play-badge-new.png";
-import appStore from "@/public/static/images/appstore-apple-1.png";
 import facebookLogo from "@/public/static/images/facebook.png";
-import divide from "@/public/static/images/devices-1.png";
+import logo from "@/public/static/images/new/logo.png";
 import { InstagramLogoIcon } from "@radix-ui/react-icons";
 
 import Image from "next/image";
@@ -91,14 +89,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="flex flex-col items-center flex-1 gap-3">
-            <Image src={divide} alt="App Screens" className="mb-10" />
-
-            <Link href="#">
-              <Image src={appStore} alt="App Store" className="max-w-[120px]" />
-            </Link>
-            <Link href="#">
-              <Image src={ggPlay} alt="Google Play" className="max-w-[120px]" />
-            </Link>
+            <Image src={logo} alt="logo" className="mb-10" />
           </div>
         </div>
       </div>

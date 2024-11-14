@@ -1,16 +1,15 @@
-import icon from "@/public/static/images/icon.png";
 import apartment from "@/public/static/images/new/apartment2.jpg";
+import church from "@/public/static/images/new/church2.jpg";
+import construction from "@/public/static/images/new/construction.jpg";
+import key from "@/public/static/images/new/key.jpg";
+import logo from "@/public/static/images/new/logo.png";
 import tower from "@/public/static/images/new/tower2.jpg";
-import wander from "@/public/static/images/jw-wander-cover-27735-2000x2608-1-scaled.jpg";
-import subtle from "@/public/static/images/SubtleSophisticationCandle-e1563931126185.jpg";
-import logo from "@/public/static/images/1-color.png";
-import beach from "@/public/static/images/Beach-Wedding-1-min-1.jpg";
+import { CopyIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import { CopyIcon } from "@radix-ui/react-icons";
 export const Inspire = () => {
   return (
-    <section className="w-full h-full pb-80">
+    <section className="w-full h-full">
       {/* Title */}
       {/* <div className="container mx-auto w-full py-20 px-16 flex flex-col items-center justify-center gap-3">
         <div className="pt-4 px-4 pb-6">
@@ -69,31 +68,40 @@ export const Inspire = () => {
           className="w-1/2 object-cover h-[600px]"
         />
       </div>
+
       {/* Collections */}
       <div className="mx-12 my-20">
+        <div className="flex flex-col">
+          <span className="avenir text-3xl font-light uppercase">
+            Property Management
+          </span>
+          <span className="my-2.5">
+            We provide ongoing property management services to ensure the
+            long-term value of your investment.
+          </span>
+        </div>
         <div className="flex gap-2">
           <div className="w-1/2 flex">
             {/* Image */}
             <div className="w-2/5 pr-5 my-2.5 flex justify-center items-center">
               <Image
-                src={wander}
-                alt="camel"
-                className="w-auto max-h-[240px]"
+                src={key}
+                alt="key"
+                className="w-auto h-[240px] object-cover"
               />
             </div>
-            <div className="w-3/5 pl-2.5 pb-5 pr-8 pt-10 flex flex-col">
-              <span className="font-proximaBold text-lg mb-8">JWM Stories</span>
-              <span className="avenir text-4xl font-light uppercase">
-                dream. discover. escape.
+            <div className="w-3/5 pl-2.5 pb-5 pr-8 pt-10 flex flex-col justify-center">
+              <span className="avenir text-4xl font-light uppercase justify-center">
+                Tenant Services
               </span>
               <span className="my-2.5">
-                Discover your greatest well-being with stories from around the
-                globe.
+                We handle all tenant-related tasks, including screening, lease
+                management, and responding to tenant needs, ensuring a
+                hassle-free experience for property owners and a pleasant stay
+                for tenants.
               </span>
               <Button className="max-w-60 my-5 flex">
-                <span className="font-bold text-lg capitalize">
-                  Read JWM stories
-                </span>
+                <span className=" text-lg capitalize">Contact Axen</span>
                 <CopyIcon />
               </Button>
             </div>
@@ -102,26 +110,22 @@ export const Inspire = () => {
             {/* Image */}
             <div className="w-2/5 pr-5 my-2.5 flex justify-center items-center">
               <Image
-                src={subtle}
-                alt="subtle"
-                className="w-auto max-h-[240px]"
+                src={construction}
+                alt="construction"
+                className="w-auto h-[240px] object-cover"
               />
             </div>
-            <div className="w-3/5 pl-2.5 pb-5 pr-8 pt-10 flex flex-col">
-              <span className="font-proximaBold text-lg mb-8">
-                Curated by JW
-              </span>
+            <div className="w-3/5 pl-2.5 pb-5 pr-8 pt-10 flex flex-col justify-center">
               <span className="avenir text-3xl font-light uppercase">
-                From our collection to yours
+                Maintenance and Repairs
               </span>
               <span className="my-2.5">
-                Experience the culture, design and polished comfort of our
-                world-renowned hotels with the JW Marriott home collection.
+                Our team provides regular maintenance and prompt repairs to keep
+                properties in prime condition, ensuring tenant satisfaction and
+                preserving the value of the investment.
               </span>
               <Button className="max-w-60 my-5 flex">
-                <span className="font-bold text-lg capitalize">
-                  Read JWM stories
-                </span>
+                <span className="text-lg capitalize">Contact Axen</span>
                 <CopyIcon />
               </Button>
             </div>
@@ -133,19 +137,19 @@ export const Inspire = () => {
       <div className="pb-16 mx-auto flex gap-2 px-12">
         <div className="w-1/2 bg-[url('/static/images/texture-5.png')] p-20 flex flex-col justify-center text-white">
           <span className="avenir text-4xl font-light uppercase ">
-            Your Everlasting Moment
+            After-Sales Support
           </span>
           <span className="my-2.5">
-            Our commitment to the seamless orchestration of every detail lets
-            you focus on the real celebration.
+            Our relationship with clients doesn’t end at purchase; we offer
+            ongoing support and maintenance.
           </span>
           <Button className="w-60 my-5 bg-[#e4beb6] hover:bg-[#eacbc5]">
             <span className="font-bold text-lg capitalize text-black">
-              Wedding Possibilities
+              Your customer Happy
             </span>
           </Button>
         </div>
-        <Image src={beach} alt="beach" className="w-1/2 object-cover" />
+        <Image src={church} alt="church" className="w-1/2 object-cover" />
       </div>
 
       {/* Horizontal */}
@@ -153,37 +157,31 @@ export const Inspire = () => {
         <div
           style={{ backgroundPosition: "50% 50%", backgroundSize: "cover" }}
           className="bg-[url('/static/images/InfinityPool_SJDJW.jpg')] h-[375px] w-full relative"
+        ></div>
+        <div
+          style={{ width: "calc(100% - 100px)" }}
+          className=" bg-white py-12 px-20 flex flex-col mx-auto items-center shadow-lg"
         >
-          {/* <div className="absolute text-white bottom-14 left-5 py-2.5 text-sm">
-            JW Marriott® Istanbul Marmara Sea
-          </div> */}
-          <div
-            style={{ width: "calc(100% - 100px)" }}
-            className="absolute left-[50px] top-[320px] bg-white py-12 px-20 flex flex-col mx-auto items-center shadow-lg"
-          >
-            <div className="p-4 mb-5">
-              <Image src={logo} alt="logo" />
-            </div>
-            <span className="avenir text-4xl font-light uppercase">
-              EXPAND YOUR HORIZONS
-            </span>
-            <span className="pt-2.5 pb-5">
-              Overwater bungalows. Former palaces. Exclusive mountain escapes.
-              Marriott Bonvoy™ gives you unparalleled access to the largest
-              collection of luxury hotels worldwide.
-            </span>
-            <Button className=" my-5">
-              <span className="font-bold text-lg capitalize">Join now</span>
-              <CopyIcon />
-            </Button>
-            <Button className=" mb-5 hover:bg-white" variant="ghost">
-              <span className="font-bold text-lg capitalize hover:underline uppercase">
-                Sign in
-              </span>
-              <CopyIcon />
-            </Button>
+          <div className="p-4 mb-5">
+            <Image
+              src={logo}
+              alt="logo"
+              height={180}
+              className="object-contain"
+            />
           </div>
-          {/* <div className="h-[1000px] pt-40">1tjhojfklfmlkfmlk</div> */}
+          <span className="avenir text-4xl font-light uppercase">
+            DELIVERING PROFESSIONAL REAL ESTATE SOLUTIONS
+          </span>
+          <span className="pt-2.5 pb-5">
+            Axen Property delivers innovative, professional real estate
+            solutions, enhancing community value and creating ideal living and
+            working spaces.
+          </span>
+          <Button className=" my-5">
+            <span className="text-lg capitalize">Contact Axen</span>
+            <CopyIcon />
+          </Button>
         </div>
       </div>
     </section>
