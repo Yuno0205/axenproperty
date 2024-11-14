@@ -1,4 +1,4 @@
-import logo from "@/public/static/images/JWM_Logo_Vertical_wRMark_4C.png";
+import logo from "@/public/static/images/new/d3f5c1eda08b14c9a92e6b9b4652e9c3.png";
 import { ChevronDown, CopyIcon, Earth, UserIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -46,23 +46,23 @@ export const Header = () => {
               </div>
             </div>
 
-            <Link href="/" className="flex uppercase pt-4 px-2.5">
+            {/* <Link href="/" className="flex uppercase pt-4 px-2.5">
               <UserIcon size={20} className="mr-1" />
               <span className="text-xs font-bold font-proximaBold">
                 Sign in or join
               </span>
               <CopyIcon size={20} className="ml-1" />
-            </Link>
+            </Link> */}
           </div>
           <div className="flex pr-5 justify-between py-2.5 items-center gap-2">
             <nav className="uppercase flex items-center text-[#575F57]">
               <Link href="/" className="pb-2.5">
                 <span className="py-5 pr-5 font-proximaBold text-xs">
-                  Destinations
+                  About us
                 </span>
               </Link>
               <div className="ml-10 pb-2.5">
-                <DropdownMenu>
+                {/* <DropdownMenu>
                   <DropdownMenuTrigger className="flex outline-none uppercase items-center">
                     <Link
                       href="/"
@@ -87,16 +87,19 @@ export const Header = () => {
                       Weddings
                     </DropdownMenuItem>
                   </DropdownMenuContent>
-                </DropdownMenu>
+                </DropdownMenu> */}
+                <Link href="/" className="pb-2.5">
+                  <span className="py-5 pr-5 font-proximaBold text-xs">
+                    Services
+                  </span>
+                </Link>
               </div>
               <Link href="/" className="pb-2.5 ml-10 font-proximaBold text-xs">
-                FAMILY BY JW™
+                Properties
               </Link>
             </nav>
             <Button className="py-3 px-10 mb-2.5 h-auto rounded-full">
-              <span className="font-bold text-base capitalize">
-                Reserve Now
-              </span>
+              <span className="text-base capitalize">Contact axen</span>
             </Button>
           </div>
         </div>
