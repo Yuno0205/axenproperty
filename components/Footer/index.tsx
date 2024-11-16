@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className=" py-8 mt-10">
       <div className="container px-12 flex justify-between py-16 mx-auto">
         <div className="flex w-3/5">
-          <div className="flex flex-col w-1/2">
+          {/* <div className="flex flex-col w-1/2">
             <Link href="#" className="py-4 pr-4">
               <span className="font-proximaBold text-xs pb-1 border-b-2 border-transparent hover:border-amber-500">
                 NEWS
@@ -58,7 +58,7 @@ export default function Footer() {
                 MEETINGS
               </span>
             </Link>
-          </div>
+          </div> */}
         </div>
 
         {/* Right */}
