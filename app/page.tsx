@@ -12,11 +12,11 @@ export default function Home() {
     <Fragment>
       <Header />
       <Banner />
-      <Moment />
+      {/* <Moment />
       <Decor />
       <Discover />
       <Inspire />
-      <Footer />
+      <Footer /> */}
     </Fragment>
   );
 }

@@ -1,17 +1,42 @@
+import Image from "next/image";
+import Link from "next/link";
+import logo from "@/public/static/images/new/logo.png";
+
 export const Banner = () => {
   return (
     <section className="w-full flex items-center justify-center">
       <div className="w-full h-full">
         <div
           style={{
-            backgroundImage: "url('/static/images/new/tower.jpg')",
-            backgroundPosition: "50% 20%",
+            backgroundImage: "url('/static/images/new/banner.jpg')",
           }}
-          className="w-full h-[550px] relative bg-cover bg-no-repeat"
+          className="w-full h-[450px] relative bg-cover bg-no-repeat flex items-center justify-center bg-center py-5"
         >
-          <div className="avenir text-white absolute bottom-12 left-52 text-5xl flex flex-col font-light">
-            <span>Delivering professional</span>
-            <span> Real estate solutions</span>
+          <div
+            style={{
+              // width: "calc(100% - 400px)",
+              // height: "calc(100% - 50px)",
+              opacity: 0.85,
+            }}
+            className="h-full w-5/6 bg-[#F2F3F5D9] flex flex-col items-center justify-center text-center"
+          >
+            <div className="w-[300px]">
+              <Link
+                href="/"
+                className="flex w-full h-full items-center px-4 relative z-2"
+              >
+                <Image
+                  src={logo}
+                  alt="logo"
+                  // width={173}
+
+                  className="object-cover w-full"
+                />
+              </Link>
+            </div>
+            <div className="avenir text-[#666666] w-full text-5xl flex flex-col font-light capitalize">
+              <span> Delivering professional Real estate solutions</span>
+            </div>
           </div>
         </div>
       </div>
