@@ -1,5 +1,5 @@
 "use client";
-import logo from "@/public/static/images/new/logo.png";
+import logo from "@/public/static/images/new/logo-ngang.png";
 import { ChevronDown, Earth } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,7 +20,7 @@ export const Header = () => {
     <>
       <header className="w-full h-full bg-white z-50 relative sticky top-0">
         <section className="container mx-auto flex z-20 relative justify-between h-36">
-          <div className="w-1/5 flex items-center sm:w-1/3 2xs:w-1/2">
+          <div className="w-1/5 flex items-center sm:w-1/3 2xs:w-1/2 py-4">
             <div className="w-full h-full xs:w-full">
               <Link href="/" className="flex w-full h-full items-center px-4">
                 <Image
@@ -153,31 +153,34 @@ export const Header = () => {
           open ? "block" : "hidden"
         )}
       >
-        <div className="w-full pt-28">
+        <div className="w-full pt-32">
           <nav className="uppercase flex flex-col items-center justify-center text-[#575F57] py-5 text-center text-white">
-            <Link href="/" className="py-2.5">
-              <span className="py-5 pr-5 font-proximaBold text-xs">
-                About us
-              </span>
+            <Link href="/" className="py-2.5 w-full">
+              <span className="font-proximaBold text-xs">About us</span>
             </Link>
 
-            <Link href="/" className="py-2.5">
-              <span className="py-5 pr-5 font-proximaBold text-xs">
-                Services
-              </span>
+            <Link href="/" className="py-2.5 w-full text-center">
+              <span className=" font-proximaBold text-xs">Services</span>
             </Link>
 
-            <Link href="/" className="py-2.5  font-proximaBold text-xs">
-              Properties
+            <Link
+              href="/"
+              className="py-2.5 w-full text-center font-proximaBold text-xs"
+            >
+              <span className=" font-proximaBold text-xs">Properties</span>
             </Link>
-            <Link href="/" className="py-2.5  font-proximaBold text-xs">
+            <Link
+              href="/"
+              className="py-2.5 w-full text-center font-proximaBold text-xs"
+            >
               News
             </Link>
-            <div>
-              <Link href="/" className="py-2.5  font-proximaBold text-xs">
-                Career
-              </Link>
-            </div>
+            <Link
+              href="/"
+              className="py-2.5 w-full text-center font-proximaBold text-xs"
+            >
+              Carrer
+            </Link>
           </nav>
           <div className="flex justify-center">
             <Button className="py-3 px-10 mb-2.5 h-auto rounded-full mt-5 ">
