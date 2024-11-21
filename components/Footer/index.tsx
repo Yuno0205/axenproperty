@@ -58,7 +58,7 @@ export default function Footer() {
                 MEETINGS
               </span>
             </Link>
-          </div> */}
+          </div>
         </div>
 
         {/* Right */}
