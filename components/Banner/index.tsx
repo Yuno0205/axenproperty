@@ -10,7 +10,7 @@ export const Banner = () => {
           style={{
             backgroundImage: "url('/static/images/new/banner.jpg')",
           }}
-          className="w-full h-[450px] relative bg-cover bg-no-repeat flex items-center justify-center bg-center py-5 2xs:h-96"
+          className="w-full h-svh relative bg-cover bg-no-repeat flex items-center justify-center bg-center py-5 2xs:h-96"
         >
           <div
             style={{
