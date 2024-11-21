@@ -112,7 +112,7 @@ export const Services = () => {
                 className="w-auto h-[240px] object-cover"
               />
             </div>
-            <div className="w-3/5 2xs:w-full pl-2.5 pb-5 pr-8 pt-10 xs:p-4 flex flex-col justify-center">
+            <div className="w-3/5 2xs:w-full pl-2.5 pb-5 pr-8 pt-10 xs:p-4 flex flex-col justify-center sm:text-center">
               <span className="avenir text-4xl font-light uppercase justify-center">
                 Tenant Services
               </span>
@@ -157,7 +157,7 @@ export const Services = () => {
 
       {/* Support */}
       <div className=" mx-auto flex gap-2 px-12 sm:flex-wrap xs:px-5">
-        <div className="w-1/2 bg-[url('/static/images/texture-5.png')] p-20 flex flex-col justify-center text-white sm:w-full">
+        <div className="w-1/2 bg-[url('/static/images/texture-5.png')] p-20 sm:p-8 flex flex-col justify-center text-white sm:w-full">
           <span className="avenir text-4xl font-light uppercase ">
             After-Sales Support
           </span>
@@ -171,7 +171,7 @@ export const Services = () => {
             </span>
           </Button>
         </div>
-        <div className="w-1/2 sm:w-full">
+        <div className="w-1/2 sm:w-full aspect-square">
           <Image
             src={church}
             alt="church"

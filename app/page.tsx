@@ -16,8 +16,8 @@ export default function Home() {
       <Banner />
       <Introduction />
       <Services />
-      {/* <Projects />
-      <FAQ />
+      <Projects />
+      {/* <FAQ />
       <Solutions />
       <Footer /> */}
     </Fragment>
