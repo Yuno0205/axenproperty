@@ -112,7 +112,7 @@ export const Services = () => {
                 className="w-auto h-[240px] object-cover"
               />
             </div>
-            <div className="w-3/5 2xs:w-full pl-2.5 pb-5 pr-8 pt-10 xs:p-4 flex flex-col justify-center sm:text-center">
+            <div className="w-3/5 2xs:w-full pl-2.5 pb-5 pr-8 pt-10 xs:p-4 flex flex-col justify-center ">
               <span className="avenir text-4xl font-light uppercase justify-center">
                 Tenant Services
               </span>
