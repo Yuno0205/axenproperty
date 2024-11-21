@@ -14,7 +14,7 @@ export const Solutions = () => {
         ></div>
         <div
           style={{ width: "calc(100% - 100px)" }}
-          className=" bg-white py-12 px-20 flex flex-col mx-auto items-center shadow-lg"
+          className=" bg-white py-12 px-20 sm:px-5 sm:py-10 flex flex-col mx-auto items-center shadow-lg sm:text-center"
         >
           <div className="p-4 mb-5">
             <Image
@@ -24,7 +24,7 @@ export const Solutions = () => {
               className="object-contain"
             />
           </div>
-          <span className="avenir text-4xl font-light uppercase">
+          <span className="avenir text-4xl font-light uppercase sm:text-3xl">
             DELIVERING PROFESSIONAL REAL ESTATE SOLUTIONS
           </span>
           <span className="pt-2.5 pb-5">

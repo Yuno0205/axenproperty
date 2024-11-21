@@ -8,8 +8,8 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className=" py-8 mt-10">
-      <div className="container px-12 flex justify-between py-16 mx-auto">
-        <div className="flex w-3/5">
+      <div className="container px-12 flex justify-between py-16 mx-auto sm:flex-wrap gap-2">
+        <div className="flex w-3/5 sm:w-full gap-2">
           <div className="flex flex-col w-1/2">
             <Link href="#" className="py-4 pr-4">
               <span className="font-proximaBold text-xs pb-1 border-b-2 border-transparent hover:border-amber-500">
@@ -62,8 +62,8 @@ export default function Footer() {
         </div>
 
         {/* Right */}
-        <div className="flex w-2/5">
-          <div className="flex flex-col">
+        <div className="flex w-2/5 sm:w-full sm:flex-col">
+          <div className="flex flex-col sm:py-10 sm:w-full">
             <h2 className="font-bold mb-8 text-2xl font-proximaBold">
               Stay Connected
             </h2>
@@ -88,7 +88,7 @@ export default function Footer() {
               </Link>
             </div>
           </div>
-          <div className="flex flex-col items-center flex-1 gap-3">
+          <div className="flex flex-col items-center flex-1 gap-3 sm:w-full">
             <Image src={logo} alt="logo" className="mb-10" />
           </div>
         </div>

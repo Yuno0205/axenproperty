@@ -1,5 +1,3 @@
-import { Button } from "../ui/button";
-
 export const FAQ = () => {
   return (
     <section className="w-full pb-10">
