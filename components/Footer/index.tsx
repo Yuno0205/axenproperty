@@ -40,7 +40,7 @@ export default function Footer() {
           <div className="flex flex-col w-1/2">
             <Link href="#" className="py-4 pr-4">
               <span className="font-proximaBold text-xs pb-1 border-b-2 border-transparent hover:border-amber-500">
-                MARRIOTT.COM
+                AXENPROPERTY.COM
               </span>
             </Link>
             <Link href="#" className="py-4 pr-4">
