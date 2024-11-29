@@ -1,10 +1,7 @@
 import { Banner } from "@/components/Banner";
-import { FAQ } from "@/components/F&Q";
 import Footer from "@/components/Footer";
 import { Header } from "@/components/Header";
-
-import { Introduction } from "@/components/Introduction";
-import { Projects } from "@/components/Projects";
+import { Properties } from "@/components/Properties";
 import { Services } from "@/components/Services";
 import { Solutions } from "@/components/Solution";
 import { Fragment } from "react";
@@ -14,10 +11,12 @@ export default function Home() {
     <Fragment>
       <Header />
       <Banner />
-      <Introduction />
+      <Properties />
       <Services />
-      <Projects />
-      <FAQ />
+      {/* <Introduction />
+         
+      {/* <Projects /> */}
+      {/* <FAQ /> */}
       <Solutions />
       <Footer />
     </Fragment>

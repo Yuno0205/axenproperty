@@ -37,7 +37,7 @@ export const Header = () => {
             <nav className="uppercase flex items-center text-[#575F57] justify-center sm:hidden">
               <Link href="/" className="pb-2.5">
                 <span className="py-5 pr-5 font-proximaBold text-xs">
-                  About us
+                  About axen
                 </span>
               </Link>
               <div className="ml-10 pb-2.5">
@@ -77,15 +77,15 @@ export const Header = () => {
                 Properties
               </Link>
               <Link href="/" className="pb-2.5 ml-10 font-proximaBold text-xs">
-                News
+                News & Events
               </Link>
               <Link href="/" className="pb-2.5 ml-10 font-proximaBold text-xs">
                 Career
               </Link>
             </nav>
           </div>
-          <div className="w-1/5 pl-5 flex flex-col sm:pl-2 sm:w-1/3 2xs:w-1/2">
-            <div className="w-full flex items-end justify-end py-2 pr-5 items-center sm:h-full sm:pr-2">
+          <div className="w-1/5 pl-5 flex flex-col sm:pl-2 sm:w-1/3 2xs:w-1/2 items-center">
+            <div className="w-full flex items-end py-2 pr-5 items-center sm:h-full sm:pr-2 justify-center">
               <div className="flex flex-col uppercase pt-4 px-2.5">
                 <span className="text-xs font-bold font-proximaBold line-clamp-1">
                   Select language

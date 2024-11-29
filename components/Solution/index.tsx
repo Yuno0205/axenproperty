@@ -10,7 +10,7 @@ export const Solutions = () => {
       <div className="w-full h-full pb-6">
         <div
           style={{ backgroundPosition: "50% 50%", backgroundSize: "cover" }}
-          className="bg-[url('/static/images/InfinityPool_SJDJW.jpg')] h-[375px] w-full relative"
+          className="bg-[url('/static/images/new/projects.jpg')] h-[375px] w-full relative"
         ></div>
         <div
           style={{ width: "calc(100% - 100px)" }}
@@ -28,9 +28,9 @@ export const Solutions = () => {
             DELIVERING PROFESSIONAL REAL ESTATE SOLUTIONS
           </span>
           <span className="pt-2.5 pb-5">
-            Axen Property delivers innovative, professional real estate
-            solutions, enhancing community value and creating ideal living and
-            working spaces.
+            <span className="font-bold">AXEN Property</span> delivers innovative
+            and professional real estate solutions, enhancing property value for
+            investors and living spaces for customers.
           </span>
           <Button className=" my-5">
             <span className="text-lg capitalize">Contact Axen</span>
