@@ -35,10 +35,11 @@ export const Header = () => {
           </div>
           <div className="flex w-3/5 items-center justify-center sm:hidden">
             <nav className="uppercase flex items-center text-[#575F57] justify-center sm:hidden">
-              <Link href="/" className="pb-2.5">
-                <span className="py-5 pr-5 font-proximaBold text-xs">
-                  About axen
-                </span>
+              <Link
+                href="/"
+                className="pb-2.5 border-b-2 border-transparent hover:border-amber-500"
+              >
+                <span className="font-proximaBold text-xs ">About axen</span>
               </Link>
               {/* <div className="ml-10 pb-2.5">
                 <DropdownMenu>
@@ -68,18 +69,28 @@ export const Header = () => {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div> */}
-              <Link href="/" className="pb-2.5 ml-10">
-                <span className="py-5 pr-5 font-proximaBold text-xs">
-                  Services
-                </span>
+              <Link
+                href="/"
+                className="pb-2.5 ml-10 border-b-2 border-transparent hover:border-amber-500"
+              >
+                <span className="font-proximaBold text-xs">Services</span>
               </Link>
-              <Link href="/" className="pb-2.5 ml-10 font-proximaBold text-xs">
+              <Link
+                href="/"
+                className="pb-2.5 ml-10 font-proximaBold text-xs border-b-2 border-transparent hover:border-amber-500"
+              >
                 Properties
               </Link>
-              <Link href="/" className="pb-2.5 ml-10 font-proximaBold text-xs">
+              <Link
+                href="/"
+                className="pb-2.5 ml-10 font-proximaBold text-xs border-b-2 border-transparent hover:border-amber-500"
+              >
                 News & Events
               </Link>
-              <Link href="/" className="pb-2.5 ml-10 font-proximaBold text-xs">
+              <Link
+                href="/"
+                className="pb-2.5 ml-10 font-proximaBold text-xs border-b-2 border-transparent hover:border-amber-500"
+              >
                 Career
               </Link>
             </nav>
