@@ -60,7 +60,12 @@ export default function Footer() {
           </div>
         </div>
         {/* Rightside */}
-        <div className={clsx(openSans.className, "flex w-1/2 sm:w-full gap-2")}>
+        <div
+          className={clsx(
+            openSans.className,
+            "flex w-1/2 sm:w-full gap-2 mt-10"
+          )}
+        >
           <div className="flex flex-col w-1/2">
             <span
               className={clsx(openSans.className, "uppercase text-[#797979]")}
