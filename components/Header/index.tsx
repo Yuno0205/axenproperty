@@ -40,39 +40,39 @@ export const Header = () => {
                   About axen
                 </span>
               </Link>
-              <div className="ml-10 pb-2.5">
-                {/* <DropdownMenu>
-                    <DropdownMenuTrigger className="flex outline-none uppercase items-center">
-                      <Link
-                        href="/"
-                        className="py-5 pr-5 font-proximaBold text-xs"
-                      >
-                        Nourish Your Soul
-                      </Link>
-                      <ChevronDown size={20} className="ml-1" />
-                    </DropdownMenuTrigger>
-  
-                    <DropdownMenuContent className="p-6 uppercase font-proximaBold text-xs">
-                      <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
-                        Be Mindful & Present
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
-                        Be Nourished
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
-                        Be Together
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
-                        Weddings
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu> */}
-                <Link href="/" className="pb-2.5">
-                  <span className="py-5 pr-5 font-proximaBold text-xs">
-                    Services
-                  </span>
-                </Link>
-              </div>
+              {/* <div className="ml-10 pb-2.5">
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="flex outline-none uppercase items-center">
+                    <Link
+                      href="/"
+                      className="py-5 pr-5 font-proximaBold text-xs"
+                    >
+                      Nourish Your Soul
+                    </Link>
+                    <ChevronDown size={20} className="ml-1" />
+                  </DropdownMenuTrigger>
+
+                  <DropdownMenuContent className="p-6 uppercase font-proximaBold text-xs">
+                    <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
+                      Be Mindful & Present
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
+                      Be Nourished
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
+                      Be Together
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
+                      Weddings
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div> */}
+              <Link href="/" className="pb-2.5 ml-10">
+                <span className="py-5 pr-5 font-proximaBold text-xs">
+                  Services
+                </span>
+              </Link>
               <Link href="/" className="pb-2.5 ml-10 font-proximaBold text-xs">
                 Properties
               </Link>
