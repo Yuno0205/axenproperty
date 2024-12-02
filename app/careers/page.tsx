@@ -1,5 +1,3 @@
-import team from "@/public/static/images/new/team.jpg";
-import Image from "next/image";
 const Careers = () => {
   return (
     <section className="min-h-screen w-full bg-white">
