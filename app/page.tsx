@@ -9,7 +9,7 @@ import { Fragment } from "react";
 export default function Home() {
   return (
     <Fragment>
-      <Header />
+      {/* <Header /> */}
       <Banner />
       <Properties />
       <Services />
@@ -18,7 +18,7 @@ export default function Home() {
       {/* <Projects /> */}
       {/* <FAQ /> */}
       <Solutions />
-      <Footer />
+      {/* <Footer /> */}
     </Fragment>
   );
 }

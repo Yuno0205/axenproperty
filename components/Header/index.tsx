@@ -87,7 +87,10 @@ export const Header = () => {
               >
                 News & Events
               </Link>
-              <Link href="/" className="pb-2.5 ml-10 font-proximaBold text-xs">
+              <Link
+                href="/careers"
+                className="pb-2.5 ml-10 font-proximaBold text-xs border-b-2 border-transparent hover:border-amber-500"
+              >
                 Careers
               </Link>
             </nav>
