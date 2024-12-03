@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/public/static/images/new/logo.png";
+// import { motion } from "motion/react";
 
 export const Banner = () => {
   return (
