@@ -1,4 +1,52 @@
+import clsx from "clsx";
+import { Inter, Open_Sans } from "next/font/google";
+import job from "@/public/static/images/new/job.png";
+import exp from "@/public/static/images/new/exp.png";
+import adress_icon from "@/public/static/images/new/adress_icon.png";
+import Image from "next/image";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
+const inter = Inter({
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const openSans = Open_Sans({
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "700"],
+});
 const Careers = () => {
+  const steps = [
+    {
+      number: "1",
+      title: "Ứng tuyển",
+    },
+    {
+      number: "2",
+      title: "Phỏng vấn qua điện thoại với nhà tuyển dụng",
+    },
+    {
+      number: "3",
+      title: "Bài kiểm tra hoặc đánh giá năng lực trực tuyến (tùy vị trí)",
+    },
+    {
+      number: "4",
+      title: "Phỏng vấn trực tiếp",
+    },
+    {
+      number: "5",
+      title: "Chờ thư mời nhận việc",
+    },
+  ];
+
   return (
     <section className="min-h-screen w-full bg-white">
       {/* Banner */}
@@ -8,201 +56,154 @@ const Careers = () => {
       ></div>
       {/* Content */}
       <div className="w-full">
-        <div className="max-w-5xl mx-auto px-24 py-32 mx-auto">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-semibold text-gray-900">
+        <div className="max-w-5xl mx-auto px-20 py-24 mx-auto">
+          <div
+            className={clsx(
+              inter.className,
+              "flex justify-between items-center mb-6"
+            )}
+          >
+            <h2 className="text-2xl font-bold text-gray-900">
               Các vị trí đang tuyển
             </h2>
-            <span className="text-gray-600">03 Vị trí tuyển dụng</span>
+            <span className="text-gray-600 text-lg font-bold">
+              03 Vị trí tuyển dụng
+            </span>
           </div>
 
-          <div className="space-y-4">
+          <div className={clsx(openSans.className, "")}>
             {/* Real Estate Business Specialist */}
-            <div className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-              <h3 className="text-lg font-medium text-gray-900 mb-3">
+            <div className="border-y p-8 hover:shadow-md transition-shadow cursor-pointer">
+              <h3 className="text-lg font-semibold text-[#202325] mb-2">
                 Chuyên viên kinh doanh Bất động sản
               </h3>
-              <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+              <div className="flex flex-wrap gap-16 text-sm text-gray-600">
                 <div className="flex items-center gap-1">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                    />
-                  </svg>
+                  <Image src={job} alt="job" />
                   <span>Kinh doanh - Marketing</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
+                <div className="flex items-center gap-1 ">
+                  <Image src={exp} alt="exp" />
                   <span>Yêu cầu kinh nghiệm</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
+                <div className="flex items-center gap-1 ">
+                  <Image src={adress_icon} alt="exp" />
                   <span>Q7 - TP. HCM</span>
                 </div>
               </div>
             </div>
 
             {/* Customer Care Specialist */}
-            <div className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-              <h3 className="text-lg font-medium text-gray-900 mb-3">
+            <div className="border-y p-8 hover:shadow-md transition-shadow cursor-pointer">
+              <h3 className="text-lg font-semibold text-[#202325] mb-2">
                 Chuyên viên chăm sóc khách hàng
               </h3>
-              <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+              <div className="flex flex-wrap gap-16 text-sm text-gray-600">
                 <div className="flex items-center gap-1">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                    />
-                  </svg>
+                  <Image src={job} alt="job" />
                   <span>Kinh doanh - Marketing</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
+                <div className="flex items-center gap-1 ">
+                  <Image src={exp} alt="exp" />
                   <span>Yêu cầu kinh nghiệm</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
+                <div className="flex items-center gap-1 ">
+                  <Image src={adress_icon} alt="exp" />
                   <span>Q7 - TP. HCM</span>
                 </div>
               </div>
             </div>
 
             {/* Marketing Intern */}
-            <div className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-              <h3 className="text-lg font-medium text-gray-900 mb-3">
+            <div className="border-y p-8 hover:shadow-md transition-shadow cursor-pointer">
+              <h3 className="text-lg font-semibold text-[#202325] mb-2">
                 Thực tập sinh Marketing (Trợ lý)
               </h3>
-              <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+              <div className="flex flex-wrap gap-16 text-sm text-gray-600">
                 <div className="flex items-center gap-1">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                    />
-                  </svg>
+                  <Image src={job} alt="job" />
                   <span>Kinh doanh - Marketing</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                  <span>Không yêu cầu kinh nghiệm</span>
+                <div className="flex items-center gap-1 ">
+                  <Image src={exp} alt="exp" />
+                  <span>Yêu cầu kinh nghiệm</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
+                <div className="flex items-center gap-1 ">
+                  <Image src={adress_icon} alt="exp" />
                   <span>Q7 - TP. HCM</span>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="py-10 w-full mx-auto">
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious href="#" />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">1</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#" isActive>
+                  2
+                </PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">3</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationNext href="#" />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
+        <div className="w-full  mx-auto py-10">
+          <h3
+            className={clsx(
+              inter.className,
+              "text-center font-bold text-2xl mb-10"
+            )}
+          >
+            Quy trình tuyển dụng
+          </h3>
+          <div className="relative">
+            {/* Dashed timeline line */}
+            <div className="absolute top-[5px] left-0 right-0 border-t-2 border-gray-300 border-dashed" />
+
+            {/* Steps */}
+            <div className="max-w-[1300px] mx-auto px-4">
+              {/* Steps */}
+              <div className="relative flex flex-wrap justify-between">
+                {steps.map((step, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col items-center w-1/5 mb-8 lg:mb-0"
+                  >
+                    {/* Circle */}
+                    <div className="w-3 h-3 rounded-full bg-[#797B7C] border border-gray-400 flex items-center justify-center relative z-10"></div>
+                    {/* Text with background color */}
+                    <div className="text-center mt-4 text-sm px-4 pb-20 bg-gray-100 aspect-square rounded-lg w-full max-w-[240px] flex flex-col items-center hover:scale-105 transition-all">
+                      <div className="w-1/3 bg-white aspect-square">
+                        <span
+                          className={clsx(
+                            openSans.className,
+                            "text-2xl font-semibold text-[#797B7C]"
+                          )}
+                        >
+                          {step.number}
+                        </span>
+                      </div>
+                      <span className={clsx(openSans.className, "mt-5")}>
+                        {step.title}
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
