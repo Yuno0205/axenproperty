@@ -13,6 +13,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const inter = Inter({
   subsets: ["latin", "vietnamese"],
@@ -162,7 +163,7 @@ const Careers = () => {
             </PaginationContent>
           </Pagination>
         </div>
-        <div className="w-full  mx-auto py-10">
+        <div className="w-full mx-auto py-10">
           <h3
             className={clsx(
               inter.className,
@@ -206,6 +207,41 @@ const Careers = () => {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+        <div className="max-w-5xl mx-auto px-5">
+          <h3
+            className={clsx(
+              inter.className,
+              "text-center font-bold text-2xl mb-10"
+            )}
+          >
+            Câu hỏi thường gặp
+          </h3>
+          <div className={clsx(openSans.className, "w-full")}>
+            <Tabs defaultValue="fulltime" className="w-4/5 mx-auto">
+              <TabsList className="w-full justify-between h-auto">
+                <TabsTrigger value="fulltime" className="px-10 py-2 font-bold ">
+                  Fulltime
+                </TabsTrigger>
+                <TabsTrigger
+                  value="internship"
+                  className="px-10 py-2 font-bold "
+                >
+                  Internship
+                </TabsTrigger>
+                <TabsTrigger value="parttime" className="px-10 py-2 font-bold">
+                  Part-time
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="fulltime">
+                Make changes to your account here.
+              </TabsContent>
+              <TabsContent value="internship">
+                Change your password here.
+              </TabsContent>
+              <TabsContent value="parttime">Parttime</TabsContent>
+            </Tabs>
           </div>
         </div>
       </div>
