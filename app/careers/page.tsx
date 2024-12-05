@@ -14,6 +14,14 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import Link from "next/link";
+import { data } from "@/lib/data";
 
 const inter = Inter({
   subsets: ["latin", "vietnamese"],
@@ -57,11 +65,11 @@ const Careers = () => {
       ></div>
       {/* Content */}
       <div className="w-full">
-        <div className="max-w-5xl mx-auto px-20 py-24 mx-auto">
+        <div className="max-w-5xl mx-auto px-20 py-24 xs:px-10 xs:py-12 mx-auto">
           <div
             className={clsx(
               inter.className,
-              "flex justify-between items-center mb-6"
+              "flex justify-between items-center mb-6 2xs:flex-col 2xs:gap-4"
             )}
           >
             <h2 className="text-2xl font-bold text-gray-900">
@@ -73,68 +81,78 @@ const Careers = () => {
           </div>
 
           <div className={clsx(openSans.className, "")}>
-            {/* Real Estate Business Specialist */}
-            <div className="border-y p-8 hover:shadow-md transition-shadow cursor-pointer">
-              <h3 className="text-lg font-semibold text-[#202325] mb-2">
-                Chuyên viên kinh doanh Bất động sản
-              </h3>
-              <div className="flex flex-wrap gap-16 text-sm text-gray-600">
-                <div className="flex items-center gap-1">
-                  <Image src={job} alt="job" />
-                  <span>Kinh doanh - Marketing</span>
-                </div>
-                <div className="flex items-center gap-1 ">
-                  <Image src={exp} alt="exp" />
-                  <span>Yêu cầu kinh nghiệm</span>
-                </div>
-                <div className="flex items-center gap-1 ">
-                  <Image src={adress_icon} alt="exp" />
-                  <span>Q7 - TP. HCM</span>
-                </div>
+            {data.map((item, index) => (
+              <div
+                key={index}
+                className="border-y p-8 2xs:p-4 hover:shadow-md transition-shadow cursor-pointer"
+              >
+                <Link href={`/careers/${item.slug}`}>
+                  <h3 className="text-lg font-semibold text-[#202325] mb-2">
+                    {item.name}
+                  </h3>
+                  <div className="flex flex-wrap justify-between gap-4 text-sm text-gray-600">
+                    <div className="flex items-center gap-1">
+                      <Image src={job} alt="job" />
+                      <span>Kinh doanh - Marketing</span>
+                    </div>
+                    <div className="flex items-center gap-1 ">
+                      <Image src={exp} alt="exp" />
+                      <span>Yêu cầu kinh nghiệm</span>
+                    </div>
+                    <div className="flex items-center gap-1 ">
+                      <Image src={adress_icon} alt="exp" />
+                      <span>Q7 - TP. HCM</span>
+                    </div>
+                  </div>
+                </Link>
               </div>
-            </div>
+            ))}
 
             {/* Customer Care Specialist */}
-            <div className="border-y p-8 hover:shadow-md transition-shadow cursor-pointer">
-              <h3 className="text-lg font-semibold text-[#202325] mb-2">
-                Chuyên viên chăm sóc khách hàng
-              </h3>
-              <div className="flex flex-wrap gap-16 text-sm text-gray-600">
-                <div className="flex items-center gap-1">
-                  <Image src={job} alt="job" />
-                  <span>Kinh doanh - Marketing</span>
+            {/* <div className="border-y p-8 2xs:p-4 hover:shadow-md transition-shadow cursor-pointer">
+              <Link href={"/careers/customer-care"}>
+                <h3 className="text-lg font-semibold text-[#202325] mb-2">
+                  Chuyên viên chăm sóc khách hàng
+                </h3>
+                <div className="flex flex-wrap gap-4 justify-between text-sm text-gray-600">
+                  <div className="flex items-center gap-1">
+                    <Image src={job} alt="job" />
+                    <span>Kinh doanh - Marketing</span>
+                  </div>
+                  <div className="flex items-center gap-1 ">
+                    <Image src={exp} alt="exp" />
+                    <span>Yêu cầu kinh nghiệm</span>
+                  </div>
+                  <div className="flex items-center gap-1 ">
+                    <Image src={adress_icon} alt="exp" />
+                    <span>Q7 - TP. HCM</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-1 ">
-                  <Image src={exp} alt="exp" />
-                  <span>Yêu cầu kinh nghiệm</span>
-                </div>
-                <div className="flex items-center gap-1 ">
-                  <Image src={adress_icon} alt="exp" />
-                  <span>Q7 - TP. HCM</span>
-                </div>
-              </div>
-            </div>
+              </Link>
+            </div> */}
 
             {/* Marketing Intern */}
-            <div className="border-y p-8 hover:shadow-md transition-shadow cursor-pointer">
-              <h3 className="text-lg font-semibold text-[#202325] mb-2">
-                Thực tập sinh Marketing (Trợ lý)
-              </h3>
-              <div className="flex flex-wrap gap-16 text-sm text-gray-600">
-                <div className="flex items-center gap-1">
-                  <Image src={job} alt="job" />
-                  <span>Kinh doanh - Marketing</span>
+            {/* <div className="border-y p-8 2xs:p-4 hover:shadow-md transition-shadow cursor-pointer">
+              <Link href={"careers/marketing-intern"}>
+                <h3 className="text-lg font-semibold text-[#202325] mb-2">
+                  Thực tập sinh Marketing (Trợ lý)
+                </h3>
+                <div className="flex flex-wrap gap-4 justify-between text-sm text-gray-600">
+                  <div className="flex items-center gap-1">
+                    <Image src={job} alt="job" />
+                    <span>Kinh doanh - Marketing</span>
+                  </div>
+                  <div className="flex items-center gap-1 ">
+                    <Image src={exp} alt="exp" />
+                    <span>Yêu cầu kinh nghiệm</span>
+                  </div>
+                  <div className="flex items-center gap-1 ">
+                    <Image src={adress_icon} alt="exp" />
+                    <span>Q7 - TP. HCM</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-1 ">
-                  <Image src={exp} alt="exp" />
-                  <span>Yêu cầu kinh nghiệm</span>
-                </div>
-                <div className="flex items-center gap-1 ">
-                  <Image src={adress_icon} alt="exp" />
-                  <span>Q7 - TP. HCM</span>
-                </div>
-              </div>
-            </div>
+              </Link>
+            </div> */}
           </div>
         </div>
         <div className="py-10 w-full mx-auto">
@@ -179,11 +197,11 @@ const Careers = () => {
             {/* Steps */}
             <div className="max-w-[1300px] mx-auto px-4">
               {/* Steps */}
-              <div className="relative flex flex-wrap justify-between">
+              <div className="relative flex flex-wrap justify-center">
                 {steps.map((step, index) => (
                   <div
                     key={index}
-                    className="flex flex-col items-center w-1/5 mb-8 lg:mb-0"
+                    className="flex flex-col items-center w-1/5 lg:w-1/3 md:w-1/2 xs:w-full mb-8 lg:mb-0"
                   >
                     {/* Circle */}
                     <div className="w-3 h-3 rounded-full bg-[#797B7C] border border-gray-400 flex items-center justify-center relative z-10"></div>
@@ -219,28 +237,170 @@ const Careers = () => {
             Câu hỏi thường gặp
           </h3>
           <div className={clsx(openSans.className, "w-full")}>
-            <Tabs defaultValue="fulltime" className="w-4/5 mx-auto">
+            <Tabs defaultValue="fulltime" className=" mx-auto pb-20">
               <TabsList className="w-full justify-between h-auto">
-                <TabsTrigger value="fulltime" className="px-10 py-2 font-bold ">
+                <TabsTrigger
+                  value="fulltime"
+                  className="px-10 xs:px-4 2xs:px-2 py-2 font-bold "
+                >
                   Fulltime
                 </TabsTrigger>
                 <TabsTrigger
                   value="internship"
-                  className="px-10 py-2 font-bold "
+                  className="px-10 xs:px-4 2xs:px-2 py-2 font-bold "
                 >
                   Internship
                 </TabsTrigger>
-                <TabsTrigger value="parttime" className="px-10 py-2 font-bold">
+                <TabsTrigger
+                  value="parttime"
+                  className="px-10 xs:px-4 2xs:px-2 py-2 font-bold"
+                >
                   Part-time
                 </TabsTrigger>
               </TabsList>
-              <TabsContent value="fulltime">
-                Make changes to your account here.
+              <TabsContent value="fulltime" className="pt-5">
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger className="py-8 font-semibold border-t ">
+                      Tôi muốn bổ sung thông tin vào hồ sơ ứng tuyển của mình,
+                      tôi có phải ứng tuyển lại không?
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      AXEN Property is a pioneering entity in the field of real
+                      estate development and services, with a mission to create
+                      premium living spaces that harmoniously blend modern
+                      style, elegance, and timeless sustainability.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-2">
+                    <AccordionTrigger className="py-8 font-semibold border-t ">
+                      Tôi có thể ứng tuyển nhiều vị trí cùng một lúc không?
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      AXEN Property is a pioneering entity in the field of real
+                      estate development and services, with a mission to create
+                      premium living spaces that harmoniously blend modern
+                      style, elegance, and timeless sustainability.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-3">
+                    <AccordionTrigger className="py-8 font-semibold border-t ">
+                      Tôi có thể ứng tuyển lại cho cùng một vị trí không?
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      AXEN Property is a pioneering entity in the field of real
+                      estate development and services, with a mission to create
+                      premium living spaces that harmoniously blend modern
+                      style, elegance, and timeless sustainability.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-4">
+                    <AccordionTrigger className="py-8 font-semibold border-t ">
+                      Chuyên viên tuyển dụng tìm kiếm điều gì trong các buổi
+                      phỏng vấn qua điện thoại?
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      AXEN Property is a pioneering entity in the field of real
+                      estate development and services, with a mission to create
+                      premium living spaces that harmoniously blend modern
+                      style, elegance, and timeless sustainability.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-5">
+                    <AccordionTrigger className="py-8 font-semibold border-t ">
+                      Tôi nên chuẩn bị gì cho cuộc phỏng vấn qua điện thoại?
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      AXEN Property is a pioneering entity in the field of real
+                      estate development and services, with a mission to create
+                      premium living spaces that harmoniously blend modern
+                      style, elegance, and timeless sustainability.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-6">
+                    <AccordionTrigger className="py-8 font-semibold border-t ">
+                      Nhà tuyển dụng mong đợi điều gì trong các buổi phỏng vấn
+                      trực tiếp?
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      AXEN Property is a pioneering entity in the field of real
+                      estate development and services, with a mission to create
+                      premium living spaces that harmoniously blend modern
+                      style, elegance, and timeless sustainability.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-7">
+                    <AccordionTrigger className="py-8 font-semibold border-t ">
+                      Có bao nhiêu vòng phỏng vấn trực tiếp?
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      AXEN Property is a pioneering entity in the field of real
+                      estate development and services, with a mission to create
+                      premium living spaces that harmoniously blend modern
+                      style, elegance, and timeless sustainability.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-8">
+                    <AccordionTrigger className="py-8 font-semibold border-t ">
+                      Làm thế nào để cập nhật tình trạng đơn ứng tuyển của mình?
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      AXEN Property is a pioneering entity in the field of real
+                      estate development and services, with a mission to create
+                      premium living spaces that harmoniously blend modern
+                      style, elegance, and timeless sustainability.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-9">
+                    <AccordionTrigger className="py-8 font-semibold border-t ">
+                      Liệu công ty có thể linh hoạt sắp xếp nếu tôi ở nước ngoài
+                      trong thời gian phỏng vấn trực tiếp không?
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      AXEN Property is a pioneering entity in the field of real
+                      estate development and services, with a mission to create
+                      premium living spaces that harmoniously blend modern
+                      style, elegance, and timeless sustainability.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-10">
+                    <AccordionTrigger className="py-8 font-semibold border-t ">
+                      Tôi không thể tham dự buổi phỏng vấn vì tôi có việc gấp.
+                      Tôi nên làm gì?
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      AXEN Property is a pioneering entity in the field of real
+                      estate development and services, with a mission to create
+                      premium living spaces that harmoniously blend modern
+                      style, elegance, and timeless sustainability.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-11">
+                    <AccordionTrigger className="py-8 font-semibold border-t ">
+                      Tôi có thể xem các mẹo phỏng vấn và lời khuyên sự nghiệp
+                      từ nhân viên Shopee ở đâu?
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      AXEN Property is a pioneering entity in the field of real
+                      estate development and services, with a mission to create
+                      premium living spaces that harmoniously blend modern
+                      style, elegance, and timeless sustainability.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </TabsContent>
-              <TabsContent value="internship">
-                Change your password here.
-              </TabsContent>
-              <TabsContent value="parttime">Parttime</TabsContent>
+              <TabsContent value="internship">There nothing here</TabsContent>
+              <TabsContent value="parttime">There nothing here</TabsContent>
             </Tabs>
           </div>
         </div>
