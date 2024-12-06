@@ -1,69 +1,24 @@
 // components/Footer.js
-import facebookLogo from "@/public/static/images/facebook.png";
 import logo from "@/public/static/images/new/logo.png";
-import { InstagramLogoIcon } from "@radix-ui/react-icons";
-
 import Image from "next/image";
 import Link from "next/link";
+import facebook from "@/public/static/images/new/facebook.png";
+import thread from "@/public/static/images/new/thread.png";
+import linked from "@/public/static/images/new/linked.png";
+import { Open_Sans } from "next/font/google";
+import clsx from "clsx";
+
+const openSans = Open_Sans({
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "700"],
+});
 export default function Footer() {
   return (
-    <footer className=" py-8 mt-10">
-      <div className="container px-12 flex justify-between py-16 mx-auto sm:flex-wrap gap-2">
-        <div className="flex w-3/5 sm:w-full gap-2">
-          <div className="flex flex-col w-1/2">
-            <Link href="#" className="py-4 pr-4">
-              <span className="font-proximaBold text-xs pb-1 border-b-2 border-transparent hover:border-amber-500">
-                NEWS
-              </span>
-            </Link>
-            <Link href="#" className="py-4 pr-4">
-              <span className="font-proximaBold text-xs pb-1 border-b-2 border-transparent hover:border-amber-500">
-                CAREERS
-              </span>
-            </Link>
-            <Link href="#" className="py-4 pr-4">
-              <span className="font-proximaBold text-xs pb-1 border-b-2 border-transparent hover:border-amber-500">
-                DEVELOPERS
-              </span>
-            </Link>
-            <Link href="#" className="py-4 pr-4">
-              <span className="font-proximaBold text-xs pb-1 border-b-2 border-transparent hover:border-amber-500">
-                TRAVEL PROFESSIONALS
-              </span>
-            </Link>
-            <Link href="#" className="py-4 pr-4">
-              <span className="font-proximaBold text-xs pb-1 border-b-2 border-transparent hover:border-amber-500">
-                MI CORPORATE RESPONSIBILITY
-              </span>
-            </Link>
-          </div>
-          <div className="flex flex-col w-1/2">
-            <Link href="#" className="py-4 pr-4">
-              <span className="font-proximaBold text-xs pb-1 border-b-2 border-transparent hover:border-amber-500">
-                AXENPROPERTY.COM
-              </span>
-            </Link>
-            <Link href="#" className="py-4 pr-4">
-              <span className="font-proximaBold text-xs pb-1 border-b-2 border-transparent hover:border-amber-500">
-                TERMS & CONDITIONS
-              </span>
-            </Link>
-            <Link href="#" className="py-4 pr-4">
-              <span className="font-proximaBold text-xs pb-1 border-b-2 border-transparent hover:border-amber-500">
-                PRIVACY POLICY
-              </span>
-            </Link>
-            <Link href="#" className="py-4 pr-4">
-              <span className="font-proximaBold text-xs pb-1 border-b-2 border-transparent hover:border-amber-500">
-                MEETINGS
-              </span>
-            </Link>
-          </div>
-        </div>
-
-        {/* Right */}
-        <div className="flex w-2/5 sm:w-full sm:flex-col">
-          <div className="flex flex-col sm:py-10 sm:w-full">
+    <footer className=" py-8 mt-10 bg-white flex flex-col">
+      <div className="container px-12 flex justify-between py-16 mx-auto sm:flex-wrap gap-2 ">
+        {/* Leftside */}
+        <div className="flex w-1/2 sm:w-full sm:flex-col justify-between">
+          {/* <div className="flex flex-col sm:py-10 sm:w-full">
             <h2 className="font-bold mb-8 text-2xl font-proximaBold">
               Stay Connected
             </h2>
@@ -87,12 +42,68 @@ export default function Footer() {
                 </div>
               </Link>
             </div>
-          </div>
+          </div> */}
           <div className="flex flex-col items-center flex-1 gap-3 sm:w-full">
             <Image src={logo} alt="logo" className="mb-10" />
+            <span className="uppercase">Follow Axen:</span>
+            <div className="flex gap-3 items-center">
+              <Link href="#">
+                <Image src={facebook} alt="facebook" />
+              </Link>
+              <Link href="#">
+                <Image src={thread} alt="thread" />
+              </Link>
+              <Link href="#">
+                <Image src={linked} alt="linked" />
+              </Link>
+            </div>
+          </div>
+        </div>
+        {/* Rightside */}
+        <div
+          className={clsx(
+            openSans.className,
+            "flex w-1/2 sm:w-full gap-2 mt-10"
+          )}
+        >
+          <div className="flex flex-col w-1/2">
+            <span
+              className={clsx(openSans.className, "uppercase text-[#797979]")}
+            >
+              AXen Careers
+            </span>
+            <Link href="#" className="py-3 pr-4">
+              <span className=" border-b-2 border-transparent hover:border-amber-500">
+                Home
+              </span>
+            </Link>
+            <Link href="#" className="py-3 pr-4">
+              <span className=" border-b-2 border-transparent hover:border-amber-500">
+                About AXEN
+              </span>
+            </Link>
+            <Link href="#" className="py-3 pr-4">
+              <span className=" border-b-2 border-transparent hover:border-amber-500">
+                News & Event
+              </span>
+            </Link>
+            <Link href="#" className="py-3 pr-4">
+              <span className=" border-b-2 border-transparent hover:border-amber-500">
+                Careers
+              </span>
+            </Link>
+          </div>
+          <div className="flex flex-col w-1/2">
+            <span className={clsx("uppercase text-[#797979]")}>MORE</span>
+            <Link href="#" className="py-3 pr-4">
+              <span className=" border-b-2 border-transparent hover:border-amber-500">
+                Elite Life
+              </span>
+            </Link>
           </div>
         </div>
       </div>
+      <div className="border-t border-[#797979] max-w-[1200px] mx-auto w-full"></div>
     </footer>
   );
 }

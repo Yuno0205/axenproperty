@@ -1,12 +1,6 @@
-import church from "@/public/static/images/new/church2.png";
-import construction from "@/public/static/images/new/construction.jpg";
-import key from "@/public/static/images/new/key.jpg";
-import logo from "@/public/static/images/new/logo.png";
-import tower from "@/public/static/images/new/tower2.jpg";
-import { CopyIcon } from "@radix-ui/react-icons";
+import apartment from "@/public/static/images/new/apartment2.jpg";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import apartment from "@/public/static/images/new/apartment2.jpg";
 export const Services = () => {
   return (
     <section className="w-full h-full">
@@ -30,7 +24,7 @@ export const Services = () => {
 
       <div className="container mx-auto w-full">
         <div className="container w-full mx-auto h-full">
-          <div className="py-20 px-16 flex flex-col items-center xs:text-center">
+          {/* <div className="py-20 px-16 flex flex-col items-center xs:text-center">
             <Image src={logo} alt="logo" className="h-40 object-contain" />
             <span className="avenir text-3xl">
               Comprehensive Real Estate Services
@@ -39,8 +33,8 @@ export const Services = () => {
               At Axen Property, we offer a full range of real estate services
               designed to meet the needs of our clients and the community
             </span>
-          </div>
-          <div className="w-full relative">
+          </div> */}
+          <div className="w-full relative py-10">
             <div className="w-full h-[365px]">
               <Image
                 src={apartment}
@@ -51,11 +45,11 @@ export const Services = () => {
             <div className="w-2/5 sm:w-full px-4">
               <div className="mt-[-300px] sm:mt-[-50px] h-[365px] ml-12 sm:mx-auto px-16 py-12 bg-white w-full flex flex-col justify-center shadow-lg  z-2 relative xs:text-center">
                 <span className="avenir text-3xl font-light uppercase">
-                  Project Development
+                  Current Developments
                 </span>
                 <span className="my-2.5">
-                  We handle every step, from design to completion, ensuring each
-                  project is a masterpiece.
+                  Follow the journey of our ongoing projects as we bring new
+                  spaces to life.
                 </span>
 
                 <Button className="w-40 my-5 ">
@@ -71,7 +65,7 @@ export const Services = () => {
 
       {/* Consultation */}
 
-      <div className="py-16 mx-auto flex  sm:flex-col gap-2 px-12 sm:px-5 sm:py-10">
+      {/* <div className="py-16 mx-auto flex  sm:flex-col gap-2 px-12 sm:px-5 sm:py-10">
         <div className="w-1/2 sm:w-full  bg-[url('/static/images/texture-5.png')] p-20 sm:p-8 sm:text-center  flex flex-col justify-center text-white">
           <span className="avenir text-3xl font-light uppercase ">
             Real Estate Consultation
@@ -89,10 +83,10 @@ export const Services = () => {
           alt="tower"
           className="w-1/2 object-cover aspect-square sm:w-full"
         />
-      </div>
+      </div> */}
 
       {/* Collections */}
-      <div className="mx-12 mb-20 mt-10 px-20 sm:px-5 xs:mx-5 2xs:px-0">
+      {/* <div className="mx-12 mb-20 mt-10 px-20 sm:px-5 xs:mx-5 2xs:px-0">
         <div className="flex flex-col xs:text-center">
           <span className="avenir text-3xl font-light uppercase">
             Property Management
@@ -104,7 +98,6 @@ export const Services = () => {
         </div>
         <div className="flex gap-2 sm:flex-wrap">
           <div className="w-1/2 flex 2xs:flex-wrap sm:w-full">
-            {/* Image */}
             <div className="w-2/5 2xs:w-full pr-5 xs:pr-2 my-2.5 flex justify-center items-center">
               <Image
                 src={key}
@@ -129,7 +122,6 @@ export const Services = () => {
             </div>
           </div>
           <div className="w-1/2 flex 2xs:flex-col sm:w-full">
-            {/* Image */}
             <div className="w-2/5 2xs:w-full pr-5 xs:pr-2 my-2.5 flex justify-center items-center">
               <Image
                 src={construction}
@@ -153,10 +145,10 @@ export const Services = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Support */}
-      <div className=" mx-auto flex gap-2 px-12 sm:flex-wrap xs:px-5">
+      {/* <div className=" mx-auto flex gap-2 px-12 sm:flex-wrap xs:px-5">
         <div className="w-1/2 bg-[url('/static/images/texture-5.png')] p-20 sm:p-8 flex flex-col justify-center text-white sm:w-full">
           <span className="avenir text-4xl font-light uppercase ">
             After-Sales Support
@@ -178,7 +170,7 @@ export const Services = () => {
             className="object-cover h-full w-full"
           />
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };

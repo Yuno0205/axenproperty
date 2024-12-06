@@ -35,57 +35,68 @@ export const Header = () => {
           </div>
           <div className="flex w-3/5 items-center justify-center sm:hidden">
             <nav className="uppercase flex items-center text-[#575F57] justify-center sm:hidden">
-              <Link href="/" className="pb-2.5">
-                <span className="py-5 pr-5 font-proximaBold text-xs">
-                  About us
-                </span>
+              <Link
+                href="/"
+                className="pb-2.5 border-b-2 border-transparent hover:border-amber-500"
+              >
+                <span className="font-proximaBold text-xs ">About axen</span>
               </Link>
-              <div className="ml-10 pb-2.5">
-                {/* <DropdownMenu>
-                    <DropdownMenuTrigger className="flex outline-none uppercase items-center">
-                      <Link
-                        href="/"
-                        className="py-5 pr-5 font-proximaBold text-xs"
-                      >
-                        Nourish Your Soul
-                      </Link>
-                      <ChevronDown size={20} className="ml-1" />
-                    </DropdownMenuTrigger>
-  
-                    <DropdownMenuContent className="p-6 uppercase font-proximaBold text-xs">
-                      <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
-                        Be Mindful & Present
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
-                        Be Nourished
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
-                        Be Together
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
-                        Weddings
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu> */}
-                <Link href="/" className="pb-2.5">
-                  <span className="py-5 pr-5 font-proximaBold text-xs">
-                    Services
-                  </span>
-                </Link>
-              </div>
-              <Link href="/" className="pb-2.5 ml-10 font-proximaBold text-xs">
+              {/* <div className="ml-10 pb-2.5">
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="flex outline-none uppercase items-center">
+                    <Link
+                      href="/"
+                      className="py-5 pr-5 font-proximaBold text-xs"
+                    >
+                      Nourish Your Soul
+                    </Link>
+                    <ChevronDown size={20} className="ml-1" />
+                  </DropdownMenuTrigger>
+
+                  <DropdownMenuContent className="p-6 uppercase font-proximaBold text-xs">
+                    <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
+                      Be Mindful & Present
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
+                      Be Nourished
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
+                      Be Together
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="font-proximaBold text-xs pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
+                      Weddings
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div> */}
+              <Link
+                href="/"
+                className="pb-2.5 ml-10 border-b-2 border-transparent hover:border-amber-500"
+              >
+                <span className="font-proximaBold text-xs">Services</span>
+              </Link>
+              <Link
+                href="/"
+                className="pb-2.5 ml-10 font-proximaBold text-xs border-b-2 border-transparent hover:border-amber-500"
+              >
                 Properties
               </Link>
-              <Link href="/" className="pb-2.5 ml-10 font-proximaBold text-xs">
-                News
+              <Link
+                href="/"
+                className="pb-2.5 ml-10 font-proximaBold text-xs border-b-2 border-transparent hover:border-amber-500"
+              >
+                News & Events
               </Link>
-              <Link href="/" className="pb-2.5 ml-10 font-proximaBold text-xs">
-                Career
+              <Link
+                href="/careers"
+                className="pb-2.5 ml-10 font-proximaBold text-xs border-b-2 border-transparent hover:border-amber-500"
+              >
+                Careers
               </Link>
             </nav>
           </div>
-          <div className="w-1/5 pl-5 flex flex-col sm:pl-2 sm:w-1/3 2xs:w-1/2">
-            <div className="w-full flex items-end justify-end py-2 pr-5 items-center sm:h-full sm:pr-2">
+          <div className="w-1/5 pl-5 flex flex-col sm:pl-2 sm:w-1/3 2xs:w-1/2 items-center">
+            <div className="w-full flex items-end py-2 pr-5 items-center sm:h-full sm:pr-2 justify-center">
               <div className="flex flex-col uppercase pt-4 px-2.5">
                 <span className="text-xs font-bold font-proximaBold line-clamp-1">
                   Select language

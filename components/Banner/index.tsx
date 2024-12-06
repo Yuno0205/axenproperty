@@ -10,7 +10,7 @@ export const Banner = () => {
           style={{
             backgroundImage: "url('/static/images/new/banner.jpg')",
           }}
-          className="w-full h-svh relative bg-cover bg-no-repeat flex items-center justify-center bg-center py-5 2xs:h-96"
+          className="w-full relative bg-cover bg-no-repeat flex items-center justify-center bg-center py-20 xs:py-10 2xs:h-96"
         >
           <div
             style={{
@@ -18,7 +18,7 @@ export const Banner = () => {
               // height: "calc(100% - 50px)",
               opacity: 0.85,
             }}
-            className="h-full w-5/6 bg-[#F2F3F5D9] flex flex-col items-center justify-center text-center gap-5"
+            className="h-full w-5/6 bg-[#F2F3F5D9] flex flex-col items-center justify-center text-center gap-5 py-10"
           >
             <div className="w-72 xs:w-52">
               <Link
@@ -34,8 +34,11 @@ export const Banner = () => {
                 />
               </Link>
             </div>
-            <div className="avenir text-[#666666] w-full text-5xl flex flex-col font-light capitalize sm:text-4xl px-4 pt-10 2xs:pt-0">
-              <span> Delivering professional Real estate solutions</span>
+            <div className="avenir text-[#666666] w-full text-5xl flex flex-col font-light capitalize sm:text-4xl px-4 pt-10 2xs:pt-0 pb-10">
+              <span className="line-clamp-3">
+                {" "}
+                Delivering professional Real estate solutions
+              </span>
             </div>
           </div>
         </div>
