@@ -29,15 +29,18 @@ export interface PropertiesFields {
 }
 
 export interface DevelopmentFields {
-  title: string;
-  content: string[];
   backgroundImage: Asset;
+  title: string;
+  text: string;
+  btnText: string;
 }
 
 export interface SolutionFields {
-  title: string;
-  content: string[];
   backgroundImage: Asset;
+  title: string;
+  text: string[];
+  btnText: string;
+  logo: Asset;
 }
 
 // Sử dụng generic utility

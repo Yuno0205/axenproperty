@@ -1,6 +1,6 @@
 import { Banner } from "@/components/Banner";
 import { Properties } from "@/components/Properties";
-import { Development } from "@/components/Services";
+import { Development } from "@/components/Development";
 import { ServerWrapper } from "@/components/SeverWrapper";
 import { Solutions } from "@/components/Solution";
 import { Fragment } from "react";
@@ -16,11 +16,17 @@ export default function Home() {
         {(data) => <Properties data={data} />}
       </ServerWrapper>
 
-      <Development />
+      <ServerWrapper contentType="development">
+        {(data) => <Development data={data} />}
+      </ServerWrapper>
+
       {/* <Introduction /> */}
       {/* <Projects /> */}
       {/* <FAQ /> */}
-      <Solutions />
+      <ServerWrapper contentType="solution">
+        {(data) => <Solutions data={data} />}
+      </ServerWrapper>
+
       {/* <Footer /> */}
     </Fragment>
   );

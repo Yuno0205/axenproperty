@@ -1,7 +1,13 @@
-import apartment from "@/public/static/images/new/apartment2.jpg";
+import { DevelopmentFields } from "@/types/contentful";
 import Image from "next/image";
 import { Button } from "../ui/button";
-export const Development = () => {
+
+type Props = {
+  data: DevelopmentFields;
+};
+export const Development = ({ data }: Props) => {
+  console.log(data);
+
   return (
     <section className="w-full h-full">
       {/* Title */}
@@ -35,26 +41,24 @@ export const Development = () => {
             </span>
           </div> */}
           <div className="w-full relative py-10">
-            <div className="w-full h-[365px]">
+            <div className="w-full h-[365px] relative">
               <Image
-                src={apartment}
+                src={`https:${data?.backgroundImage?.fields?.file?.url}`}
                 alt="apartment"
+                fill
                 className="w-full object-cover h-full"
               />
             </div>
             <div className="w-2/5 sm:w-full px-4">
               <div className="mt-[-300px] sm:mt-[-50px] h-[365px] ml-12 sm:mx-auto px-16 py-12 bg-white w-full flex flex-col justify-center shadow-lg  z-2 relative xs:text-center">
                 <span className="avenir text-3xl font-light uppercase">
-                  Current Developments
+                  {data.title}
                 </span>
-                <span className="my-2.5">
-                  Follow the journey of our ongoing projects as we bring new
-                  spaces to life.
-                </span>
+                <span className="my-2.5">{data.text}</span>
 
                 <Button className="w-40 my-5 ">
                   <span className="font-bold text-lg capitalize">
-                    Learn more
+                    {data.btnText}
                   </span>
                 </Button>
               </div>
