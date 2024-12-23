@@ -1,9 +1,9 @@
-import clsx from "clsx";
-import { Inter, Open_Sans } from "next/font/google";
-import job from "@/public/static/images/new/job.png";
-import exp from "@/public/static/images/new/exp.png";
-import adress_icon from "@/public/static/images/new/adress_icon.png";
-import Image from "next/image";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import {
   Pagination,
   PaginationContent,
@@ -14,14 +14,9 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import Link from "next/link";
-import { data } from "@/lib/data";
+import { fetchContentfulData } from "@/lib/contentful";
+import clsx from "clsx";
+import { Inter, Open_Sans } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin", "vietnamese"],
@@ -32,7 +27,7 @@ const openSans = Open_Sans({
   subsets: ["latin", "vietnamese"],
   weight: ["400", "700"],
 });
-const Careers = () => {
+const Careers = async () => {
   const steps = [
     {
       number: "1",
@@ -55,6 +50,10 @@ const Careers = () => {
       title: "Chờ thư mời nhận việc",
     },
   ];
+
+  const data = await fetchContentfulData("recruitment");
+
+  console.log(data);
 
   return (
     <section className="min-h-screen w-full bg-white">
@@ -81,7 +80,7 @@ const Careers = () => {
           </div>
 
           <div className={clsx(openSans.className, "")}>
-            {data.map((item, index) => (
+            {/* {data.map((item, index) => (
               <div
                 key={index}
                 className="border-y p-8 2xs:p-4 hover:shadow-md transition-shadow cursor-pointer"
@@ -106,7 +105,7 @@ const Careers = () => {
                   </div>
                 </Link>
               </div>
-            ))}
+            ))} */}
 
             {/* Customer Care Specialist */}
             {/* <div className="border-y p-8 2xs:p-4 hover:shadow-md transition-shadow cursor-pointer">

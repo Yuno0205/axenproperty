@@ -1,18 +1,34 @@
 // components/Footer.js
-import logo from "@/public/static/images/new/logo.png";
+import { FooterFields } from "@/types/contentful";
+import clsx from "clsx";
+import { Open_Sans } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import facebook from "@/public/static/images/new/facebook.png";
-import thread from "@/public/static/images/new/thread.png";
-import linked from "@/public/static/images/new/linked.png";
-import { Open_Sans } from "next/font/google";
-import clsx from "clsx";
 
 const openSans = Open_Sans({
   subsets: ["latin", "vietnamese"],
   weight: ["400", "700"],
 });
-export default function Footer() {
+
+type FooterProps = {
+  data: FooterFields;
+};
+
+type SocialLink = {
+  href: string;
+  icon: string;
+};
+export default function Footer({ data }: FooterProps) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const urls = data.social.map((item: any) => {
+    return {
+      href: item.fields.title,
+      icon: item.fields.file.url,
+    };
+  });
+
+  console.log(urls);
+
   return (
     <footer className=" py-8 mt-10 bg-white flex flex-col">
       <div className="container px-12 flex justify-between py-16 mx-auto sm:flex-wrap gap-2 ">
@@ -44,18 +60,30 @@ export default function Footer() {
             </div>
           </div> */}
           <div className="flex flex-col items-center flex-1 gap-3 sm:w-full">
-            <Image src={logo} alt="logo" className="mb-10" />
-            <span className="uppercase">Follow Axen:</span>
+            <Image
+              src={`https:${data?.logo?.fields?.file?.url}`}
+              alt="logo"
+              width={300}
+              height={265}
+              className="mb-10"
+            />
+            <span className="uppercase">{data.titleList[0]}</span>
             <div className="flex gap-3 items-center">
-              <Link href="#">
-                <Image src={facebook} alt="facebook" />
-              </Link>
-              <Link href="#">
-                <Image src={thread} alt="thread" />
-              </Link>
-              <Link href="#">
-                <Image src={linked} alt="linked" />
-              </Link>
+              {urls.map((url: SocialLink, index: number) => (
+                <Link
+                  href={url.href}
+                  key={index}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={`https:${url.icon}`}
+                    alt="facebook"
+                    width={35}
+                    height={35}
+                  />
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -70,32 +98,31 @@ export default function Footer() {
             <span
               className={clsx(openSans.className, "uppercase text-[#797979]")}
             >
-              AXen Careers
+              Axen Careers
             </span>
-            <Link href="#" className="py-3 pr-4">
+            <Link href="/" className="py-3 pr-4">
               <span className=" border-b-2 border-transparent hover:border-amber-500">
                 Home
               </span>
             </Link>
-            <Link href="#" className="py-3 pr-4">
-              <span className=" border-b-2 border-transparent hover:border-amber-500">
-                About AXEN
-              </span>
-            </Link>
-            <Link href="#" className="py-3 pr-4">
-              <span className=" border-b-2 border-transparent hover:border-amber-500">
-                News & Event
-              </span>
-            </Link>
-            <Link href="#" className="py-3 pr-4">
-              <span className=" border-b-2 border-transparent hover:border-amber-500">
-                Careers
-              </span>
-            </Link>
+            {data.navLinks.map((item, index) => (
+              <Link key={index} href={item.url} className="py-3 pr-4">
+                <span className=" border-b-2 border-transparent hover:border-amber-500">
+                  {item.label}
+                </span>
+              </Link>
+            ))}
           </div>
           <div className="flex flex-col w-1/2">
-            <span className={clsx("uppercase text-[#797979]")}>MORE</span>
-            <Link href="#" className="py-3 pr-4">
+            <span className={clsx("uppercase text-[#797979]")}>
+              {data.titleList[2]}
+            </span>
+            <Link
+              href="https://elitelife.axenproperty.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-3 pr-4"
+            >
               <span className=" border-b-2 border-transparent hover:border-amber-500">
                 Elite Life
               </span>

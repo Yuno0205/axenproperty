@@ -1,16 +1,24 @@
-import Image from "next/image";
-import logo from "@/public/static/images/new/logo.png";
-import { Button } from "../ui/button";
+import { SolutionFields } from "@/types/contentful";
 import { CopyIcon } from "lucide-react";
+import Image from "next/image";
+import { Button } from "../ui/button";
 
-export const Solutions = () => {
+type SolutionProps = {
+  data: SolutionFields;
+};
+
+export const Solutions = ({ data }: SolutionProps) => {
   return (
     <section className="w-full">
       {/* Horizontal */}
       <div className="w-full h-full pb-6">
         <div
-          style={{ backgroundPosition: "50% 50%", backgroundSize: "cover" }}
-          className="bg-[url('/static/images/new/projects.jpg')] h-[375px] w-full relative"
+          style={{
+            backgroundImage: `url(${data?.backgroundImage?.fields?.file?.url})`,
+            backgroundPosition: "50% 50%",
+            backgroundSize: "cover",
+          }}
+          className=" h-[375px] w-full relative"
         ></div>
         <div
           style={{ width: "calc(100% - 100px)" }}
@@ -18,22 +26,21 @@ export const Solutions = () => {
         >
           <div className="p-4 mb-5">
             <Image
-              src={logo}
+              src={`https:${data?.logo?.fields?.file?.url}`}
               alt="logo"
+              width={206}
               height={180}
               className="object-contain"
             />
           </div>
           <span className="avenir text-4xl font-light uppercase sm:text-3xl">
-            DELIVERING PROFESSIONAL REAL ESTATE SOLUTIONS
+            {data.title}
           </span>
           <span className="pt-2.5 pb-5">
-            <span className="font-bold">AXEN Property</span> delivers innovative
-            and professional real estate solutions, enhancing property value for
-            investors and living spaces for customers.
+            <span className="font-bold">{data.text[0]}</span> {data.text[1]}
           </span>
           <Button className=" my-5">
-            <span className="text-lg capitalize">Contact Axen</span>
+            <span className="text-lg capitalize">{data.btnText}</span>
             <CopyIcon />
           </Button>
         </div>
