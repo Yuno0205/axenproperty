@@ -1,7 +1,7 @@
 import apartment from "@/public/static/images/new/apartment2.jpg";
 import Image from "next/image";
 import { Button } from "../ui/button";
-export const Services = () => {
+export const Development = () => {
   return (
     <section className="w-full h-full">
       {/* Title */}

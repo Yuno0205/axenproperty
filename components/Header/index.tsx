@@ -1,8 +1,11 @@
 "use client";
 import logo from "@/public/static/images/new/logo-ngang.png";
+import { HeaderFields } from "@/types/contentful";
+import clsx from "clsx";
 import { ChevronDown, Earth } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { Button } from "../ui/button";
 import {
   DropdownMenu,
@@ -10,10 +13,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { useState } from "react";
-import clsx from "clsx";
 
-export const Header = () => {
+type HeaderProps = {
+  data: HeaderFields;
+};
+
+export const Header = ({ data }: HeaderProps) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -33,14 +38,26 @@ export const Header = () => {
               </Link>
             </div>
           </div>
-          <div className="flex w-3/5 items-center justify-center sm:hidden">
-            <nav className="uppercase flex items-center text-[#575F57] justify-center sm:hidden">
-              <Link
+          <div className="flex w-3/5 items-center justify-center sm:hidden px-4">
+            <nav className="uppercase flex items-center text-[#575F57] justify-center sm:hidden gap-10">
+              {/* <Link
                 href="/"
                 className="pb-2.5 border-b-2 border-transparent hover:border-amber-500"
               >
                 <span className="font-proximaBold text-xs ">About axen</span>
-              </Link>
+              </Link> */}
+              {data?.navigation &&
+                data?.navigation.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item.url}
+                    className="pb-2.5 border-b-2 border-transparent hover:border-amber-500"
+                  >
+                    <span className="font-proximaBold text-xs">
+                      {item.label}
+                    </span>
+                  </Link>
+                ))}
               {/* <div className="ml-10 pb-2.5">
                 <DropdownMenu>
                   <DropdownMenuTrigger className="flex outline-none uppercase items-center">
@@ -69,7 +86,7 @@ export const Header = () => {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div> */}
-              <Link
+              {/* <Link
                 href="/"
                 className="pb-2.5 ml-10 border-b-2 border-transparent hover:border-amber-500"
               >
@@ -92,7 +109,7 @@ export const Header = () => {
                 className="pb-2.5 ml-10 font-proximaBold text-xs border-b-2 border-transparent hover:border-amber-500"
               >
                 Careers
-              </Link>
+              </Link> */}
             </nav>
           </div>
           <div className="w-1/5 pl-5 flex flex-col sm:pl-2 sm:w-1/3 2xs:w-1/2 items-center">
@@ -111,12 +128,14 @@ export const Header = () => {
                     </DropdownMenuTrigger>
 
                     <DropdownMenuContent className="p-6">
-                      <DropdownMenuItem className="font-proximaBold pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
-                        English
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="font-proximaBold pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer">
-                        Vietnamese
-                      </DropdownMenuItem>
+                      {data.languages.map((item, index) => (
+                        <DropdownMenuItem
+                          key={index}
+                          className="font-proximaBold pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer"
+                        >
+                          {item}
+                        </DropdownMenuItem>
+                      ))}
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
@@ -151,7 +170,7 @@ export const Header = () => {
             </div>
             <div className="flex pr-5 justify-between py-2.5 items-center gap-2 sm:hidden">
               <Button className="py-3 px-10 mb-2.5 h-auto rounded-full">
-                <span className="text-base capitalize">Contact axen</span>
+                <span className="text-base capitalize">{data.btnText}</span>
               </Button>
             </div>
           </div>
@@ -166,32 +185,12 @@ export const Header = () => {
       >
         <div className="w-full pt-32">
           <nav className="uppercase flex flex-col items-center justify-center text-[#575F57] py-5 text-center text-white">
-            <Link href="/" className="py-2.5 w-full">
-              <span className="font-proximaBold text-xs">About us</span>
-            </Link>
-
-            <Link href="/" className="py-2.5 w-full text-center">
-              <span className=" font-proximaBold text-xs">Services</span>
-            </Link>
-
-            <Link
-              href="/"
-              className="py-2.5 w-full text-center font-proximaBold text-xs"
-            >
-              <span className=" font-proximaBold text-xs">Properties</span>
-            </Link>
-            <Link
-              href="/"
-              className="py-2.5 w-full text-center font-proximaBold text-xs"
-            >
-              News
-            </Link>
-            <Link
-              href="/"
-              className="py-2.5 w-full text-center font-proximaBold text-xs"
-            >
-              Carrer
-            </Link>
+            {data?.navigation &&
+              data?.navigation.map((item, index) => (
+                <Link key={index} href={item.url} className="pb-2.5 w-full">
+                  <span className="font-proximaBold text-xs">{item.label}</span>
+                </Link>
+              ))}
           </nav>
           <div className="flex justify-center">
             <Button className="py-3 px-10 mb-2.5 h-auto rounded-full mt-5 ">

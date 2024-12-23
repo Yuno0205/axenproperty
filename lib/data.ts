@@ -1,7 +1,12 @@
+import exp from "constants";
+
 export const data = [
   {
     slug: "business-development-intern",
     name: "Thực tập sinh kinh doanh Bất động sản",
+    field: "Kinh doanh - Marketing",
+    experience: "Không yêu cầu kinh nghiệm",
+    location: "Quận 7 - HCMC",
     linkJD: "/[AXEN Property] - JD Business Development Intern.pdf#toolbar=0",
     linkForm:
       "https://docs.google.com/forms/d/e/1FAIpQLSeZ8eaEy6p09y8-3HYinp3KidjeumBEIZDGbd-OZk0fQum1DQ/viewform?usp=send_form",

@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
+import { ServerWrapper } from "@/components/SeverWrapper";
 
 const proximaNova = localFont({
   src: "./fonts/ProximaNovaRegular.otf",
@@ -39,7 +40,9 @@ export default function RootLayout({
       <body
         className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable} antialiased bg-[#f4f4f4]`}
       >
-        <Header />
+        <ServerWrapper contentType="header">
+          {(data) => <Header data={data} />}
+        </ServerWrapper>
         {children}
         <Footer />
       </body>
