@@ -43,5 +43,13 @@ export interface SolutionFields {
   logo: Asset;
 }
 
+export interface FooterFields {
+  backgroundImage: Asset;
+  titleList: string[];
+  logo: Asset;
+  navLinks: NavigationItem[];
+  social: Asset[];
+}
+
 // Sử dụng generic utility
 // export type HeaderEntry = ContentfulEntry<HeaderFields>;

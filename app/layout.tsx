@@ -44,7 +44,9 @@ export default function RootLayout({
           {(data) => <Header data={data} />}
         </ServerWrapper>
         {children}
-        <Footer />
+        <ServerWrapper contentType="footer">
+          {(data) => <Footer data={data} />}
+        </ServerWrapper>
       </body>
     </html>
   );

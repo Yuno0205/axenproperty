@@ -6,8 +6,6 @@ type Props = {
   data: DevelopmentFields;
 };
 export const Development = ({ data }: Props) => {
-  console.log(data);
-
   return (
     <section className="w-full h-full">
       {/* Title */}

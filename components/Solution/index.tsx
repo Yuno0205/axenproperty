@@ -8,8 +8,6 @@ type SolutionProps = {
 };
 
 export const Solutions = ({ data }: SolutionProps) => {
-  console.log(data);
-
   return (
     <section className="w-full">
       {/* Horizontal */}
