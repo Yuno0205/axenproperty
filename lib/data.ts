@@ -1,5 +1,3 @@
-import exp from "constants";
-
 export const data = [
   {
     slug: "business-development-intern",

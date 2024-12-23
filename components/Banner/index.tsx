@@ -1,4 +1,3 @@
-import logo from "@/public/static/images/new/logo.png";
 import { BannerFields } from "@/types/contentful";
 import Image from "next/image";
 import Link from "next/link";

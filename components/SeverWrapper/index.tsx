@@ -3,7 +3,9 @@ import { ReactNode } from "react";
 import { fetchContentfulData } from "@/lib/contentful";
 
 type ServerWrapperProps = {
-  contentType: string; // Specify the Contentful content type
+  contentType: string;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: (data: any) => ReactNode; // Pass fetched data to the child component as a function
 };
 
@@ -13,7 +15,7 @@ export async function ServerWrapper({
 }: ServerWrapperProps) {
   const rawData = await fetchContentfulData(contentType);
 
-  // Lấy `fields` từ `items`
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const extractedData = rawData.items.map((item: any) => item.fields);
 
   return <>{children(extractedData[0])}</>;
