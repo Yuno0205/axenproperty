@@ -22,5 +22,23 @@ export interface BannerFields {
   logo: Asset;
 }
 
+export interface PropertiesFields {
+  title: string;
+  content: string[];
+  backgroundImage: Asset;
+}
+
+export interface DevelopmentFields {
+  title: string;
+  content: string[];
+  backgroundImage: Asset;
+}
+
+export interface SolutionFields {
+  title: string;
+  content: string[];
+  backgroundImage: Asset;
+}
+
 // Sử dụng generic utility
 // export type HeaderEntry = ContentfulEntry<HeaderFields>;

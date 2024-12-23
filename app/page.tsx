@@ -12,8 +12,10 @@ export default function Home() {
       <ServerWrapper contentType="banner">
         {(data) => <Banner data={data} />}
       </ServerWrapper>
-      {/* <Banner /> */}
-      <Properties />
+      <ServerWrapper contentType="properties">
+        {(data) => <Properties data={data} />}
+      </ServerWrapper>
+
       <Development />
       {/* <Introduction /> */}
       {/* <Projects /> */}

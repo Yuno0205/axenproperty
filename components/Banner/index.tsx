@@ -7,8 +7,6 @@ type Props = {
 };
 
 export const Banner = ({ data }: Props) => {
-  console.log(data);
-
   return (
     <section className="w-full flex items-center justify-center">
       <div className="w-full h-full">
