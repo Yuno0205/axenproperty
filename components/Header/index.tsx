@@ -40,12 +40,6 @@ export const Header = ({ data }: HeaderProps) => {
           </div>
           <div className="flex w-3/5 items-center justify-center sm:hidden px-4">
             <nav className="uppercase flex items-center text-[#575F57] justify-center sm:hidden gap-10">
-              {/* <Link
-                href="/"
-                className="pb-2.5 border-b-2 border-transparent hover:border-amber-500"
-              >
-                <span className="font-proximaBold text-xs ">About axen</span>
-              </Link> */}
               {data?.navigation &&
                 data?.navigation.map((item, index) => (
                   <Link
