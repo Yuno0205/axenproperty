@@ -3,7 +3,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ["images.ctfassets.net"], // Domain mặc định của Contentful
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.ctfassets.net",
+      },
+    ], // Domain mặc định của Contentful
   },
 };
 

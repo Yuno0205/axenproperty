@@ -34,6 +34,7 @@ export const Header = ({ data }: HeaderProps) => {
                   // width={173}
                   height={154}
                   className="object-cover w-full"
+                  priority
                 />
               </Link>
             </div>
