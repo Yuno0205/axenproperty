@@ -58,8 +58,6 @@ const Careers = async () => {
 
   const data = (await fetchContentfulData("recruitment")).items as any;
 
-  console.log(data);
-
   return (
     <section className="min-h-screen w-full bg-white">
       {/* Banner */}
