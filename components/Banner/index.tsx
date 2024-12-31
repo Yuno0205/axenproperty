@@ -12,7 +12,7 @@ type Props = {
 
 export const Banner = ({ data }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false });
+  const isInView = useInView(ref, { once: true });
 
   return (
     <section className="w-full flex items-center justify-center">
