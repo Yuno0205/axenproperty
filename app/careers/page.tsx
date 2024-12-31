@@ -56,6 +56,7 @@ const Careers = async () => {
     },
   ];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const data = (await fetchContentfulData("recruitment")).items as any;
 
   return (
@@ -83,6 +84,7 @@ const Careers = async () => {
           </div>
 
           <div className={clsx(openSans.className, "")}>
+            {/*  eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             {data.map((item: any, index: number) => (
               <div
                 key={index}
