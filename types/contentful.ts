@@ -51,5 +51,15 @@ export interface FooterFields {
   social: Asset[];
 }
 
+export interface recuitmentFields {
+  address: string;
+  experience: string;
+  field: string;
+  jobDescription: Asset;
+  linkForm: string;
+  name: string;
+  slug: string;
+}
+
 // Sử dụng generic utility
 // export type HeaderEntry = ContentfulEntry<HeaderFields>;

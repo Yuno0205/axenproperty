@@ -17,6 +17,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { fetchContentfulData } from "@/lib/contentful";
 import clsx from "clsx";
 import { Inter, Open_Sans } from "next/font/google";
+import Image from "next/image";
+import Link from "next/link";
+import job from "@/public/static/images/new/job.png";
+import exp from "@/public/static/images/new/exp.png";
+import adress_icon from "@/public/static/images/new/adress_icon.png";
 
 const inter = Inter({
   subsets: ["latin", "vietnamese"],
@@ -51,9 +56,8 @@ const Careers = async () => {
     },
   ];
 
-  const data = await fetchContentfulData("recruitment");
-
-  console.log(data);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const data = (await fetchContentfulData("recruitment")).items as any;
 
   return (
     <section className="min-h-screen w-full bg-white">
@@ -80,32 +84,36 @@ const Careers = async () => {
           </div>
 
           <div className={clsx(openSans.className, "")}>
-            {/* {data.map((item, index) => (
+            {/*  eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            {data.map((item: any, index: number) => (
               <div
                 key={index}
                 className="border-y p-8 2xs:p-4 hover:shadow-md transition-shadow cursor-pointer"
               >
-                <Link href={`/careers/${item.slug}`}>
+                <Link href={`/careers/${item.fields.slug}`}>
                   <h3 className="text-lg font-semibold text-[#202325] mb-2">
-                    {item.name}
+                    {item.fields.name} {/* Hiển thị tên công việc */}
                   </h3>
                   <div className="flex flex-wrap justify-between gap-4 text-sm text-gray-600">
                     <div className="flex items-center gap-1">
+                      {/* Lĩnh vực */}
                       <Image src={job} alt="job" />
-                      <span>Kinh doanh - Marketing</span>
+                      <span>{item.fields.field}</span>
                     </div>
                     <div className="flex items-center gap-1 ">
+                      {/* Kinh nghiệm */}
                       <Image src={exp} alt="exp" />
-                      <span>Yêu cầu kinh nghiệm</span>
+                      <span>{item.fields.experience}</span>
                     </div>
                     <div className="flex items-center gap-1 ">
+                      {/* Địa chỉ */}
                       <Image src={adress_icon} alt="exp" />
-                      <span>Q7 - TP. HCM</span>
+                      <span>{item.fields.address}</span>
                     </div>
                   </div>
                 </Link>
               </div>
-            ))} */}
+            ))}
 
             {/* Customer Care Specialist */}
             {/* <div className="border-y p-8 2xs:p-4 hover:shadow-md transition-shadow cursor-pointer">

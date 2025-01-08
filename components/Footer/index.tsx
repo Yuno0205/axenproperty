@@ -27,8 +27,6 @@ export default function Footer({ data }: FooterProps) {
     };
   });
 
-  console.log(urls);
-
   return (
     <footer className=" py-8 mt-10 bg-white flex flex-col">
       <div className="container px-12 flex justify-between py-16 mx-auto sm:flex-wrap gap-2 ">
