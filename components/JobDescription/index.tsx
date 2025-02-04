@@ -1,14 +1,17 @@
 "use client";
 import clsx from "clsx";
 import { Open_Sans } from "next/font/google";
-import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
+import { Button } from "../ui/button";
 
 const openSans = Open_Sans({
   subsets: ["latin", "vietnamese"],
   weight: ["400", "700"],
 });
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const JobDescription = ({ data }: { data: any }) => {
+  console.log(data);
+
   //     const { slug } = useParams();
 
   //   const job = data.find((item) => item.slug === slug);

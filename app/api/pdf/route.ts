@@ -12,10 +12,12 @@ export async function GET() {
     return new Promise((resolve, reject) => {
       const pdfParser = new PDFParser();
       pdfParser.parseBuffer(Buffer.from(buffer));
-
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       pdfParser.on("pdfParser_dataReady", (pdfData: any) => {
         let extractedText = "";
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         pdfData.Pages.forEach((page: any) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           page.Texts.forEach((text: any) => {
             extractedText += decodeURIComponent(text.R[0].T) + " ";
           });
@@ -24,11 +26,12 @@ export async function GET() {
 
         resolve(NextResponse.json({ text: extractedText }));
       });
-
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       pdfParser.on("pdfParser_dataError", (errData: any) => {
         reject(NextResponse.json({ error: errData.parserError, status: 500 }));
       });
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
