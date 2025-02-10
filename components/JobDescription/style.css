@@ -1,0 +1,36 @@
+p > strong:first-child {
+  /* Nếu <strong> là phần tử đầu tiên trực tiếp của <p> */
+  display: inline-block; /* hoặc block tùy ý */
+  margin-top: 20px;
+}
+
+/* 1) Mặc định: dùng pseudo-element để tạo gạch ngang ("-") */
+ul li {
+  list-style: none; /* Tắt bullet mặc định */
+  position: relative;
+  padding-left: 1.5rem; /* Chừa khoảng trống cho pseudo-element */
+}
+
+ul li::before {
+  content: "- "; /* Gạch ngang đứng trước văn bản */
+  position: absolute;
+  left: 0;
+}
+
+/* 2) Nếu li có <strong> => hiển thị bullet hình chấm (disc) */
+ul li:has(strong) {
+  list-style-type: disc; /* Khôi phục bullet dạng disc */
+  list-style-position: outside;
+  /* Chú ý: cần cho ul phần padding/margin nếu bạn muốn bullet disc hiển thị đẹp */
+}
+
+/* 3) Đồng thời, tắt gạch ngang từ pseudo-element khi đã dùng disc */
+ul li:has(strong)::before {
+  content: "";
+  position: static; /* Hoặc bỏ hẳn position để không đè lên bullet disc */
+}
+
+p:has(strong):first-of-type {
+  text-align: center;
+  font-size: large;
+}

@@ -1,24 +1,34 @@
 import JobDescription from "@/components/JobDescription";
 import { fetchContentfulData } from "@/lib/contentful";
 import { Suspense } from "react";
+import * as mammoth from "mammoth";
 
 export default async function CareersPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const data = (await fetchContentfulData("recruitment")).items as any;
 
-  // const linkJD = data[0].fields.jobDescription.fields.file.url;
+  const linkJD = data[0].fields.jobDescription.fields.file.url;
 
-  // const response = await fetch(
-  //   "https://assets.ctfassets.net/nu40wp00r0zn/50ytGpc8tuKbyVayBhfOhS/be00cd093b6c584902bf95d3dd775efd/-AXEN_Property-_-_JD_Business_Development_Intern.pdf"
-  // );
-  // const buffer = await response.arrayBuffer();
-  // const data = await pdf(Buffer.from(buffer));
+  const docxUrl = `https:${linkJD}`;
 
-  // console.log(data.text);
+  const response = await fetch(docxUrl);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch .docx file from: ${docxUrl}`);
+  }
+
+  // 2. Lấy nội dung dưới dạng ArrayBuffer
+  const arrayBuffer = await response.arrayBuffer();
+
+  // 3. Gọi mammoth.convertToHtml
+  const result = await mammoth.convertToHtml({
+    buffer: Buffer.from(arrayBuffer),
+  });
+  console.log(result.value);
+  // Chuỗi HTML
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <JobDescription data={data} />
+      <JobDescription data={data} text={result.value} />
     </Suspense>
   );
 }
