@@ -33,4 +33,5 @@ ul li:has(strong)::before {
 p:has(strong):first-of-type {
   text-align: center;
   font-size: large;
+  margin-bottom: 20px;
 }

@@ -114,52 +114,6 @@ const Careers = async () => {
                 </Link>
               </div>
             ))}
-
-            {/* Customer Care Specialist */}
-            {/* <div className="border-y p-8 2xs:p-4 hover:shadow-md transition-shadow cursor-pointer">
-              <Link href={"/careers/customer-care"}>
-                <h3 className="text-lg font-semibold text-[#202325] mb-2">
-                  Chuyên viên chăm sóc khách hàng
-                </h3>
-                <div className="flex flex-wrap gap-4 justify-between text-sm text-gray-600">
-                  <div className="flex items-center gap-1">
-                    <Image src={job} alt="job" />
-                    <span>Kinh doanh - Marketing</span>
-                  </div>
-                  <div className="flex items-center gap-1 ">
-                    <Image src={exp} alt="exp" />
-                    <span>Yêu cầu kinh nghiệm</span>
-                  </div>
-                  <div className="flex items-center gap-1 ">
-                    <Image src={adress_icon} alt="exp" />
-                    <span>Q7 - TP. HCM</span>
-                  </div>
-                </div>
-              </Link>
-            </div> */}
-
-            {/* Marketing Intern */}
-            {/* <div className="border-y p-8 2xs:p-4 hover:shadow-md transition-shadow cursor-pointer">
-              <Link href={"careers/marketing-intern"}>
-                <h3 className="text-lg font-semibold text-[#202325] mb-2">
-                  Thực tập sinh Marketing (Trợ lý)
-                </h3>
-                <div className="flex flex-wrap gap-4 justify-between text-sm text-gray-600">
-                  <div className="flex items-center gap-1">
-                    <Image src={job} alt="job" />
-                    <span>Kinh doanh - Marketing</span>
-                  </div>
-                  <div className="flex items-center gap-1 ">
-                    <Image src={exp} alt="exp" />
-                    <span>Yêu cầu kinh nghiệm</span>
-                  </div>
-                  <div className="flex items-center gap-1 ">
-                    <Image src={adress_icon} alt="exp" />
-                    <span>Q7 - TP. HCM</span>
-                  </div>
-                </div>
-              </Link>
-            </div> */}
           </div>
         </div>
         <div className="py-10 w-full mx-auto">
