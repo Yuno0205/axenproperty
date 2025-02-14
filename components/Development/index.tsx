@@ -11,7 +11,7 @@ type Props = {
 
 export const Development = ({ data }: Props) => {
   const ref = useRef(null); // Tạo ref để theo dõi phần tử
-  const isInView = useInView(ref, { amount: 0.2, once: false }); // Theo dõi khi phần tử xuất hiện
+  const isInView = useInView(ref, { amount: 0.2 }); // Theo dõi khi phần tử xuất hiện
 
   return (
     <section className="w-full h-full">

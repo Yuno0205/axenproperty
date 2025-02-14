@@ -12,7 +12,7 @@ type SolutionProps = {
 
 export const Solutions = ({ data }: SolutionProps) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "0px 0px -50px 0px" });
+  const isInView = useInView(ref, { margin: "0px 0px -50px 0px" });
 
   return (
     <section className="w-full">
