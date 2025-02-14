@@ -23,6 +23,7 @@ type Data = {
   jobDescription?: { fields: { file?: { url?: string } } };
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const JobDescription = ({ data: jobs }: { data: any[] }) => {
   const [data, setData] = useState<Data | null>(null);
   const { slug } = useParams();
@@ -85,7 +86,7 @@ const JobDescription = ({ data: jobs }: { data: any[] }) => {
         </div>
         <div className="max-w-5xl mx-auto mt-10">
           <div
-            className="p-4 prose leading-7"
+            className="p-4 prose leading-7 docx-content"
             dangerouslySetInnerHTML={{ __html: htmlContent }}
           />
         </div>

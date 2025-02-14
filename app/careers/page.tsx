@@ -79,7 +79,7 @@ const Careers = async () => {
               Các vị trí đang tuyển
             </h2>
             <span className="text-gray-600 text-lg font-bold">
-              03 Vị trí tuyển dụng
+              {data.length} Vị trí tuyển dụng
             </span>
           </div>
 
@@ -90,7 +90,7 @@ const Careers = async () => {
                 key={index}
                 className="border-y p-8 2xs:p-4 hover:shadow-md transition-shadow cursor-pointer"
               >
-                <Link href={`/careers/${item.fields.slug}`}>
+                <Link href={`/careers/${item.fields.slug}`} prefetch>
                   <h3 className="text-lg font-semibold text-[#202325] mb-2">
                     {item.fields.name} {/* Hiển thị tên công việc */}
                   </h3>
