@@ -1,13 +1,18 @@
 // components/Footer.js
 import { FooterFields } from "@/types/contentful";
 import clsx from "clsx";
-import { Open_Sans } from "next/font/google";
+import { Inter, Open_Sans } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 
 const openSans = Open_Sans({
   subsets: ["latin", "vietnamese"],
   weight: ["400", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 type FooterProps = {
@@ -27,16 +32,101 @@ export default function Footer({ data }: FooterProps) {
     };
   });
 
+  console.log(data);
+
   return (
-    <footer className=" mt-10 bg-white flex flex-col">
-      <div className="container px-6 flex justify-between py-16 mx-auto sm:flex-wrap gap-2 ">
-        <div className="flex w-full">
-          <div className="w-1/4">1</div>
-          <div className="w-1/2">2</div>
-          <div className="w-1/4">3</div>
+    data && (
+      <footer
+        className={clsx(inter.className, " mt-10 bg-white flex flex-col")}
+      >
+        <div className="container px-6 flex flex-col justify-between py-16 mx-auto sm:flex-wrap gap-2 ">
+          <div className="flex w-full px-20">
+            <div className="w-1/4 flex flex-col gap-2 text-[#606576] px-4">
+              <div className="relative">
+                <Image
+                  src={`https:${data?.logo?.fields?.file?.url}`}
+                  alt="logo"
+                  width={200}
+                  height={160}
+                  // className="mb-10"
+                />
+              </div>
+              <span className="font-bold  uppercase">
+                CÔNG TY TNHH Axen Property
+              </span>
+              <span>
+                3 Đường số 4, Phường Tân Hưng, Quận 7, Thành phố Hồ Chí Minh
+              </span>
+              <h5>
+                Hotline:
+                <span className="font-semibold"> 0963 509 060</span> or{" "}
+                <span className="font-semibold">0961 706 960</span>
+              </h5>
+              <h5>
+                Email:
+                <span className="font-semibold"> People@axenproperty.com</span>
+              </h5>
+            </div>
+            <div className="w-1/2 flex text-[#606576]">
+              <div className="w-1/3">
+                <div className="flex flex-col gap-4">
+                  <p className="font-bold text-lg">Về chúng tôi</p>
+                  <Link href={""}>Đội ngũ Anfin</Link>
+                  <Link href={""}>Sứ mệnh</Link>
+                  <Link href={""}>Tuyển dụngg</Link>
+                  <Link href={""}>Hỗ trợ</Link>
+                </div>
+              </div>
+              <div className="w-1/3">
+                <div className="flex flex-col gap-4">
+                  <p className="font-bold text-lg">Sản phẩm</p>
+                  <Link href={""}>Cổ phiếu</Link>
+                  <Link href={""}>Quỹ ETF</Link>
+                  <Link href={""}>Tích lũy</Link>
+                  <Link href={""}>Phái sinh hàng hoá</Link>
+                  <Link href={""}>Broker</Link>
+                </div>
+              </div>
+              <div className="w-1/3">
+                <div className="flex flex-col gap-4">
+                  <p className="font-bold text-lg">Tin tức</p>
+                  <Link href={""}>Kiến thức</Link>
+                  <Link href={""}>Blog</Link>
+                  <Link href={""}>Sự kiện</Link>
+                </div>
+              </div>
+            </div>
+            <div className="w-1/4 text-[#606576]">
+              <div className="flex flex-col gap-4">
+                <p className="font-bold text-lg">Chính sách</p>
+                <Link href={""}>Bảo mật & chia sẻ thông tin</Link>
+                <Link href={""}>Hợp đồng điện tử</Link>
+                <Link href={""}>Nguyên tắc tính năng cộng đồng</Link>
+                <Link href={""}>Điều khoản - Điều kiện</Link>
+              </div>
+            </div>
+          </div>
+          {/* Cái này là line break */}
+          <div className="border-t border-[#797979] max-w-[1200px] mx-auto w-full mt-10"></div>
+
+          <div className="flex gap-2 items-center justify-between mt-4 px-20">
+            <span className="text-[#606576]">© 2025 Axen Property</span>
+            <div className="flex gap-2">
+              {/* {urls.map((item: SocialLink, index: number) => (
+                <a
+                  key={index}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Image src={item.icon} alt="social" width={24} height={24} />
+                </a>
+              ))} */}
+              1
+            </div>
+          </div>
         </div>
-        {/* <div className="border-t border-[#797979] max-w-[1200px] mx-auto w-full"></div> */}
-      </div>
-    </footer>
+      </footer>
+    )
   );
 }
