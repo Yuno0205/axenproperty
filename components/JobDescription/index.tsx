@@ -7,6 +7,7 @@ import "./style.css";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import mammoth from "mammoth";
+import CallToAction from "../CallToAction/CallToAction";
 
 const openSans = Open_Sans({
   subsets: ["latin", "vietnamese"],
@@ -28,6 +29,7 @@ const JobDescription = ({ data: jobs }: { data: any[] }) => {
   const [data, setData] = useState<Data | null>(null);
   const { slug } = useParams();
   const [htmlContent, setHtmlContent] = useState<string>("");
+  const [showForm, setShowForm] = useState(false);
 
   // Lấy dữ liệu dựa trên slug
   useEffect(() => {
@@ -77,10 +79,11 @@ const JobDescription = ({ data: jobs }: { data: any[] }) => {
         <div className="w-full bg-[#F9F9F9] p-4">
           <div className="max-w-5xl mx-auto flex justify-between items-center xs:flex-col xs:gap-4 xs:text-center">
             <h3 className="font-bold text-2xl">{data.name}</h3>
-            <Button className="text-white rounded-full capitalize px-8 py-6">
-              <Link href={data.linkForm} target="_blank">
-                Ứng tuyển ngay
-              </Link>
+            <Button
+              onClick={() => setShowForm(true)}
+              className="text-white rounded-full capitalize px-8 py-6"
+            >
+              Ứng tuyển ngay
             </Button>
           </div>
         </div>
@@ -90,6 +93,7 @@ const JobDescription = ({ data: jobs }: { data: any[] }) => {
             dangerouslySetInnerHTML={{ __html: htmlContent }}
           />
         </div>
+        {showForm && <CallToAction onClose={() => setShowForm(false)} />}
       </section>
     )
   );
