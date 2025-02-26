@@ -1,14 +1,9 @@
 // components/Footer.js
 import { FooterFields } from "@/types/contentful";
 import clsx from "clsx";
-import { Inter, Open_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-
-const openSans = Open_Sans({
-  subsets: ["latin", "vietnamese"],
-  weight: ["400", "700"],
-});
 
 const inter = Inter({
   subsets: ["latin", "vietnamese"],
@@ -19,18 +14,18 @@ type FooterProps = {
   data: FooterFields;
 };
 
-type SocialLink = {
-  href: string;
-  icon: string;
-};
+// type SocialLink = {
+//   href: string;
+//   icon: string;
+// };
 export default function Footer({ data }: FooterProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const urls = data.social.map((item: any) => {
-    return {
-      href: item.fields.title,
-      icon: item.fields.file.url,
-    };
-  });
+  // const urls = data.social.map((item: any) => {
+  //   return {
+  //     href: item.fields.title,
+  //     icon: item.fields.file.url,
+  //   };
+  // });
 
   console.log(data);
 
@@ -55,7 +50,8 @@ export default function Footer({ data }: FooterProps) {
                 CÔNG TY TNHH Axen Property
               </span>
               <span>
-                3 Đường số 4, Phường Tân Hưng, Quận 7, Thành phố Hồ Chí Minh
+                Số 3 đường số 4, Khu dân cư Himlam, Quận 7, Ho Chi Minh City,
+                Vietnam
               </span>
               <h5>
                 Hotline:
@@ -71,7 +67,7 @@ export default function Footer({ data }: FooterProps) {
               <div className="w-1/3">
                 <div className="flex flex-col gap-4">
                   <p className="font-bold text-lg">Về chúng tôi</p>
-                  <Link href={""}>Đội ngũ Anfin</Link>
+                  <Link href={""}>Đội ngũ Axenproperty</Link>
                   <Link href={""}>Sứ mệnh</Link>
                   <Link href={""}>Tuyển dụngg</Link>
                   <Link href={""}>Hỗ trợ</Link>
@@ -80,11 +76,9 @@ export default function Footer({ data }: FooterProps) {
               <div className="w-1/3">
                 <div className="flex flex-col gap-4">
                   <p className="font-bold text-lg">Sản phẩm</p>
-                  <Link href={""}>Cổ phiếu</Link>
-                  <Link href={""}>Quỹ ETF</Link>
+                  <Link href={""}>Chung cư</Link>
+                  <Link href={""}>Bất động sản</Link>
                   <Link href={""}>Tích lũy</Link>
-                  <Link href={""}>Phái sinh hàng hoá</Link>
-                  <Link href={""}>Broker</Link>
                 </div>
               </div>
               <div className="w-1/3">

@@ -1,13 +1,12 @@
 "use client";
 import clsx from "clsx";
+import mammoth from "mammoth";
 import { Open_Sans } from "next/font/google";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import CallToAction from "../CallToAction/CallToAction";
 import { Button } from "../ui/button";
 import "./style.css";
-import { useParams } from "next/navigation";
-import Link from "next/link";
-import mammoth from "mammoth";
-import CallToAction from "../CallToAction/CallToAction";
 
 const openSans = Open_Sans({
   subsets: ["latin", "vietnamese"],
