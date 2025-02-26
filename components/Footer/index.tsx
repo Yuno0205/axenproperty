@@ -1,134 +1,126 @@
 // components/Footer.js
 import { FooterFields } from "@/types/contentful";
 import clsx from "clsx";
-import { Open_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 
-const openSans = Open_Sans({
+const inter = Inter({
   subsets: ["latin", "vietnamese"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 type FooterProps = {
   data: FooterFields;
 };
 
-type SocialLink = {
-  href: string;
-  icon: string;
-};
+// type SocialLink = {
+//   href: string;
+//   icon: string;
+// };
 export default function Footer({ data }: FooterProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const urls = data.social.map((item: any) => {
-    return {
-      href: item.fields.title,
-      icon: item.fields.file.url,
-    };
-  });
+  // const urls = data.social.map((item: any) => {
+  //   return {
+  //     href: item.fields.title,
+  //     icon: item.fields.file.url,
+  //   };
+  // });
+
+  console.log(data);
 
   return (
-    <footer className=" py-8 mt-10 bg-white flex flex-col">
-      <div className="container px-12 flex justify-between py-16 mx-auto sm:flex-wrap gap-2 ">
-        {/* Leftside */}
-        <div className="flex w-1/2 sm:w-full sm:flex-col justify-between">
-          {/* <div className="flex flex-col sm:py-10 sm:w-full">
-            <h2 className="font-bold mb-8 text-2xl font-proximaBold">
-              Stay Connected
-            </h2>
-            <div className="flex space-x-4">
-              <Link href="#">
-                <InstagramLogoIcon
-                  height={35}
-                  width={35}
-                  color="#ba7d7d"
-                  className="hover:fill-amber-500"
+    data && (
+      <footer
+        className={clsx(inter.className, " mt-10 bg-white flex flex-col")}
+      >
+        <div className="container px-6 flex flex-col justify-between py-16 mx-auto sm:flex-wrap gap-2 ">
+          <div className="flex w-full px-20">
+            <div className="w-1/4 flex flex-col gap-2 text-[#606576] px-4">
+              <div className="relative">
+                <Image
+                  src={`https:${data?.logo?.fields?.file?.url}`}
+                  alt="logo"
+                  width={200}
+                  height={160}
+                  // className="mb-10"
                 />
-              </Link>
-              <Link href="#">
-                <div className="w-9 h-9 hover:filter hover:brightness-0 hover:saturate-100">
-                  <Image
-                    src={facebookLogo}
-                    alt="Facebook"
-                    width={35}
-                    height={35}
-                  />
+              </div>
+              <span className="font-bold  uppercase">
+                CÔNG TY TNHH Axen Property
+              </span>
+              <span>
+                Số 3 đường số 4, Khu dân cư Himlam, Quận 7, Ho Chi Minh City,
+                Vietnam
+              </span>
+              <h5>
+                Hotline:
+                <span className="font-semibold"> 0963 509 060</span> or{" "}
+                <span className="font-semibold">0961 706 960</span>
+              </h5>
+              <h5>
+                Email:
+                <span className="font-semibold"> People@axenproperty.com</span>
+              </h5>
+            </div>
+            <div className="w-1/2 flex text-[#606576]">
+              <div className="w-1/3">
+                <div className="flex flex-col gap-4">
+                  <p className="font-bold text-lg">Về chúng tôi</p>
+                  <Link href={""}>Đội ngũ Axenproperty</Link>
+                  <Link href={""}>Sứ mệnh</Link>
+                  <Link href={""}>Tuyển dụngg</Link>
+                  <Link href={""}>Hỗ trợ</Link>
                 </div>
-              </Link>
+              </div>
+              <div className="w-1/3">
+                <div className="flex flex-col gap-4">
+                  <p className="font-bold text-lg">Sản phẩm</p>
+                  <Link href={""}>Chung cư</Link>
+                  <Link href={""}>Bất động sản</Link>
+                  <Link href={""}>Tích lũy</Link>
+                </div>
+              </div>
+              <div className="w-1/3">
+                <div className="flex flex-col gap-4">
+                  <p className="font-bold text-lg">Tin tức</p>
+                  <Link href={""}>Kiến thức</Link>
+                  <Link href={""}>Blog</Link>
+                  <Link href={""}>Sự kiện</Link>
+                </div>
+              </div>
             </div>
-          </div> */}
-          <div className="flex flex-col items-center flex-1 gap-3 sm:w-full">
-            <Image
-              src={`https:${data?.logo?.fields?.file?.url}`}
-              alt="logo"
-              width={300}
-              height={265}
-              className="mb-10"
-            />
-            <span className="uppercase">{data.titleList[0]}</span>
-            <div className="flex gap-3 items-center">
-              {urls.map((url: SocialLink, index: number) => (
-                <Link
-                  href={url.href}
+            <div className="w-1/4 text-[#606576]">
+              <div className="flex flex-col gap-4">
+                <p className="font-bold text-lg">Chính sách</p>
+                <Link href={""}>Bảo mật & chia sẻ thông tin</Link>
+                <Link href={""}>Hợp đồng điện tử</Link>
+                <Link href={""}>Nguyên tắc tính năng cộng đồng</Link>
+                <Link href={""}>Điều khoản - Điều kiện</Link>
+              </div>
+            </div>
+          </div>
+          {/* Cái này là line break */}
+          <div className="border-t border-[#797979] max-w-[1200px] mx-auto w-full mt-10"></div>
+
+          <div className="flex gap-2 items-center justify-between mt-4 px-20">
+            <span className="text-[#606576]">© 2025 Axen Property</span>
+            <div className="flex gap-2">
+              {/* {urls.map((item: SocialLink, index: number) => (
+                <a
                   key={index}
+                  href={item.href}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noreferrer"
                 >
-                  <Image
-                    src={`https:${url.icon}`}
-                    alt="facebook"
-                    width={35}
-                    height={35}
-                  />
-                </Link>
-              ))}
+                  <Image src={item.icon} alt="social" width={24} height={24} />
+                </a>
+              ))} */}
+              1
             </div>
           </div>
         </div>
-        {/* Rightside */}
-        <div
-          className={clsx(
-            openSans.className,
-            "flex w-1/2 sm:w-full gap-2 mt-10"
-          )}
-        >
-          <div className="flex flex-col w-1/2">
-            <span
-              className={clsx(openSans.className, "uppercase text-[#797979]")}
-            >
-              Axen Careers
-            </span>
-            <Link href="/" className="py-3 pr-4">
-              <span className=" border-b-2 border-transparent hover:border-amber-500">
-                Home
-              </span>
-            </Link>
-            {data.navLinks.map((item, index) => (
-              <Link key={index} href={item.url} className="py-3 pr-4">
-                <span className=" border-b-2 border-transparent hover:border-amber-500">
-                  {item.label}
-                </span>
-              </Link>
-            ))}
-          </div>
-          <div className="flex flex-col w-1/2">
-            <span className={clsx("uppercase text-[#797979]")}>
-              {data.titleList[2]}
-            </span>
-            <Link
-              href="https://elitelife.axenproperty.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="py-3 pr-4"
-            >
-              <span className=" border-b-2 border-transparent hover:border-amber-500">
-                Elite Life
-              </span>
-            </Link>
-          </div>
-        </div>
-      </div>
-      <div className="border-t border-[#797979] max-w-[1200px] mx-auto w-full"></div>
-    </footer>
+      </footer>
+    )
   );
 }
