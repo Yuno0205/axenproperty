@@ -27,8 +27,6 @@ export default function Footer({ data }: FooterProps) {
   //   };
   // });
 
-  console.log(data);
-
   return (
     data && (
       <footer

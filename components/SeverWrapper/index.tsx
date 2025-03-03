@@ -1,6 +1,6 @@
 // components/ServerWrapper.tsx
-import { ReactNode } from "react";
 import { fetchContentfulData } from "@/lib/contentful";
+import { ReactNode } from "react";
 
 type ServerWrapperProps = {
   contentType: string;
