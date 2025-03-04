@@ -15,11 +15,11 @@ import { fetchContentfulData } from "@/lib/fetchContentful";
 import clsx from "clsx";
 import { Button } from "../ui/button";
 import { HeaderFields } from "@/types/contentful";
+import Skeleton from "react-loading-skeleton";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState<HeaderFields>();
-  const [loading, setLoading] = useState(true);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -30,13 +30,11 @@ export default function Header() {
   // Fetch dữ liệu từ Contentful khi component mount
   useEffect(() => {
     async function loadData() {
-      setLoading(true);
       const result = await fetchContentfulData(
         "header",
         currentLocale === "vi" ? "vi" : "en-US"
       );
       setData(result[0]); // Lấy phần tử đầu tiên từ danh sách dữ liệu
-      setLoading(false);
     }
     loadData();
   }, [currentLocale]);
@@ -59,11 +57,10 @@ export default function Header() {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
   if (!data) return <p>No header data found.</p>;
 
   return (
-    <Suspense>
+    <Suspense fallback={<Skeleton count={3} />}>
       <header className="w-full h-full bg-white z-50 relative sticky top-0">
         <section className="container mx-auto flex z-20 relative justify-between h-36">
           {/* Logo */}
