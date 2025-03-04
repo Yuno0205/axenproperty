@@ -63,7 +63,7 @@ export default function Header() {
   if (!data) return <p>No header data found.</p>;
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense>
       <header className="w-full h-full bg-white z-50 relative sticky top-0">
         <section className="container mx-auto flex z-20 relative justify-between h-36">
           {/* Logo */}
