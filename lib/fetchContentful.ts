@@ -27,6 +27,7 @@ export async function fetchContentfulData(
       return [];
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return data.items.map((item: any) => item.fields);
   } catch (error) {
     console.error("❌ Error fetching Contentful data:", error);

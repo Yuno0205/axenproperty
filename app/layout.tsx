@@ -1,12 +1,9 @@
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { ServerWrapper } from "@/components/SeverWrapper";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-
 import "./globals.css";
-
-import Footer from "@/components/Footer";
-import { ServerWrapper } from "@/components/SeverWrapper";
-import { data } from "@/lib/data";
-import Header from "@/components/Header";
 
 const proximaNova = localFont({
   src: "./fonts/ProximaNovaRegular.otf",
