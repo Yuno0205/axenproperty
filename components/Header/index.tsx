@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import logo from "@/public/static/images/new/logo-ngang.png";
 import Image from "next/image";
@@ -63,7 +63,7 @@ export default function Header() {
   if (!data) return <p>No header data found.</p>;
 
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <header className="w-full h-full bg-white z-50 relative sticky top-0">
         <section className="container mx-auto flex z-20 relative justify-between h-36">
           {/* Logo */}
@@ -180,6 +180,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-    </>
+    </Suspense>
   );
 }
