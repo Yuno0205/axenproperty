@@ -3,11 +3,11 @@ import { Properties } from "@/components/Properties";
 import { Development } from "@/components/Development";
 import { ServerWrapper } from "@/components/SeverWrapper";
 import { Solutions } from "@/components/Solution";
-import { Fragment } from "react";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
-    <Fragment>
+    <Suspense fallback={<div>Loading...</div>}>
       {/* <Header /> */}
       <ServerWrapper contentType="banner">
         {(data) => <Banner data={data} />}
@@ -25,6 +25,6 @@ export default function Home() {
       </ServerWrapper>
 
       {/* <Footer /> */}
-    </Fragment>
+    </Suspense>
   );
 }
