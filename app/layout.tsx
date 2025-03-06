@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Suspense } from "react";
 
 const proximaNova = localFont({
   src: "./fonts/ProximaNovaRegular.otf",
@@ -38,7 +39,9 @@ export default function RootLayout({
       <body
         className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable} antialiased bg-[#f4f4f4]`}
       >
-        <Header />
+        <Suspense>
+          <Header />
+        </Suspense>
         {children}
         <Footer />
       </body>
