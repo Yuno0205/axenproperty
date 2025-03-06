@@ -1,4 +1,4 @@
-import { Asset, EntrySkeletonType } from "contentful";
+import { EntrySkeletonType } from "contentful";
 
 export type ContentfulEntry<TFields> = EntrySkeletonType & {
   fields: TFields;
@@ -7,6 +7,11 @@ export type ContentfulEntry<TFields> = EntrySkeletonType & {
 type NavigationItem = {
   label: string;
   url: string;
+};
+
+type Asset = {
+  url: string;
+  title: string;
 };
 
 export interface HeaderFields {

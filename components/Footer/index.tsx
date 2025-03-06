@@ -43,12 +43,10 @@ export default function Footer() {
           <div className="w-1/4 flex flex-col gap-2 text-[#606576] px-4">
             <div className="relative">
               <Image
-                // src={`https:${data?.logo?.fields?.file?.url}`}
-                src={`/logo.png`}
-                alt="logo"
+                src={data.logo.url}
+                alt={data.logo.title}
                 width={200}
                 height={160}
-                // className="mb-10"
               />
             </div>
             <span className="font-bold  uppercase">{data.companyName}</span>

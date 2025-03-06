@@ -1,9 +1,8 @@
 "use client";
-import { Suspense } from "react";
 
 export default function NotFoundPage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <div>
       <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white text-center">
         <h1 className="text-9xl font-extrabold tracking-widest">404</h1>
         <p className="text-xl mt-4">Oops! Page not found</p>
@@ -14,6 +13,6 @@ export default function NotFoundPage() {
           Go Home
         </button>
       </div>
-    </Suspense>
+    </div>
   );
 }

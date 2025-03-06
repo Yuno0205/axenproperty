@@ -1,8 +1,6 @@
-import { Suspense } from "react";
-
 export default function LoadingPage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <div>
       <div className="inset-0 flex items-center justify-center w-screen h-screen bg-black z-50 fixed">
         <svg className="w-64 h-32" viewBox="0 0 300 100">
           <text
@@ -29,6 +27,6 @@ export default function LoadingPage() {
           </style>
         </svg>
       </div>
-    </Suspense>
+    </div>
   );
 }
