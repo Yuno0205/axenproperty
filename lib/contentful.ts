@@ -12,7 +12,9 @@ export async function fetchContentfulData<T extends EntrySkeletonType>(
   try {
     const entries = await client.getEntries<T>({
       content_type: contentType,
-      locale, // Fetch dữ liệu theo locale từ URL
+      locale,
+
+      // Fetch dữ liệu theo locale từ URL
     });
 
     if (!entries.items.length) {

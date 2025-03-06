@@ -1,6 +1,5 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { ServerWrapper } from "@/components/SeverWrapper";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -41,9 +40,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
-        <ServerWrapper contentType="footer">
-          {(data) => <Footer data={data} />}
-        </ServerWrapper>
+        <Footer />
       </body>
     </html>
   );

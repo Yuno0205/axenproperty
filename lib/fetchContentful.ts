@@ -5,11 +5,6 @@ export async function fetchContentfulData(
   const spaceId = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID;
   const accessToken = process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN;
 
-  console.log("Fetching Contentful Data:");
-  console.log("Space ID:", spaceId);
-  console.log("Access Token:", accessToken);
-  console.log("Locale:", locale);
-
   if (!spaceId || !accessToken) {
     throw new Error("Missing Contentful credentials");
   }

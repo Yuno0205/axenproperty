@@ -20,9 +20,6 @@ export default function Home() {
         {(data) => <Development data={data} />}
       </ServerWrapper>
 
-      {/* <Introduction /> */}
-      {/* <Projects /> */}
-      {/* <FAQ /> */}
       <ServerWrapper contentType="solution">
         {(data) => <Solutions data={data} />}
       </ServerWrapper>

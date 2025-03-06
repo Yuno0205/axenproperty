@@ -44,6 +44,7 @@ export interface SolutionFields {
 }
 
 export interface FooterFields {
+  companyName: string;
   backgroundImage: Asset;
   titleList: string[];
   logo: Asset;
