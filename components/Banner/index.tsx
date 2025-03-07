@@ -23,7 +23,7 @@ export const Banner = ({ data }: Props) => {
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ duration: 1, ease: "easeOut" }}
         style={{
-          backgroundImage: `url(${data?.backgroundImage?.fields?.file?.url})`,
+          backgroundImage: `url(${data?.backgroundImage?.url})`,
         }}
         className="w-full relative bg-cover bg-no-repeat flex items-center justify-center bg-center py-20 xs:py-10 2xs:h-96"
       >
@@ -41,7 +41,7 @@ export const Banner = ({ data }: Props) => {
               className="flex w-full h-full items-center px-4 relative z-2"
             >
               <Image
-                src={`https:${data.logo?.fields?.file?.url}`}
+                src={`${data.logo?.url}`}
                 alt="logo"
                 width={173}
                 height={154}
