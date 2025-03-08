@@ -1,30 +1,17 @@
 import { Banner } from "@/components/Banner";
-import { Properties } from "@/components/Properties";
 import { Development } from "@/components/Development";
-import { ServerWrapper } from "@/components/SeverWrapper";
+import { Properties } from "@/components/Properties";
 import { Solutions } from "@/components/Solution";
 import { Suspense } from "react";
+import Skeleton from "react-loading-skeleton";
 
 export default function Home() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      {/* <Header /> */}
-      <ServerWrapper contentType="banner">
-        {(data) => <Banner data={data} />}
-      </ServerWrapper>
-      <ServerWrapper contentType="properties">
-        {(data) => <Properties data={data} />}
-      </ServerWrapper>
-
-      <ServerWrapper contentType="development">
-        {(data) => <Development data={data} />}
-      </ServerWrapper>
-
-      <ServerWrapper contentType="solution">
-        {(data) => <Solutions data={data} />}
-      </ServerWrapper>
-
-      {/* <Footer /> */}
+    <Suspense fallback={<Skeleton count={4} height={400} />}>
+      <Banner />
+      <Properties />
+      <Development />
+      <Solutions />
     </Suspense>
   );
 }

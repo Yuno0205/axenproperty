@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 
 const inter = Inter({
   subsets: ["latin", "vietnamese"],
@@ -32,9 +33,7 @@ export default function Footer() {
     loadData();
   }, [currentLocale]);
 
-  if (!data) return <p>No data found.</p>;
-
-  console.log("Footer data", data);
+  if (!data) return <Skeleton count={3} />; // Hien thi skeleton khi chua load duoc du lieu</Skeleton>;
 
   return (
     <footer className={clsx(inter.className, " mt-10 bg-white flex flex-col")}>

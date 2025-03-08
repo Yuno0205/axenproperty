@@ -15,8 +15,6 @@ export async function fetchContentfulData(
     const response = await fetch(url, { next: { revalidate: 60 } });
     const data = await response.json();
 
-    console.log("Contentful Response:", data);
-
     if (!data.items.length) {
       console.warn(`⚠️ No data found for locale: ${locale}`);
       return [];

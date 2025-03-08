@@ -57,7 +57,7 @@ export default function Header() {
     }
   };
 
-  if (!data) return <p>No header data found.</p>;
+  if (!data) return <Skeleton count={3} />;
 
   return (
     <Suspense fallback={<Skeleton count={3} />}>

@@ -1,18 +1,38 @@
 "use client";
+import { fetchContentfulData } from "@/lib/fetchContentful";
 import { SolutionFields } from "@/types/contentful";
+import { motion } from "framer-motion";
 import { CopyIcon } from "lucide-react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 import { Button } from "../ui/button";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 
-type SolutionProps = {
-  data: SolutionFields;
-};
-
-export const Solutions = ({ data }: SolutionProps) => {
+export const Solutions = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { margin: "0px 0px -50px 0px" });
+
+  const [data, setData] = useState<SolutionFields>();
+  const searchParams = useSearchParams();
+
+  // Lấy locale từ URL, mặc định là "en"
+  const currentLocale = searchParams.get("locale") || "en";
+
+  // Fetch dữ liệu từ Contentful khi component mount
+  useEffect(() => {
+    async function loadData() {
+      const result = await fetchContentfulData(
+        "solution",
+        currentLocale === "vi" ? "vi" : "en-US"
+      );
+      setData(result[0]); // Lấy phần tử đầu tiên từ danh sách dữ liệu
+    }
+    loadData();
+  }, [currentLocale]);
+
+  console.log(data);
+
+  if (!data) return <Skeleton count={3} />;
 
   return (
     <section className="w-full">
@@ -20,7 +40,7 @@ export const Solutions = ({ data }: SolutionProps) => {
       <div className="w-full h-full pb-6">
         <div
           style={{
-            backgroundImage: `url(${data?.backgroundImage?.fields?.file?.url})`,
+            backgroundImage: `url(${data?.backgroundImage.url})`,
             backgroundPosition: "50% 50%",
             backgroundSize: "cover",
           }}
@@ -31,7 +51,7 @@ export const Solutions = ({ data }: SolutionProps) => {
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.8,
             ease: "easeOut",
@@ -41,7 +61,7 @@ export const Solutions = ({ data }: SolutionProps) => {
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.6,
               delay: 0.2,
@@ -50,7 +70,7 @@ export const Solutions = ({ data }: SolutionProps) => {
             className="p-4 mb-5"
           >
             <Image
-              src={`https:${data?.logo?.fields?.file?.url}`}
+              src={`${data.logo.url}`}
               alt="logo"
               width={206}
               height={180}
@@ -60,7 +80,7 @@ export const Solutions = ({ data }: SolutionProps) => {
 
           <motion.span
             initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.6,
               delay: 0.4,
@@ -73,7 +93,7 @@ export const Solutions = ({ data }: SolutionProps) => {
 
           <motion.span
             initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.6,
               delay: 0.6,
@@ -86,7 +106,7 @@ export const Solutions = ({ data }: SolutionProps) => {
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.6,
               delay: 0.8,
