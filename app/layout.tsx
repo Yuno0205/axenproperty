@@ -1,10 +1,10 @@
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-
 import "./globals.css";
-import { Header } from "@/components/Header";
-import Footer from "@/components/Footer";
-import { ServerWrapper } from "@/components/SeverWrapper";
+import { Suspense } from "react";
+import Skeleton from "react-loading-skeleton";
 
 const proximaNova = localFont({
   src: "./fonts/ProximaNovaRegular.otf",
@@ -40,13 +40,13 @@ export default function RootLayout({
       <body
         className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable} antialiased bg-[#f4f4f4]`}
       >
-        <ServerWrapper contentType="header">
-          {(data) => <Header data={data} />}
-        </ServerWrapper>
+        <Suspense fallback={<Skeleton count={3} />}>
+          <Header />
+        </Suspense>
         {children}
-        <ServerWrapper contentType="footer">
-          {(data) => <Footer data={data} />}
-        </ServerWrapper>
+        <Suspense fallback={<Skeleton count={3} />}>
+          <Footer />
+        </Suspense>
       </body>
     </html>
   );
