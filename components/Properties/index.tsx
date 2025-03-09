@@ -74,11 +74,8 @@ export const Properties = () => {
           transition={{ duration: 0.8, delay: 0.4, ease: "easeInOut" }}
           className="w-2/3 max-w-[780px] mx-auto text-justify text-[#666666] py-5 xs:text-center px-4 xs:w-full"
         >
-          <span className="font-semibold">{data.content[0]}</span> is a
-          pioneering entity in the field of real estate development and
-          services, with a mission to create premium living spaces that
-          harmoniously blend modern style, elegance, and timeless
-          sustainability.
+          <span className="font-semibold">{data.content[0]}</span>{" "}
+          {data.content[1]}
         </motion.div>
       </motion.div>
     </motion.div>
