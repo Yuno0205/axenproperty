@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Suspense } from "react";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const proximaNova = localFont({
   src: "./fonts/ProximaNovaRegular.otf",
