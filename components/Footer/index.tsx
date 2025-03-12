@@ -37,9 +37,9 @@ export default function Footer() {
 
   return (
     <footer className={clsx(inter.className, " mt-10 bg-white flex flex-col")}>
-      <div className="container px-6 flex flex-col justify-between py-16 mx-auto sm:flex-wrap gap-2 ">
-        <div className="flex w-full px-20">
-          <div className="w-1/4 flex flex-col gap-2 text-[#606576] px-4">
+      <div className="container px-6 flex flex-col justify-between py-16 mx-auto sm:flex-wrap gap-2 sm:px-2">
+        <div className="flex w-full px-20 sm:px-4 gap-4 sm:flex-col">
+          <div className="w-1/4 flex flex-col gap-2 text-[#606576] px-4 sm:w-full sm:px-0 sm:mb-4">
             <div className="relative">
               <Image
                 src={data.logo.url}
@@ -64,8 +64,8 @@ export default function Footer() {
               <span className="font-semibold"> People@axenproperty.com</span>
             </h5>
           </div>
-          <div className="w-1/2 flex text-[#606576]">
-            <div className="w-1/3">
+          <div className="w-1/2 flex text-[#606576] sm:w-full sm:flex-col sm:gap-4">
+            <div className="w-1/3 sm:w-full">
               <div className="flex flex-col gap-4">
                 <p className="font-bold text-lg">Về chúng tôi</p>
                 <Link href={""}>Đội ngũ Axenproperty</Link>
@@ -74,7 +74,7 @@ export default function Footer() {
                 <Link href={""}>Hỗ trợ</Link>
               </div>
             </div>
-            <div className="w-1/3">
+            <div className="w-1/3 sm:w-full">
               <div className="flex flex-col gap-4">
                 <p className="font-bold text-lg">Sản phẩm</p>
                 <Link href={""}>Chung cư</Link>
@@ -82,7 +82,7 @@ export default function Footer() {
                 <Link href={""}>Tích lũy</Link>
               </div>
             </div>
-            <div className="w-1/3">
+            <div className="w-1/3 sm:w-full">
               <div className="flex flex-col gap-4">
                 <p className="font-bold text-lg">Tin tức</p>
                 <Link href={""}>Kiến thức</Link>
@@ -91,7 +91,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <div className="w-1/4 text-[#606576]">
+          <div className="w-1/4 text-[#606576] sm:w-full">
             <div className="flex flex-col gap-4">
               <p className="font-bold text-lg">Chính sách</p>
               <Link href={""}>Bảo mật & chia sẻ thông tin</Link>
@@ -104,9 +104,9 @@ export default function Footer() {
         {/* Cái này là line break */}
         <div className="border-t border-[#797979] max-w-[1200px] mx-auto w-full mt-10"></div>
 
-        <div className="flex gap-2 items-center justify-between mt-4 px-20">
+        <div className="flex gap-2 items-center justify-between mt-4 px-20 sm:flex-col sm:gap-4 sm:px-0">
           <span className="text-[#606576]">© 2025 Axen Property</span>
-          <div className="flex gap-2">
+          <div className="flex gap-2 sm:order-first">
             {/* {urls.map((item: SocialLink, index: number) => (
                 <a
                   key={index}
