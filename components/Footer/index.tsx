@@ -33,7 +33,7 @@ export default function Footer() {
     loadData();
   }, [currentLocale]);
 
-  if (!data) return <Skeleton count={3} />; // Hien thi skeleton khi chua load duoc du lieu</Skeleton>;
+  if (!data) return <Skeleton height={400} />; // Hien thi skeleton khi chua load duoc du lieu</Skeleton>;
 
   return (
     <footer className={clsx(inter.className, " mt-10 bg-white flex flex-col")}>
