@@ -1,21 +1,21 @@
 "use client";
-import { Suspense, useEffect, useState } from "react";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { fetchContentfulData } from "@/lib/fetchContentful";
 import logo from "@/public/static/images/new/logo-ngang.png";
+import { HeaderFields } from "@/types/contentful";
+import clsx from "clsx";
+import { ChevronDown, Earth } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Earth } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { fetchContentfulData } from "@/lib/fetchContentful";
-import clsx from "clsx";
-import { Button } from "../ui/button";
-import { HeaderFields } from "@/types/contentful";
-import Skeleton from "react-loading-skeleton";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -57,10 +57,10 @@ export default function Header() {
     }
   };
 
-  if (!data) return <Skeleton count={3} />;
+  if (!data) return <Skeleton height={120} />;
 
   return (
-    <Suspense fallback={<Skeleton count={3} />}>
+    <div>
       <header className="w-full h-full bg-white z-50 relative sticky top-0">
         <section className="container mx-auto flex z-20 relative justify-between h-36">
           {/* Logo */}
@@ -177,6 +177,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-    </Suspense>
+    </div>
   );
 }

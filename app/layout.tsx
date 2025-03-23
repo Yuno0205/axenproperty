@@ -41,11 +41,11 @@ export default function RootLayout({
       <body
         className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable} antialiased bg-[#f4f4f4]`}
       >
-        <Suspense fallback={<Skeleton count={3} />}>
+        <Suspense fallback={<Skeleton height={100} />}>
           <Header />
         </Suspense>
         {children}
-        <Suspense fallback={<Skeleton count={3} />}>
+        <Suspense fallback={<Skeleton height={100} />}>
           <Footer />
         </Suspense>
       </body>

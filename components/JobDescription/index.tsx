@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import CallToAction from "../CallToAction/CallToAction";
 import { Button } from "../ui/button";
 import "./style.css";
+import Skeleton from "react-loading-skeleton";
 
 const openSans = Open_Sans({
   subsets: ["latin", "vietnamese"],
@@ -72,29 +73,29 @@ const JobDescription = ({ data: jobs }: { data: any[] }) => {
     );
   }, [data]);
 
-  return (
-    data && (
-      <section className={clsx(openSans.className, "w-full h-auto bg-white")}>
-        <div className="w-full bg-[#F9F9F9] p-4">
-          <div className="max-w-5xl mx-auto flex justify-between items-center xs:flex-col xs:gap-4 xs:text-center">
-            <h3 className="font-bold text-2xl">{data.name}</h3>
-            <Button
-              onClick={() => setShowForm(true)}
-              className="text-white rounded-full capitalize px-8 py-6"
-            >
-              Ứng tuyển ngay
-            </Button>
-          </div>
+  return data ? (
+    <section className={clsx(openSans.className, "w-full h-auto bg-white")}>
+      <div className="w-full bg-[#F9F9F9] p-4">
+        <div className="max-w-5xl mx-auto flex justify-between items-center xs:flex-col xs:gap-4 xs:text-center">
+          <h3 className="font-bold text-2xl">{data.name}</h3>
+          <Button
+            onClick={() => setShowForm(true)}
+            className="text-white rounded-full capitalize px-8 py-6"
+          >
+            Ứng tuyển ngay
+          </Button>
         </div>
-        <div className="max-w-5xl mx-auto mt-10">
-          <div
-            className="p-4 prose leading-7 docx-content"
-            dangerouslySetInnerHTML={{ __html: htmlContent }}
-          />
-        </div>
-        {showForm && <CallToAction onClose={() => setShowForm(false)} />}
-      </section>
-    )
+      </div>
+      <div className="max-w-5xl mx-auto mt-10">
+        <div
+          className="p-4 prose leading-7 docx-content"
+          dangerouslySetInnerHTML={{ __html: htmlContent }}
+        />
+      </div>
+      {showForm && <CallToAction onClose={() => setShowForm(false)} />}
+    </section>
+  ) : (
+    <Skeleton height={400} />
   );
 };
 

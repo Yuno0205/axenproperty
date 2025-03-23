@@ -29,9 +29,7 @@ export const Banner = () => {
     loadData();
   }, [currentLocale]);
 
-  console.log(data);
-
-  if (!data) return <Skeleton count={3} />;
+  if (!data) return <Skeleton height={600} />;
 
   return (
     <section className="w-full flex items-center justify-center" ref={ref}>

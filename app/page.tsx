@@ -7,7 +7,7 @@ import Skeleton from "react-loading-skeleton";
 
 export default function Home() {
   return (
-    <Suspense fallback={<Skeleton height={"100vh"} />}>
+    <Suspense fallback={<Skeleton height={100} />}>
       <Banner />
       <Properties />
       <Development />

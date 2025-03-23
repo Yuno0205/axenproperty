@@ -37,7 +37,7 @@ export const Properties = () => {
 
   console.log(data);
 
-  if (!data) return <Skeleton count={3} />;
+  if (!data) return <Skeleton height={300} />;
 
   return (
     <motion.div
