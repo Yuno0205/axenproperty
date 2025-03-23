@@ -15,6 +15,11 @@ const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
+type social = {
+  title: string;
+  url: string;
+};
+
 export default function Footer() {
   const [data, setData] = useState<FooterFields>();
   const searchParams = useSearchParams();
@@ -28,12 +33,12 @@ export default function Footer() {
         "footer",
         currentLocale === "vi" ? "vi" : "en-US"
       );
-      setData(result[0]); // Lấy phần tử đầu tiên từ danh sách dữ liệu
+      setData(result[0]);
     }
     loadData();
   }, [currentLocale]);
 
-  if (!data) return <Skeleton height={400} />; // Hien thi skeleton khi chua load duoc du lieu</Skeleton>;
+  if (!data) return <Skeleton height={400} />;
 
   return (
     <footer className={clsx(inter.className, " mt-10 bg-white flex flex-col")}>
@@ -50,18 +55,15 @@ export default function Footer() {
             </div>
             <span className="font-bold  uppercase">{data.companyName}</span>
 
-            <span>
-              Số 3 đường số 4, Khu dân cư Himlam, Quận 7, Ho Chi Minh City,
-              Vietnam
-            </span>
+            <span>{data.location}</span>
             <h5>
               Hotline:
-              <span className="font-semibold"> 0963 509 060</span> or{" "}
-              <span className="font-semibold">0961 706 960</span>
+              <span className="font-semibold"> {data.hotline[0]}</span> or{" "}
+              <span className="font-semibold">{data.hotline[1]}</span>
             </h5>
             <h5>
               Email:
-              <span className="font-semibold"> People@axenproperty.com</span>
+              <span className="font-semibold"> {data.email}</span>
             </h5>
           </div>
           <div className="w-1/2 flex text-[#606576] sm:w-full sm:flex-col sm:gap-4">
@@ -70,7 +72,7 @@ export default function Footer() {
                 <p className="font-bold text-lg">Về chúng tôi</p>
                 <Link href={""}>Đội ngũ Axenproperty</Link>
                 <Link href={""}>Sứ mệnh</Link>
-                <Link href={""}>Tuyển dụngg</Link>
+                <Link href={"/careers"}>Tuyển dụngg</Link>
                 <Link href={""}>Hỗ trợ</Link>
               </div>
             </div>
@@ -106,18 +108,12 @@ export default function Footer() {
 
         <div className="flex gap-2 items-center justify-between mt-4 px-20 sm:flex-col sm:gap-4 sm:px-0">
           <span className="text-[#606576]">© 2025 Axen Property</span>
-          <div className="flex gap-2 sm:order-first">
-            {/* {urls.map((item: SocialLink, index: number) => (
-                <a
-                  key={index}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Image src={item.icon} alt="social" width={24} height={24} />
-                </a>
-              ))} */}
-            1
+          <div className="flex gap-4 sm:order-first">
+            {data.social.map((item: social, index: number) => (
+              <a key={index} href={item.title} target="_blank" rel="noreferrer">
+                <Image src={item.url} alt="social" width={30} height={30} />
+              </a>
+            ))}
           </div>
         </div>
       </div>

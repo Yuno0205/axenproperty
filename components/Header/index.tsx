@@ -1,21 +1,21 @@
 "use client";
-import { Suspense, useEffect, useState } from "react";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { fetchContentfulData } from "@/lib/fetchContentful";
 import logo from "@/public/static/images/new/logo-ngang.png";
+import { HeaderFields } from "@/types/contentful";
+import clsx from "clsx";
+import { ChevronDown, Earth } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Earth } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { fetchContentfulData } from "@/lib/fetchContentful";
-import clsx from "clsx";
-import { Button } from "../ui/button";
-import { HeaderFields } from "@/types/contentful";
-import Skeleton from "react-loading-skeleton";
 
 export default function Header() {
   const [open, setOpen] = useState(false);

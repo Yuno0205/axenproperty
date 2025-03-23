@@ -29,8 +29,6 @@ export const Banner = () => {
     loadData();
   }, [currentLocale]);
 
-  console.log(data);
-
   if (!data) return <Skeleton height={600} />;
 
   return (
