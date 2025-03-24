@@ -113,7 +113,7 @@ export const Solutions = () => {
               ease: "easeOut",
             }}
           >
-            <Button className="my-5">
+            <Button className="my-5 py-3 px-10 mb-2.5 h-auto rounded-full sm:px-5">
               <span className="text-lg capitalize">{data.btnText}</span>
               <CopyIcon />
             </Button>

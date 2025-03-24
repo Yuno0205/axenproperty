@@ -35,8 +35,6 @@ export const Properties = () => {
     loadData();
   }, [currentLocale]);
 
-  console.log(data);
-
   if (!data) return <Skeleton height={300} />;
 
   return (
