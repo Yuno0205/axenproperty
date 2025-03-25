@@ -51,7 +51,6 @@ const JobDescription = ({ data: jobs }: { data: any[] }) => {
 
       try {
         const docxUrl = `https:${data.jobDescription.fields.file.url}`;
-        console.log("Fetching DOCX from:", docxUrl);
 
         const response = await fetch(docxUrl);
         if (!response.ok) throw new Error(`Failed to fetch DOCX: ${docxUrl}`);
