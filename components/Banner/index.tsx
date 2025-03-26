@@ -37,15 +37,20 @@ export const Banner = () => {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        // animate={isInView ? { opacity: 1 } : {}}
         transition={{ duration: 1, ease: "easeOut" }}
-        style={{
-          backgroundImage: `url(${data?.backgroundImage.url})`,
-        }}
         className="w-full relative bg-cover bg-no-repeat flex items-center justify-center bg-center py-20 xs:py-10 2xs:h-96"
       >
+        {/* Background Image */}
+        <Image
+          src={`${data?.backgroundImage.url}`}
+          alt="banner"
+          fill
+          className="object-cover"
+          quality={75}
+          priority
+        />
         {/* Nội dung */}
-        <div className="h-full w-5/6 bg-[#F2F3F5D9] flex flex-col items-center justify-center text-center gap-5 py-10">
+        <div className="h-full w-5/6 bg-[#F2F3F5D9] flex flex-col items-center justify-center text-center gap-5 py-10 z-10">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

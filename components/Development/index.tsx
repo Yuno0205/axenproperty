@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 export const Development = () => {
   const ref = useRef(null); // Tạo ref để theo dõi phần tử
@@ -28,8 +29,6 @@ export const Development = () => {
     }
     loadData();
   }, [currentLocale]);
-
-  console.log(data);
 
   if (!data) return <Skeleton height={300} />;
 
@@ -60,10 +59,10 @@ export const Development = () => {
             </span>
             <span className="my-2.5">{data.text}</span>
 
-            <Button className="w-40 my-5">
-              <span className="font-bold text-lg capitalize">
+            <Button className="w-40 my-5 py-3 mb-2.5 h-auto rounded-full">
+              <Link href={"/"} className="font-normal text-lg capitalize">
                 {data.btnText}
-              </span>
+              </Link>
             </Button>
           </motion.div>
         </div>
