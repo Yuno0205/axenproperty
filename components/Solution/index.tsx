@@ -55,7 +55,7 @@ export const Solutions = () => {
             ease: "easeOut",
           }}
           style={{ width: "calc(100% - 100px)" }}
-          className="bg-white py-12 px-20 sm:px-5 sm:py-10 flex flex-col mx-auto items-center shadow-lg sm:text-center"
+          className="bg-white py-12 px-20 sm:px-5 sm:py-10 flex flex-col mx-auto items-center shadow-lg sm:text-center xs:!w-full"
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
