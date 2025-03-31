@@ -70,7 +70,6 @@ export default function Header() {
                 <Image
                   src={logo}
                   alt="logo"
-                  // width={173}
                   height={154}
                   className="object-cover w-full"
                   priority
