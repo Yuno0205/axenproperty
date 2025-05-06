@@ -1,5 +1,3 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -13,7 +11,6 @@ const proximaNova = localFont({
   weight: "400 500 600 700 800 900",
 });
 
-// Xóa dòng này để không xuất proximaBold
 const proximaBold = localFont({
   src: "./fonts/ProximaNovaBold.otf",
   variable: "--font-proxima-nova-bold",
@@ -41,13 +38,7 @@ export default function RootLayout({
       <body
         className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable} antialiased bg-[#f4f4f4]`}
       >
-        <Suspense fallback={<Skeleton height={100} />}>
-          <Header />
-        </Suspense>
-        {children}
-        <Suspense fallback={<Skeleton height={100} />}>
-          <Footer />
-        </Suspense>
+        <Suspense fallback={<Skeleton height={100} />}>{children}</Suspense>
       </body>
     </html>
   );
