@@ -1,4 +1,5 @@
 "use client";
+
 import { fetchContentfulData } from "@/lib/fetchContentful";
 import logo from "@/public/static/images/new/logo-ngang.png";
 import { HeaderFields } from "@/types/contentful";
@@ -6,7 +7,7 @@ import clsx from "clsx";
 import { ChevronDown, Earth } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import {
@@ -21,10 +22,9 @@ export default function Header() {
   const [data, setData] = useState<HeaderFields>();
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
-  // Lấy locale từ URL, mặc định là "en"
-  const currentLocale = searchParams.get("locale") || "en";
+  // Lấy locale từ URL
+  const currentLocale = pathname.split("/")[1] || "en";
 
   // Fetch dữ liệu từ Contentful khi component mount
   useEffect(() => {
@@ -38,22 +38,11 @@ export default function Header() {
     loadData();
   }, [currentLocale]);
 
-  // Mapping giữa tên ngôn ngữ hiển thị và mã ngôn ngữ thực tế
-  const languageMap: Record<string, "vi" | "en"> = {
-    "Tiếng Việt": "vi",
-    "Tiếng Anh": "en",
-    Vietnamese: "vi",
-    English: "en",
-  };
-
-  // Chuyển đổi ngôn ngữ bằng cách cập nhật query param ?locale=
-  const switchLanguage = (selectedLanguage: string) => {
-    const langCode = languageMap[selectedLanguage];
-    if (langCode && langCode !== currentLocale) {
-      const newParams = new URLSearchParams(searchParams);
-      newParams.set("locale", langCode);
-      router.replace(`${pathname}?${newParams.toString()}`);
-    }
+  // Chuyển đổi ngôn ngữ
+  const switchLanguage = (locale: string) => {
+    const segments = pathname.split("/").filter(Boolean); // Tách các phần của URL
+    segments[0] = locale; // Thay đổi phần đầu tiên thành locale mới
+    router.push(`/${segments.join("/")}`); // Điều hướng đến URL mới
   };
 
   return (
@@ -72,7 +61,6 @@ export default function Header() {
                     <Image
                       src={logo}
                       alt="logo"
-                      // width={173}
                       height={154}
                       className="object-cover w-full"
                       priority
@@ -114,7 +102,7 @@ export default function Header() {
                           <ChevronDown size={20} className="ml-1" />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className="p-6">
-                          {data.languages.map((lang) => (
+                          {["en", "vi"].map((lang) => (
                             <DropdownMenuItem
                               key={lang}
                               className={`font-proximaBold pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer ${
@@ -122,7 +110,7 @@ export default function Header() {
                               }`}
                               onClick={() => switchLanguage(lang)}
                             >
-                              {lang}
+                              {lang === "vi" ? "Tiếng Việt" : "English"}
                             </DropdownMenuItem>
                           ))}
                         </DropdownMenuContent>
