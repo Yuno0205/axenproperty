@@ -14,6 +14,9 @@ const nextConfig: NextConfig = {
       },
     ], // Domain mặc định của Contentful
   },
+  env: {
+    WEBFLOW_BASE_URL: "https://haos-dapper-site-533881.design.webflow.com",
+  },
 };
 
 export default nextConfig;

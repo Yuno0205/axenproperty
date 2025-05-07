@@ -1,17 +1,12 @@
-import { Banner } from "@/components/Banner";
-import { Development } from "@/components/Development";
-import { Properties } from "@/components/Properties";
-import { Solutions } from "@/components/Solution";
-import { Suspense } from "react";
-import Skeleton from "react-loading-skeleton";
+import { fetchWebflowPage } from "@/app/utils/fetch";
 
-export default function Home() {
+export default async function HomePage() {
+  const htmlContent = await fetchWebflowPage("home");
+
   return (
-    <Suspense fallback={<Skeleton height={100} />}>
-      <Banner />
-      <Properties />
-      <Development />
-      <Solutions />
-    </Suspense>
+    <div
+      dangerouslySetInnerHTML={{ __html: htmlContent }}
+      className="webflow-content"
+    />
   );
 }

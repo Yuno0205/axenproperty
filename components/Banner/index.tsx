@@ -1,33 +1,30 @@
 "use client";
 
 import { fetchContentfulData } from "@/lib/fetchContentful";
+import { useLocale } from "@/lib/useLocale";
 import { BannerFields } from "@/types/contentful";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 
 export const Banner = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<BannerFields>();
-  const searchParams = useSearchParams();
-
-  // Lấy locale từ URL, mặc định là "en"
-  const currentLocale = searchParams.get("locale") || "en";
+  const { locale } = useLocale();
 
   // Fetch dữ liệu từ Contentful khi component mount
   useEffect(() => {
     async function loadData() {
       const result = await fetchContentfulData(
         "banner",
-        currentLocale === "vi" ? "vi" : "en-US"
+        locale === "vi" ? "vi" : "en-US"
       );
       setData(result[0]); // Lấy phần tử đầu tiên từ danh sách dữ liệu
     }
     loadData();
-  }, [currentLocale]);
+  }, [locale]);
 
   if (!data) return <Skeleton height={600} />;
 
@@ -59,7 +56,7 @@ export const Banner = () => {
             className="w-72 xs:w-52"
           >
             <Link
-              href="/"
+              href={`/${locale}`}
               className="flex w-full h-full items-center px-4 relative z-2"
             >
               <Image
