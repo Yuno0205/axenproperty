@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
       },
     ], // Domain mặc định của Contentful
   },
+  env: {
+    NEXT_PUBLIC_PLASMIC_PROJECT_ID: process.env.NEXT_PUBLIC_PLASMIC_PROJECT_ID,
+    NEXT_PUBLIC_PLASMIC_API_TOKEN: process.env.NEXT_PUBLIC_PLASMIC_API_TOKEN,
+  },
 };
 
 export default nextConfig;
