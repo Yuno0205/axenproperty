@@ -41,6 +41,8 @@ export const Development = () => {
             alt="apartment"
             fill
             className="w-full object-cover h-full"
+            priority
+            quality={100}
           />
         </div>
         <div className="w-2/5 sm:w-full px-4">
@@ -54,9 +56,9 @@ export const Development = () => {
             }}
             className="mt-[-300px] sm:mt-[-50px] h-[365px] ml-12 sm:mx-auto px-16 py-12 bg-white w-full flex flex-col justify-center shadow-lg z-2 relative xs:text-center"
           >
-            <span className="avenir text-3xl font-light uppercase">
+            <h1 className="avenir text-3xl font-light uppercase">
               {data.title}
-            </span>
+            </h1>
             <span className="my-2.5">{data.text}</span>
 
             <Button className="w-40 my-5 py-3 mb-2.5 h-auto rounded-full">

@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
+
 import { Button } from "../ui/button";
 import {
   DropdownMenu,
@@ -16,6 +16,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import LoadingPage from "@/app/loading";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -57,7 +58,7 @@ export default function Header() {
     }
   };
 
-  if (!data) return <Skeleton height={120} />;
+  if (!data) return <LoadingPage />;
 
   return (
     <div>

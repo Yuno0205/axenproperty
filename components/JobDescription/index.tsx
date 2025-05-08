@@ -72,7 +72,9 @@ const JobDescription = ({ data: jobs }: { data: any[] }) => {
     );
   }, [data]);
 
-  return data ? (
+  if (!data) return <Skeleton height={500} />;
+
+  return (
     <section className={clsx(openSans.className, "w-full h-auto bg-white")}>
       <div className="w-full bg-[#F9F9F9] p-4">
         <div className="max-w-5xl mx-auto flex justify-between items-center xs:flex-col xs:gap-4 xs:text-center">
@@ -93,8 +95,6 @@ const JobDescription = ({ data: jobs }: { data: any[] }) => {
       </div>
       {showForm && <CallToAction onClose={() => setShowForm(false)} />}
     </section>
-  ) : (
-    <Skeleton height={400} />
   );
 };
 

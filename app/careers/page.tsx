@@ -23,6 +23,7 @@ import job from "@/public/static/images/new/job.png";
 import exp from "@/public/static/images/new/exp.png";
 import adress_icon from "@/public/static/images/new/adress_icon.png";
 import { Suspense } from "react";
+import { Metadata } from "next";
 
 const inter = Inter({
   subsets: ["latin", "vietnamese"],
@@ -33,6 +34,18 @@ const openSans = Open_Sans({
   subsets: ["latin", "vietnamese"],
   weight: ["400", "700"],
 });
+
+export const metadata: Metadata = {
+  title: "Cơ hội nghề nghiệp | Axenproperty",
+  description:
+    "Khám phá cơ hội nghề nghiệp tại Axenproperty. Trở thành một phần của đội ngũ bất động sản hàng đầu Việt Nam.",
+  openGraph: {
+    title: "Cơ hội nghề nghiệp | Axenproperty",
+    description: "Khám phá cơ hội nghề nghiệp tại Axenproperty.",
+    url: "https://axenproperty.com/careers",
+  },
+};
+
 const Careers = async () => {
   const steps = [
     {
@@ -370,8 +383,68 @@ const Careers = async () => {
           </div>
         </div>
       </section>
+      <JobsSchema />
     </Suspense>
   );
 };
 
 export default Careers;
+
+function JobsSchema() {
+  const jobListings = [
+    {
+      title: "Chuyên viên Kinh doanh Bất động sản",
+      description:
+        "Chúng tôi đang tìm kiếm Chuyên viên Kinh doanh Bất động sản nhiệt huyết, năng động...",
+      employmentType: "FULL_TIME",
+      hiringOrganization: "Axenproperty",
+      jobLocation: "Hồ Chí Minh, Việt Nam",
+      salary: "15 - 20 triệu VND",
+    },
+  ];
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: jobListings.map((job, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "JobPosting",
+        title: job.title,
+        description: job.description,
+
+        employmentType: job.employmentType,
+        hiringOrganization: {
+          "@type": "Organization",
+          name: job.hiringOrganization,
+          sameAs: "https://axenproperty.com",
+          logo: "https://images.ctfassets.net/nu40wp00r0zn/30Vdv79HMe2PNKSPZzO2H1/379566dcc234ba80815667b98c4e3807/logo.png",
+        },
+        jobLocation: {
+          "@type": "Place",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: job.jobLocation,
+          },
+        },
+        baseSalary: {
+          "@type": "MonetaryAmount",
+          currency: "VND",
+          value: {
+            "@type": "QuantitativeValue",
+            value: job.salary,
+            unitText: "MONTH",
+          },
+        },
+      },
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
