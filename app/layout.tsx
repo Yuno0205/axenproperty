@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     images: ["https://axenproperty.com/twitter-image.jpg"],
   },
   verification: {
-    google: "google-site-verification-code",
+    google: "4okLy_RckJkUnDQ6GcRG24UqJ1AvX40KQZr0biLtvP4",
   },
   alternates: {
     canonical: "https://axenproperty.com",

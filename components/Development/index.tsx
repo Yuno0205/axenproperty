@@ -41,6 +41,8 @@ export const Development = () => {
             alt="apartment"
             fill
             className="w-full object-cover h-full"
+            priority
+            quality={100}
           />
         </div>
         <div className="w-2/5 sm:w-full px-4">
