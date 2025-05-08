@@ -46,7 +46,7 @@ export const Banner = () => {
           alt="banner"
           fill
           className="object-cover"
-          quality={75}
+          quality={100}
           priority
         />
         {/* Nội dung */}
@@ -79,7 +79,7 @@ export const Banner = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="avenir text-[#666666] w-full text-5xl flex flex-col font-light capitalize sm:text-4xl px-4 pt-10 2xs:pt-0 pb-10"
           >
-            <span className="line-clamp-3">{data.title}</span>
+            <h1 className="line-clamp-3">{data.title}</h1>
           </motion.div>
         </div>
       </motion.div>

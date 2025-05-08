@@ -37,7 +37,7 @@ export const Properties = () => {
   if (!data) return <Skeleton height={300} />;
 
   return (
-    <div className="mt-10 aspect-video bg-cover text-center bg-no-repeat bg-center w-full relative">
+    <section className="mt-10 aspect-video bg-cover text-center bg-no-repeat bg-center w-full relative">
       {/* Image background */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -83,6 +83,6 @@ export const Properties = () => {
           {data.content[1]}
         </motion.div>
       </motion.div>
-    </div>
+    </section>
   );
 };
