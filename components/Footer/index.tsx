@@ -69,37 +69,37 @@ export default function Footer() {
           <div className="w-1/2 flex text-[#606576] sm:w-full sm:flex-col sm:gap-4">
             <div className="w-1/3 sm:w-full">
               <div className="flex flex-col gap-4">
-                <p className="font-bold text-lg">Về chúng tôi</p>
-                <Link href={""}>Đội ngũ Axenproperty</Link>
-                <Link href={""}>Sứ mệnh</Link>
-                <Link href={"/careers"}>Tuyển dụngg</Link>
-                <Link href={""}>Hỗ trợ</Link>
+                <p className="font-bold text-lg">About us</p>
+                <Link href={"/"}>Axenproperty team</Link>
+                <Link href={"/"}>Mission</Link>
+                <Link href={"/careers"}>Careers</Link>
+                <Link href={"/"}>Support</Link>
               </div>
             </div>
             <div className="w-1/3 sm:w-full">
               <div className="flex flex-col gap-4">
-                <p className="font-bold text-lg">Sản phẩm</p>
-                <Link href={""}>Chung cư</Link>
-                <Link href={""}>Bất động sản</Link>
-                <Link href={""}>Tích lũy</Link>
+                <p className="font-bold text-lg">Products</p>
+                <Link href={"/"}>Apartments</Link>
+                <Link href={"/"}>Real estate</Link>
+                <Link href={"/"}>Savings</Link>
               </div>
             </div>
             <div className="w-1/3 sm:w-full">
               <div className="flex flex-col gap-4">
-                <p className="font-bold text-lg">Tin tức</p>
-                <Link href={""}>Kiến thức</Link>
-                <Link href={""}>Blog</Link>
-                <Link href={""}>Sự kiện</Link>
+                <p className="font-bold text-lg">News</p>
+                <Link href={"/"}>Knowledge</Link>
+                <Link href={"/"}>Blog</Link>
+                <Link href={"/"}>Events</Link>
               </div>
             </div>
           </div>
           <div className="w-1/4 text-[#606576] sm:w-full">
             <div className="flex flex-col gap-4">
-              <p className="font-bold text-lg">Chính sách</p>
-              <Link href={""}>Bảo mật & chia sẻ thông tin</Link>
-              <Link href={""}>Hợp đồng điện tử</Link>
-              <Link href={""}>Nguyên tắc tính năng cộng đồng</Link>
-              <Link href={""}>Điều khoản - Điều kiện</Link>
+              <p className="font-bold text-lg">Policies</p>
+              <Link href={"/"}>Privacy & information sharing</Link>
+              <Link href={"/"}>Electronic contracts</Link>
+              <Link href={"/"}>Community feature principles</Link>
+              <Link href={"/"}>Terms & Conditions</Link>
             </div>
           </div>
         </div>
