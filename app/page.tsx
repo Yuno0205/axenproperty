@@ -35,22 +35,23 @@ function OrganizationSchema() {
     url: "https://axenproperty.com",
     logo: {
       "@type": "ImageObject",
-      url: "https://axenproperty.com/logo.png",
-      width: 112,
-      height: 112,
+      url: "https://images.ctfassets.net/nu40wp00r0zn/30Vdv79HMe2PNKSPZzO2H1/379566dcc234ba80815667b98c4e3807/logo.png",
+      width: 303,
+      height: 265,
     },
     address: {
       "@type": "PostalAddress",
-      streetAddress: "123 Đường ABC",
-      addressLocality: "Hà Nội",
-      postalCode: "10000",
+      streetAddress: "No. 3, Street No. 4, Himlam Residential Area, District 7",
+      addressLocality: "Ho Chi Minh City, Vietnam",
+      postalCode: "12345",
       addressCountry: "VN",
     },
-    telephone: "+84123456789",
-    email: "contact@axenproperty.com",
+    telephone: ["+84963509060", "+84961706960"],
+    email: "People@axenproperty.com",
     sameAs: [
       "https://www.facebook.com/axenproperty",
-      "https://www.linkedin.com/company/axenproperty",
+      "https://www.linkedin.com/company/axen-property",
+      "https://www.threads.com/@axenproperty",
     ],
   };
 
