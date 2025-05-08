@@ -7,7 +7,7 @@ export default function LoadingPage() {
             x="50%"
             y="50%"
             textAnchor="middle"
-            className="fill-transparent stroke-white stroke-2 text-[40px] font-bold uppercase"
+            className="fill-transparent stroke-white stroke-2 text-[40px] font-bold uppercase tracking-wide "
           >
             Axenproperty
           </text>
