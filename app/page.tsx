@@ -6,7 +6,7 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Showcase Dự án Bất động sản | Axenproperty",
+  title: "Axenproperty",
   description:
     "Khám phá các dự án bất động sản đẳng cấp từ Axenproperty. Nơi mang đến những cơ hội đầu tư và không gian sống hoàn hảo.",
 };
