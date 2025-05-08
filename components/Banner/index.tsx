@@ -48,6 +48,7 @@ export const Banner = () => {
           className="object-cover"
           quality={100}
           priority
+          sizes="100vw"
         />
         {/* Nội dung */}
         <div className="h-full w-5/6 bg-[#F2F3F5D9] flex flex-col items-center justify-center text-center gap-5 py-10 z-10">

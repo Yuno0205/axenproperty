@@ -63,14 +63,14 @@ export const Properties = () => {
         className="w-full pt-20 xs:pt-10 px-10 xs:px-4 z-10 absolute top-0 left-0 xs:pt-5 "
       >
         {/* Tiêu đề */}
-        <span
+        <h1
           className={clsx(
             poppins.className,
             "text-6xl font-bold text-[#666666] xs:text-4xl xs:text-white"
           )}
         >
           {data.title}
-        </span>
+        </h1>
 
         {/* Nội dung */}
         <motion.div
