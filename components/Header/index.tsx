@@ -1,4 +1,5 @@
 "use client";
+
 import { fetchContentfulData } from "@/lib/fetchContentful";
 import logo from "@/public/static/images/new/logo-ngang.png";
 import { HeaderFields } from "@/types/contentful";
@@ -159,7 +160,7 @@ export default function Header() {
       <div
         style={{ backgroundColor: "rgb(28 28 28 / 90%)" }}
         className={clsx(
-          "fixed bottom-0 left-0 w-full h-full z-10 p-4 flex flex-col items-center ",
+          "fixed bottom-0 left-0 w-full h-full z-50 p-4 flex flex-col items-center ",
           open ? "block" : "hidden"
         )}
       >
