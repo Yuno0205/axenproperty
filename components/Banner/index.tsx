@@ -43,7 +43,7 @@ export const Banner = () => {
         {/* Background Image */}
         <Image
           src={`${data?.backgroundImage.url}`}
-          alt="banner"
+          alt={`Axenproperty banner - ${data.title}`}
           fill
           className="object-cover"
           quality={100}
@@ -69,6 +69,7 @@ export const Banner = () => {
                 width={173}
                 height={154}
                 className="object-cover w-full"
+                loading="lazy"
               />
             </Link>
           </motion.div>
@@ -80,7 +81,9 @@ export const Banner = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="avenir text-[#666666] w-full text-5xl flex flex-col font-light capitalize sm:text-4xl px-4 pt-10 2xs:pt-0 pb-10"
           >
-            <h1 className="line-clamp-3">{data.title}</h1>
+            <h1 className="line-clamp-3" id="main-title">
+              {data.title}
+            </h1>
           </motion.div>
         </div>
       </motion.div>

@@ -88,6 +88,7 @@ export default function Header() {
                     key={index}
                     href={item.url}
                     className="pb-2.5 border-b-2 border-transparent hover:border-amber-500"
+                    prefetch
                   >
                     <span className="font-proxima text-xs font-black">
                       {item.label}
