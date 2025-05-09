@@ -76,7 +76,7 @@ export const Solutions = () => {
             />
           </motion.div>
 
-          <motion.h1
+          <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
@@ -87,7 +87,7 @@ export const Solutions = () => {
             className="avenir text-4xl font-light uppercase sm:text-3xl"
           >
             {data.title}
-          </motion.h1>
+          </motion.h2>
 
           <motion.span
             initial={{ opacity: 0, y: 30 }}

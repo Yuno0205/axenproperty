@@ -81,6 +81,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://axenproperty.com",
+    languages: {
+      en: "https://axenproperty.com?locale=en",
+      vi: "https://axenproperty.com?locale=vi",
+    },
   },
 };
 
