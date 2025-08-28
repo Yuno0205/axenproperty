@@ -17,7 +17,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import LoadingPage from "@/app/loading";
+import LoadingPage from "@/app/[locale]/loading";
 
 export default function Header() {
   const [open, setOpen] = useState(false);

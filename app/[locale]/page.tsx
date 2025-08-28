@@ -2,6 +2,7 @@ import { Banner } from "@/components/Banner";
 import { Development } from "@/components/Development";
 import { Properties } from "@/components/Properties";
 import { Solutions } from "@/components/Solution";
+
 import { Metadata } from "next";
 import { Suspense } from "react";
 
@@ -11,7 +12,13 @@ export const metadata: Metadata = {
     "Khám phá các dự án bất động sản đẳng cấp từ Axenproperty. Nơi mang đến những cơ hội đầu tư và không gian sống hoàn hảo.",
 };
 
-export default function Home() {
+export default async function Home({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  console.log(locale);
+
   return (
     <Suspense>
       <main>

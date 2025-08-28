@@ -3,24 +3,24 @@ import Header from "@/components/Header";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "react-loading-skeleton/dist/skeleton.css";
-import "./globals.css";
+import "../globals.css";
 import { Suspense } from "react";
 
 const proximaNova = localFont({
-  src: "./fonts/ProximaNovaRegular.otf",
+  src: "../fonts/ProximaNovaRegular.otf",
   variable: "--font-proxima-nova",
   weight: "400 500 600 700 800 900",
 });
 
 // Xóa dòng này để không xuất proximaBold
 const proximaBold = localFont({
-  src: "./fonts/ProximaNovaBold.otf",
+  src: "../fonts/ProximaNovaBold.otf",
   variable: "--font-proxima-nova-bold",
   weight: "400 500 600 700 800 900",
 });
 
 const avenir = localFont({
-  src: "./fonts/AvenirLTStd-Book.otf",
+  src: "../fonts/AvenirLTStd-Book.otf",
   variable: "--font-avenir",
   weight: "400 500 600 700 800 900",
 });
@@ -88,13 +88,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export async function generateStaticParams() {
+  return [{ locale: "en" }, { locale: "vi" }];
+}
+
+export default async function RootLayout({
   children,
+  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
   return (
-    <html lang="vi">
+    <html lang={locale}>
       <body
         className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable} antialiased bg-[#f4f4f4]`}
       >
