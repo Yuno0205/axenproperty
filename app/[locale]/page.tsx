@@ -13,10 +13,12 @@ export const metadata: Metadata = {
 };
 
 export default async function Home({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+
   console.log(locale);
 
   return (
