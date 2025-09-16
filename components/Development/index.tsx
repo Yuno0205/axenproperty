@@ -49,7 +49,7 @@ export const Development = () => {
           <motion.div
             ref={ref} // Liên kết ref với motion.div
             initial={{ opacity: 0, x: -300 }} // Ẩn đi ban đầu
-            whileInView={{ opacity: 1, x: 0 }} // Hiển thị khi trong tầm nhìn
+            animate={{ opacity: 1, x: 0 }} // Hiển thị khi trong tầm nhìn
             transition={{
               duration: 0.8, // Thời gian hiệu ứng
               ease: "easeOut",
