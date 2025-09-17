@@ -41,7 +41,7 @@ export const Properties = () => {
       {/* Image background */}
       <motion.div
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeInOut", once: true }}
         className="w-full h-full relative min-h-[300px]"
       >
@@ -58,7 +58,7 @@ export const Properties = () => {
       {/* Tiêu đề và nội dung */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2, ease: "easeInOut" }}
         className="w-full pt-20 xs:pt-10 px-10 xs:px-4 z-10 absolute top-0 left-0 xs:pt-5 "
       >
@@ -76,6 +76,7 @@ export const Properties = () => {
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeInOut" }}
           className="w-2/3 max-w-[780px] mx-auto text-justify text-[#666666] py-5 xs:text-center px-4 xs:w-full xs:text-white"
         >
