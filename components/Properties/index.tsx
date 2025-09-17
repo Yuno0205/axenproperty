@@ -75,7 +75,8 @@ export const Properties = () => {
         {/* Nội dung */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeInOut" }}
           className="w-2/3 max-w-[780px] mx-auto text-justify text-[#666666] py-5 xs:text-center px-4 xs:w-full xs:text-white"
         >

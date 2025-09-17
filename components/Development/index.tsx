@@ -48,12 +48,13 @@ export const Development = () => {
         <div className="w-2/5 sm:w-full px-4">
           <motion.div
             ref={ref} // Liên kết ref với motion.div
-            initial={{ opacity: 0, x: -300 }} // Ẩn đi ban đầu
-            animate={{ opacity: 1, x: 0 }} // Hiển thị khi trong tầm nhìn
+            initial={{ opacity: 0, x: -300, y: 30 }} // Ẩn đi ban đầu
+            whileInView={{ opacity: 1, x: 0 }} // Hiển thị khi trong tầm nhìn
             transition={{
               duration: 0.8, // Thời gian hiệu ứng
               ease: "easeOut",
             }}
+            viewport={{ once: true }}
             className="mt-[-300px] sm:mt-[-50px] h-[365px] ml-12 sm:mx-auto px-16 py-12 bg-white w-full flex flex-col justify-center shadow-lg z-2 relative xs:text-center"
           >
             <h2 className="avenir text-3xl font-light uppercase">
