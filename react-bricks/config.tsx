@@ -1,7 +1,6 @@
-import { types } from "react-bricks/rsc";
+import { types, Link } from "react-bricks/rsc";
 import bricks from "./bricks";
 import pageTypes from "./pageTypes";
-import { Link } from "react-bricks";
 
 const config: types.ReactBricksConfig = {
   appId: process.env.NEXT_PUBLIC_APP_ID || "",
@@ -16,7 +15,7 @@ const config: types.ReactBricksConfig = {
   navigate: (path: string) => {
     window.location.href = path;
   },
-  appRootElement: "body",
+  appRootElement: "#__next",
 
   // Các đường dẫn cho khu vực quản trị
   loginPath: "/admin",
