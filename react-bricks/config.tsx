@@ -1,28 +1,45 @@
-import { types, Link } from "react-bricks/rsc";
+import { types } from "react-bricks/rsc";
 import bricks from "./bricks";
 import pageTypes from "./pageTypes";
+import NextLink from "./NextLink";
 
 const config: types.ReactBricksConfig = {
   appId: process.env.NEXT_PUBLIC_APP_ID || "",
   apiKey: process.env.API_KEY || "",
-
-  // Tập hợp tất cả các "viên gạch" bạn sẽ sử dụng
+  environment: process.env.NEXT_PUBLIC_ENVIRONMENT,
   bricks,
 
   // Tập hợp tất cả các loại trang
   pageTypes,
-  renderLocalLink: (props) => <Link href={props.href}>{props.children}</Link>,
-  navigate: (path: string) => {
-    window.location.href = path;
-  },
-  appRootElement: "#__next",
-
-  // Các đường dẫn cho khu vực quản trị
+  customFields: [],
+  logo: "/logo.svg",
+  loginUI: {},
+  contentClassName: "",
+  renderLocalLink: NextLink,
+  navigate: (path: string) => {},
   loginPath: "/admin",
   editorPath: "/admin/editor",
+  mediaLibraryPath: "/admin/media",
   playgroundPath: "/admin/playground",
   appSettingsPath: "/admin/app-settings",
   previewPath: "/preview",
+  // getAdminMenu: () => [],
+  isDarkColorMode: false,
+  toggleColorMode: () => {},
+  useCssInJs: false,
+  appRootElement: "body",
+  clickToEditSide: types.ClickToEditSide.BottomRight,
+  //responsiveBreakpoints: [{ type: types.DeviceType.Phone, width: 480, label: "Smartphone" },],
+  enableAutoSave: true,
+  disableSaveIfInvalidProps: false,
+  enablePreview: true,
+  blockIconsPosition: types.BlockIconsPosition.OutsideBlock,
+  enableUnsplash: true,
+  unsplashApiKey: "",
+  enablePreviewImage: true,
+  enableDefaultEmbedBrick: true,
+  //permissions,  Fine-grained permissions for enterprise plans
+  allowAccentsInSlugs: true,
 };
 
 export default config;

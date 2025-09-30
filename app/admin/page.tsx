@@ -1,9 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Admin, Login } from "react-bricks";
 
-const AdminLoginPage: React.FC = () => {
+const AdminLogin: React.FC = () => {
+  useEffect(() => {
+    document.title = "Login";
+  }, []);
+
   return (
     <Admin isLogin>
       <Login />
@@ -11,4 +15,4 @@ const AdminLoginPage: React.FC = () => {
   );
 };
 
-export default AdminLoginPage;
+export default AdminLogin;
