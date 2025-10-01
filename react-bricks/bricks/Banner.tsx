@@ -29,7 +29,7 @@ const Banner: types.Brick<BannerProps> = ({
   description,
 }) => {
   return (
-    <div className="relative isolate overflow-hidden bg-gray-900">
+    <div className="relative isolate overflow-hidden bg-gray-900 min-h-[500px]">
       <Image
         propName="backgroundImage"
         alt="Banner"

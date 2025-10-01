@@ -17,7 +17,7 @@ const NextLinkClient: types.RenderLocalLink = ({
   let anchorClassName = "";
 
   if (pathname === href) {
-    anchorClassName = `${className} ${activeClassName}`;
+    anchorClassName = `${className || ""} ${activeClassName || ""}`.trim();
   } else {
     anchorClassName = className || "";
   }

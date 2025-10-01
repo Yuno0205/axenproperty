@@ -13,8 +13,11 @@ export default async function Page() {
     notFound();
   });
 
+  console.log(page);
+
   // Lấy danh sách tất cả các "viên gạch" đã đăng ký
   const bricks = getBricks();
+  console.log(bricks);
 
   // "Làm sạch" dữ liệu trang để loại bỏ các "viên gạch" không hợp lệ
   const pageOk = cleanPage(page, config.pageTypes || [], bricks);
