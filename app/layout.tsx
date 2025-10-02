@@ -1,9 +1,17 @@
-import ReactBricksApp from "../components/ReactBricksApp";
-
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import "./globals.css";
-import QueryProviders from "@/components/QueryProvider";
+
+// ======================================================
+// BƯỚC QUAN TRỌNG: Đăng ký cấu hình ở đây
+import { register } from "react-bricks/rsc";
+import config from "@/react-bricks/config";
+import ReactBricksApp from "@/components/ReactBricksApp";
+register(config);
+// ======================================================
+
+export const metadata = {
+  title: "Axen Property",
+  description: "Nền tảng bất động sản thế hệ mới",
+};
 
 export default function RootLayout({
   children,
@@ -13,14 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* Bọc toàn bộ ứng dụng trong Providers */}
-        <QueryProviders>
-          <ReactBricksApp>
-            <Header />
-            {children}
-            <Footer />
-          </ReactBricksApp>
-        </QueryProviders>
+        <ReactBricksApp>
+          {/* children ở đây chính là nội dung từ app/[[...slug]]/page.tsx */}
+          <main>{children}</main>
+        </ReactBricksApp>
       </body>
     </html>
   );

@@ -8,15 +8,18 @@ const config: types.ReactBricksConfig = {
   apiKey: process.env.API_KEY || "",
   environment: process.env.NEXT_PUBLIC_ENVIRONMENT,
   bricks,
-
   // Tập hợp tất cả các loại trang
   pageTypes,
   customFields: [],
-  logo: "/logo.svg",
+  logo: "/static/images/new/logo-ngang.png",
   loginUI: {},
   contentClassName: "",
   renderLocalLink: NextLink,
-  navigate: (path: string) => {},
+  navigate: (path: string) => {
+    if (typeof window !== "undefined") {
+      window.location.assign(path);
+    }
+  },
   loginPath: "/admin",
   editorPath: "/admin/editor",
   mediaLibraryPath: "/admin/media",
