@@ -8,7 +8,6 @@ const pageTypes: types.IPageType[] = [
     defaultStatus: types.PageStatus.Published,
     getDefaultContent: () => [],
   },
-  // Chúng ta sẽ thêm loại 'layout' cho Header/Footer ở các bước sau.
 ];
 
 export default pageTypes;

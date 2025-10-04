@@ -1,16 +1,14 @@
 import { types } from "react-bricks/rsc";
+import MyHeroUnit from "./MyHeroUnit"; // Brick tùy chỉnh của bạn
 import Banner from "./Banner";
-
-// Chúng ta sẽ import và thêm từng "viên gạch" đã chuyển đổi vào đây.
-// Ví dụ: import Banner from './Banner';
 
 const bricks: types.Theme[] = [
   {
-    themeName: "Axen Property Bricks",
+    themeName: "My Bricks",
     categories: [
       {
-        categoryName: "General",
-        bricks: [Banner],
+        categoryName: "Custom",
+        bricks: [MyHeroUnit, Banner], // Chỉ sử dụng brick này để bắt đầu
       },
     ],
   },

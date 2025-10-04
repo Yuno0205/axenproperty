@@ -4,76 +4,132 @@ import {
   PageViewer,
   cleanPage,
   fetchPage,
+  fetchPages,
   getBricks,
   getMetadata,
   types,
 } from "react-bricks/rsc";
 import { ClickToEdit } from "react-bricks/rsc/client";
-import { notFound } from "next/navigation";
 
+// import ErrorNoKeys from "@/components/errorNoKeys";
+// import ErrorNoPage from "@/components/errorNoPage";
 import config from "@/react-bricks/config";
 
-// Hàm lấy dữ liệu trang
 const getData = async (
-  slug: string | undefined
-): Promise<types.Page | null> => {
-  const cleanSlug = slug || "home";
+  slug: any,
+  locale: string
+): Promise<{
+  page: types.Page | null;
+  errorNoKeys: boolean;
+  errorPage: boolean;
+}> => {
+  let errorNoKeys: boolean = false;
+  let errorPage: boolean = false;
+
+  if (!config.apiKey) {
+    errorNoKeys = true;
+
+    return {
+      page: null,
+      errorNoKeys,
+      errorPage,
+    };
+  }
+
+  let cleanSlug = "";
+
+  if (!slug) {
+    cleanSlug = "/";
+  } else if (typeof slug === "string") {
+    cleanSlug = slug;
+  } else {
+    cleanSlug = slug.join("/");
+  }
 
   const page = await fetchPage({
     slug: cleanSlug,
-    language: "en",
+    language: locale,
     config,
+    fetchOptions: { next: { revalidate: 3 } },
   }).catch(() => {
+    errorPage = true;
     return null;
   });
 
-  return page;
+  return {
+    page,
+    errorNoKeys,
+    errorPage,
+  };
 };
 
-// Component Page chính
-export default async function Page({
+export async function generateStaticParams({
   params,
 }: {
-  params: { slug?: string[] };
+  params: { lang: string };
 }) {
-  const slug = params.slug?.join("/");
-  const page = await getData(slug);
-
-  if (!page) {
-    notFound();
+  if (!config.apiKey) {
+    return [];
   }
 
-  const bricks = getBricks();
-  const pageOk = cleanPage(page, config.pageTypes || [], bricks);
+  const allPages = await fetchPages(config.apiKey, {
+    language: params.lang,
+    type: "page",
+  });
 
-  return (
-    <>
-      {pageOk.meta && <JsonLd page={pageOk}></JsonLd>}
+  const pages = allPages
+    .map((page) =>
+      page.translations.map((translation) => ({
+        slug: translation.slug === "/" ? [""] : translation.slug.split("/"),
+      }))
+    )
+    .flat();
 
-      <PageViewer page={pageOk} main />
-
-      <ClickToEdit
-        pageId={pageOk.id}
-        language={"en"}
-        editorPath={config.editorPath || "/admin/editor"}
-        clickToEditSide={config.clickToEditSide}
-      />
-    </>
-  );
+  return pages;
 }
 
-// Hàm generateMetadata vẫn giữ nguyên
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug?: string[] };
+export async function generateMetadata(props: {
+  params: Promise<{ lang: string; slug?: string[] }>;
 }): Promise<Metadata> {
-  const slug = params.slug?.join("/");
-  const page = await getData(slug);
-
+  const params = await props.params;
+  const { page } = await getData(params.slug?.join("/"), params.lang);
   if (!page?.meta) {
     return {};
   }
 
   return getMetadata(page);
+}
+
+export default async function Page(props: {
+  params: Promise<{ lang: string; slug?: string[] }>;
+}) {
+  const params = await props.params;
+  const { page, errorNoKeys, errorPage } = await getData(
+    params.slug?.join("/"),
+    params.lang
+  );
+
+  // Clean the received content
+  // Removes unknown or not allowed bricks
+  const bricks = getBricks();
+  const pageOk = page ? cleanPage(page, config.pageTypes || [], bricks) : null;
+
+  return (
+    <>
+      {page?.meta && <JsonLd page={page}></JsonLd>}
+      {pageOk && !errorPage && !errorNoKeys && (
+        <PageViewer page={pageOk} main />
+      )}
+      {errorNoKeys && <div>Error No Keys</div>}
+      {errorPage && <div>Error No Page</div>}
+      {pageOk && config && (
+        <ClickToEdit
+          pageId={pageOk?.id}
+          language={params.lang}
+          editorPath={config.editorPath || "/admin/editor"}
+          clickToEditSide={config.clickToEditSide}
+        />
+      )}
+    </>
+  );
 }
