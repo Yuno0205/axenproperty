@@ -16,7 +16,7 @@ import { ClickToEdit } from "react-bricks/rsc/client";
 import config from "@/react-bricks/config";
 
 const getData = async (
-  slug: any,
+  slug: string[] | undefined,
   locale: string
 ): Promise<{
   page: types.Page | null;
@@ -92,7 +92,7 @@ export async function generateMetadata(props: {
   params: Promise<{ lang: string; slug?: string[] }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const { page } = await getData(params.slug?.join("/"), params.lang);
+  const { page } = await getData(params.slug, params.lang);
   if (!page?.meta) {
     return {};
   }
@@ -105,7 +105,7 @@ export default async function Page(props: {
 }) {
   const params = await props.params;
   const { page, errorNoKeys, errorPage } = await getData(
-    params.slug?.join("/"),
+    params.slug,
     params.lang
   );
 

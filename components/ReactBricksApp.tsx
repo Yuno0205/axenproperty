@@ -20,5 +20,5 @@ export default function ReactBricksApp({
     renderLocalLink: NextLink,
   };
 
-  return <ReactBricks {...reactBricksConfig}>{children as any}</ReactBricks>;
+  return <ReactBricks {...reactBricksConfig}>{children}</ReactBricks>;
 }
