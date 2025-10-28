@@ -1,4 +1,4 @@
-import { Text, RichText, Image, types } from "react-bricks/rsc";
+import { Image, types } from "react-bricks/rsc";
 import React from "react";
 import classNames from "classnames";
 
@@ -22,12 +22,7 @@ const getPadding = (padding: "small" | "medium" | "large") => {
   }
 };
 
-const Banner: types.Brick<BannerProps> = ({
-  padding,
-  backgroundImage,
-  title,
-  description,
-}) => {
+const Banner: types.Brick<BannerProps> = ({ padding, backgroundImage }) => {
   return (
     <div className="relative isolate overflow-hidden bg-gray-900 min-h-[500px]">
       <Image
@@ -39,7 +34,7 @@ const Banner: types.Brick<BannerProps> = ({
       {/* Sử dụng hàm getPadding để áp dụng lớp CSS động */}
       <div className={classNames("mx-auto max-w-2xl", getPadding(padding))}>
         <div className="text-center">
-          <Text
+          {/* <Text
             propName="title"
             renderBlock={(props) => (
               <h1
@@ -59,7 +54,7 @@ const Banner: types.Brick<BannerProps> = ({
               </p>
             )}
             placeholder="Nhập mô tả..."
-          />
+          /> */}
         </div>
       </div>
     </div>
