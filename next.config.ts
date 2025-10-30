@@ -12,7 +12,12 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.ctfassets.net",
       },
-    ], // Domain mặc định của Contentful
+      {
+        protocol: "https",
+        hostname: "a.storyblok.com",
+        port: "",
+      },
+    ],
   },
 };
 
