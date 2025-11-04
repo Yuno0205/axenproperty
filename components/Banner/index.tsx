@@ -4,28 +4,13 @@ import { storyblokEditable } from "@storyblok/react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
-// Định nghĩa kiểu dữ liệu cho blok từ Storyblok để code an toàn hơn
-interface BannerBlok {
-  _uid: string;
-  component: "banner";
-  title: string;
-  background_image: {
-    id: number;
-    alt: string;
-    filename: string; // URL của ảnh
-  };
-  logo: {
-    id: number;
-    alt: string;
-    filename: string; // URL của ảnh
-  };
-}
+import { BannerStoryblok } from "@/types/storyblok";
 
 // Component Banner giờ sẽ nhận prop 'blok'
-export const Banner = ({ blok }: { blok: BannerBlok }) => {
+export const Banner = ({ blok }: { blok: BannerStoryblok }) => {
+  console.log(blok);
+
   return (
-    // Dòng storyblokEditable(blok) này rất quan trọng để Visual Editor hoạt động
     <section
       {...storyblokEditable(blok)}
       className="w-full flex items-center justify-center"
