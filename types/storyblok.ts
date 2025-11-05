@@ -8,6 +8,7 @@ export interface Asset {
   filename: string;
   alt?: string;
   title?: string;
+  url: string;
 }
 
 export interface NavigationItem {
@@ -19,7 +20,7 @@ export interface NavigationItem {
 
 export interface BannerStoryblok extends SbBlokData {
   title: string;
-  backgroundImage: Asset;
+  background_iage: Asset;
   logo: Asset;
   _uid: string;
   component: "banner";

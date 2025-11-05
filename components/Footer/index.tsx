@@ -20,7 +20,7 @@ type social = {
   url: string;
 };
 
-export default function Footer() {
+export default function Footer({ blok }: { blok: any }) {
   const [data, setData] = useState<FooterFields>();
   const searchParams = useSearchParams();
 

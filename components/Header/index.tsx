@@ -19,7 +19,7 @@ import {
 } from "../ui/dropdown-menu";
 import LoadingPage from "@/app/loading";
 
-export default function Header() {
+export default function Header({ blok }: { blok: any }) {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState<HeaderFields>();
   const router = useRouter();

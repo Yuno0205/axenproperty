@@ -2,6 +2,11 @@ import { getStoryblokApi } from "@/lib/storyblok";
 import { StoryblokStory } from "@storyblok/react/rsc";
 
 export default async function Home() {
+  const fetchData = async () => {
+    const storyblokApi = getStoryblokApi();
+    return await storyblokApi.get(`cdn/stories/home`, { version: "draft" });
+  };
+
   const { data } = await fetchData();
 
   return (
@@ -9,9 +14,4 @@ export default async function Home() {
       <StoryblokStory story={data.story} />
     </div>
   );
-}
-
-export async function fetchData() {
-  const storyblokApi = getStoryblokApi();
-  return await storyblokApi.get(`cdn/stories/home`, { version: "draft" });
 }

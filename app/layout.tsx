@@ -1,10 +1,35 @@
-import StoryblokProvider from "@/components/StoryblokProvider";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import type { Metadata } from "next";
+import localFont from "next/font/local";
+import "react-loading-skeleton/dist/skeleton.css";
 import "./globals.css";
-import { Metadata } from "next";
+import { Suspense } from "react";
+
+import { getStoryblokApi } from "@/lib/storyblok";
+import { draftMode } from "next/headers";
+
+const proximaNova = localFont({
+  src: "./fonts/ProximaNovaRegular.otf",
+  variable: "--font-proxima-nova",
+  weight: "400 500 600 700 800 900",
+});
+
+const proximaBold = localFont({
+  src: "./fonts/ProximaNovaBold.otf",
+  variable: "--font-proxima-nova-bold",
+  weight: "400 500 600 700 800 900",
+});
+
+const avenir = localFont({
+  src: "./fonts/AvenirLTStd-Book.otf",
+  variable: "--font-avenir",
+  weight: "400 500 600 700 800 900",
+});
 
 export const metadata: Metadata = {
   title: {
-    default: "Axenproperty - Cung cấp các giải pháp bất động sản chuyên nghiệp",
+    default: "Axenproperty -Cung cấp các giải pháp bất động sản chuyên nghiệp",
     template: "%s | Axenproperty",
   },
   description:
@@ -20,7 +45,7 @@ export const metadata: Metadata = {
     "resort",
   ],
   openGraph: {
-    title: "Axenproperty - Cung cấp các giải pháp bất động sản chuyên nghiệp",
+    title: "Axenproperty -Cung cấp các giải pháp bất động sản chuyên nghiệp",
     description:
       "Khám phá các dự án bất động sản cao cấp tại Việt Nam với Axenproperty.",
     url: "https://axenproperty.com",
@@ -65,18 +90,40 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+async function getGlobalData() {
+  const { isEnabled } = await draftMode();
+  const version = isEnabled ? "draft" : "published";
+
+  try {
+    const { data } = await getStoryblokApi().get(`cdn/stories/global`, {
+      version: version,
+      cv: isEnabled ? Math.random() : undefined,
+    });
+    return data.story.content;
+  } catch (error) {
+    console.error("Error fetching global data:", error);
+    return null;
+  }
+}
+
+export default async function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
+  const globalData = await getGlobalData();
+
   return (
-    <StoryblokProvider>
-      <html lang="en">
-        <body>
-          <main>{children}</main>
-        </body>
-      </html>
-    </StoryblokProvider>
+    <html lang="vi">
+      <body
+        className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable} antialiased bg-[#f4f4f4]`}
+      >
+        <Suspense>
+          <Header blok={globalData} />
+          {children}
+          <Footer blok={globalData} />
+        </Suspense>
+      </body>
+    </html>
   );
 }
