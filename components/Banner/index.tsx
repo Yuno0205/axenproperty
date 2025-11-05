@@ -8,8 +8,6 @@ import { BannerStoryblok } from "@/types/storyblok";
 
 // Component Banner giờ sẽ nhận prop 'blok'
 export const Banner = ({ blok }: { blok: BannerStoryblok }) => {
-  console.log(blok);
-
   return (
     <section
       {...storyblokEditable(blok)}
@@ -50,15 +48,14 @@ export const Banner = ({ blok }: { blok: BannerStoryblok }) => {
               href="/"
               className="flex w-full h-full items-center px-4 relative z-2"
             >
-              {/* <Image
+              <Image
                 src={blok.logo.filename}
                 alt={blok.logo.alt || "Banner Logo"}
                 width={173}
                 height={154}
                 className="object-cover w-full"
                 loading="lazy"
-              /> */}
-              Logo
+              />
             </Link>
           </motion.div>
 
