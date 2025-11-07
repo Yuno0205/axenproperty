@@ -1,13 +1,18 @@
 "use client";
 
-import { storyblokEditable } from "@storyblok/react";
+import { SbBlokData, storyblokEditable } from "@storyblok/react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { BannerStoryblok } from "@/types/storyblok";
+import { Asset } from "@/types/storyblok";
 
-// Component Banner giờ sẽ nhận prop 'blok'
-export const Banner = ({ blok }: { blok: BannerStoryblok }) => {
+interface IBannerStoryblok extends SbBlokData {
+  title: string;
+  background_image: Pick<Asset, "filename" | "alt">;
+  logo: Pick<Asset, "filename" | "alt">;
+}
+
+export const Banner = ({ blok }: { blok: IBannerStoryblok }) => {
   return (
     <section
       {...storyblokEditable(blok)}
@@ -21,11 +26,11 @@ export const Banner = ({ blok }: { blok: BannerStoryblok }) => {
         transition={{ duration: 1, ease: "easeOut" }}
         className="w-full relative bg-cover bg-no-repeat flex items-center justify-center bg-center py-20 xs:py-10 2xs:h-96"
       >
-        {/* Background Image - Lấy dữ liệu từ blok */}
+        {/* Background Image  */}
         <Image
-          src={blok.background_image.filename}
+          src={blok.background_image.filename || "/images/placeholder.png"}
           alt={
-            blok.background_image.alt || `Axenproperty banner - ${blok.title}`
+            blok.background_image?.alt || `Axenproperty banner - ${blok.title}`
           }
           fill
           className="object-cover"
@@ -34,9 +39,9 @@ export const Banner = ({ blok }: { blok: BannerStoryblok }) => {
           sizes="100vw"
         />
 
-        {/* Nội dung */}
+        {/* Content */}
         <div className="h-full w-5/6 bg-[#F2F3F5D9] flex flex-col items-center justify-center text-center gap-5 py-10 z-10">
-          {/* Logo - Lấy dữ liệu từ blok */}
+          {/* Logo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -59,7 +64,7 @@ export const Banner = ({ blok }: { blok: BannerStoryblok }) => {
             </Link>
           </motion.div>
 
-          {/* Tiêu đề - Lấy dữ liệu từ blok */}
+          {/* Title */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

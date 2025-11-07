@@ -1,14 +1,20 @@
-// Minimal Storyblok block type compatible with storyblokEditable requirements
-export type SbBlokData = {
-  _uid: string;
-  component: string;
-  [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
-};
 export interface Asset {
+  alt: string;
+  copyright: string;
+  fieldtype: "asset";
   filename: string;
-  alt?: string;
-  title?: string;
-  url: string;
+  focus: string;
+  id: number;
+  is_external_url: boolean;
+  meta_data: {
+    alt: string;
+    title: string;
+    source: string;
+    copyright: string;
+  };
+  name: string;
+  source: string;
+  title: string;
 }
 
 export interface NavigationItem {
@@ -16,14 +22,6 @@ export interface NavigationItem {
   url: string;
   _uid: string;
   component: "navigation_item";
-}
-
-export interface BannerStoryblok extends SbBlokData {
-  title: string;
-  background_iage: Asset;
-  logo: Asset;
-  _uid: string;
-  component: "banner";
 }
 
 export interface HeaderStoryblok {
