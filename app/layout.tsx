@@ -125,7 +125,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="en">
+    <html lang="vi">
       <body
         className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable} antialiased bg-[#f4f4f4]`}
       >

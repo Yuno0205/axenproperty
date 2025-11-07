@@ -30,8 +30,7 @@ export default function Footer({ blok }: { blok: GlobalConfigBlok }) {
             <span>{blok.location}</span>
             <h5>
               Hotline:
-              <span className="font-semibold"> {blok.hotline[0]}</span> or{" "}
-              <span className="font-semibold">{blok.hotline[1]}</span>
+              <span className="font-semibold"> {blok.hotline}</span>
             </h5>
             <h5>
               Email:

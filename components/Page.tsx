@@ -1,6 +1,11 @@
 import { StoryblokServerComponent } from "@storyblok/react/rsc";
+import type { SbBlokData } from "@storyblok/react";
 
-export default function Page({ blok }) {
+type PageBlok = SbBlokData & { body?: SbBlokData[] };
+
+export default function Page({ blok }: { blok: PageBlok }) {
+  console.log(blok);
+
   return (
     <main>
       {blok.body?.map((nestedBlok) => (
