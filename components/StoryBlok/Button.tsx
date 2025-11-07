@@ -1,15 +1,17 @@
 import { Button } from "@/components/ui/button";
-import type { StoryblokButton } from "@/types/storyblok";
+import { SbButton } from "@/types/storyblok";
 
 import { storyblokEditable } from "@storyblok/react";
 import Image from "next/image";
 import Link from "next/link";
 
-const StoryblokButton = ({ blok }: { blok: StoryblokButton }) => {
+const StoryblokButton = ({ blok }: { blok: SbButton }) => {
   const { label, link, variant, size, icon, icon_position, background_color } =
     blok;
 
   const style = background_color ? { backgroundColor: background_color } : {};
+  const normalizedSize: "default" | "sm" | "lg" =
+    size === "md" || !size ? "default" : size;
 
   return (
     <Button
@@ -17,7 +19,7 @@ const StoryblokButton = ({ blok }: { blok: StoryblokButton }) => {
       {...storyblokEditable(blok)}
       className={"w-full"}
       variant={variant}
-      size={size as "default" | "sm" | "lg" | null | undefined}
+      size={normalizedSize}
       style={style}
     >
       <Link href={link || "/"}>

@@ -114,6 +114,16 @@ export default async function RootLayout({
 }>) {
   const globalData = await getGlobalData();
 
+  if (!globalData) {
+    return (
+      <html lang="vi">
+        <body className={`${proximaNova.variable} antialiased bg-[#f4f4f4]`}>
+          {children}
+        </body>
+      </html>
+    );
+  }
+
   return (
     <html lang="en">
       <body

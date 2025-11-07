@@ -27,7 +27,7 @@ export type GlobalConfigBlok = {
   copyright_text: string;
   // Header
   navigation_links: NavLinkStoryblok[];
-  cta_button: StoryblokButton[];
+  cta_button: SbButton[];
   // Footer
   location: string;
   hotline: string;
@@ -41,7 +41,7 @@ export interface NavLinkStoryblok extends SbBlokData {
   link: string;
 }
 
-export interface StoryblokButton extends SbBlokData {
+export interface SbButton extends SbBlokData {
   label: string;
   link: string;
   variant: "link" | "default" | "destructive" | "outline" | "ghost";

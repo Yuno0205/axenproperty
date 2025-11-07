@@ -17,8 +17,6 @@ import {
 import { GlobalConfigBlok } from "@/types/storyblok";
 
 export default function Header({ blok }: { blok: GlobalConfigBlok }) {
-  console.log(blok);
-
   const [open, setOpen] = useState(false);
 
   return (
