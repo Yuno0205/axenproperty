@@ -1,14 +1,9 @@
-import { Asset } from "@/types/storyblok";
-import { SbBlokData, storyblokEditable } from "@storyblok/react";
+import { SocialLinkStoryblok } from "@/types/storyblok";
+import { storyblokEditable } from "@storyblok/react";
 import Image from "next/image";
 import Link from "next/link";
 
-interface ISocialLinkStoryblok extends SbBlokData {
-  link: string;
-  icon: Pick<Asset, "filename" | "alt">;
-}
-
-const SocialLink = ({ blok }: { blok: ISocialLinkStoryblok }) =>
+const SocialLink = ({ blok }: { blok: SocialLinkStoryblok }) =>
   !blok?.link || !blok?.icon?.filename ? null : (
     <Link
       {...storyblokEditable(blok)}

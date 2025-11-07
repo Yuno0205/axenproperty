@@ -1,36 +1,13 @@
-import { SbBlokData, storyblokEditable } from "@storyblok/react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import type { StoryblokButton } from "@/types/storyblok";
+
+import { storyblokEditable } from "@storyblok/react";
 import Image from "next/image";
-import { Asset } from "@/types/storyblok";
+import Link from "next/link";
 
-interface IStoryblokButton extends SbBlokData {
-  label: string;
-  link: string;
-  variant:
-    | "secondary"
-    | "link"
-    | "default"
-    | "destructive"
-    | "outline"
-    | "ghost";
-  size: "default" | "sm" | "lg";
-  icon: Pick<Asset, "filename" | "alt">;
-  icon_position: "left" | "right";
-  background_color: string;
-}
-
-const StoryblokButton = ({ blok }: { blok: IStoryblokButton }) => {
-  const {
-    label,
-    link,
-    variant,
-    size,
-    icon,
-    icon_position,
-    full_width,
-    background_color,
-  } = blok;
+const StoryblokButton = ({ blok }: { blok: StoryblokButton }) => {
+  const { label, link, variant, size, icon, icon_position, background_color } =
+    blok;
 
   const style = background_color ? { backgroundColor: background_color } : {};
 
@@ -38,19 +15,9 @@ const StoryblokButton = ({ blok }: { blok: IStoryblokButton }) => {
     <Button
       asChild
       {...storyblokEditable(blok)}
-      className={full_width ? "w-full" : ""}
-      variant={
-        variant as
-          | "secondary"
-          | "link"
-          | "default"
-          | "destructive"
-          | "outline"
-          | "ghost"
-          | null
-          | undefined
-      }
-      size={size as "icon" | "default" | "sm" | "lg" | null | undefined}
+      className={"w-full"}
+      variant={variant}
+      size={size as "default" | "sm" | "lg" | null | undefined}
       style={style}
     >
       <Link href={link || "/"}>

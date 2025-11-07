@@ -1,13 +1,8 @@
+import { FooterLinkStoryblok } from "@/types/storyblok";
 import { storyblokEditable } from "@storyblok/react";
 import Link from "next/link";
-import { SbBlokData } from "@storyblok/react";
 
-interface IFooterLinkStoryblok extends SbBlokData {
-  label: string;
-  link: string;
-}
-
-const FooterLink = ({ blok }: { blok: IFooterLinkStoryblok }) =>
+const FooterLink = ({ blok }: { blok: FooterLinkStoryblok }) =>
   !blok?.link || !blok?.label ? null : (
     <Link {...storyblokEditable(blok)} href={blok.link ?? "/"}>
       {blok.label}

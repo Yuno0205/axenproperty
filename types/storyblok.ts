@@ -1,3 +1,5 @@
+import { SbBlokData } from "@storyblok/react";
+
 export interface Asset {
   alt: string;
   copyright: string;
@@ -17,19 +19,51 @@ export interface Asset {
   title: string;
 }
 
-export interface NavigationItem {
+export type GlobalConfigBlok = {
+  //General
+  logo: Asset;
+  language: string;
+  company_name: string;
+  copyright_text: string;
+  // Header
+  navigation_links: NavLinkStoryblok[];
+  cta_button: StoryblokButton[];
+  // Footer
+  location: string;
+  hotline: string;
+  email: string;
+  link_columns: StoryBlokLinkColumn[];
+  social_links: SocialLinkStoryblok[];
+};
+
+export interface NavLinkStoryblok extends SbBlokData {
   label: string;
-  url: string;
-  _uid: string;
-  component: "navigation_item";
+  link: string;
 }
 
-export interface HeaderStoryblok {
-  navigation: NavigationItem[];
-  languages: string[];
-  btnText: string;
-  _uid: string;
-  component: "header";
+export interface StoryblokButton extends SbBlokData {
+  label: string;
+  link: string;
+  variant: "link" | "default" | "destructive" | "outline" | "ghost";
+  size: "md" | "sm" | "lg";
+  icon: Pick<Asset, "filename" | "alt">;
+  icon_position: "left" | "right";
+  background_color: string;
+}
+
+export interface FooterLinkStoryblok extends SbBlokData {
+  label: string;
+  link: string;
+}
+
+export interface StoryBlokLinkColumn extends SbBlokData {
+  title: string;
+  links: FooterLinkStoryblok[];
+}
+
+export interface SocialLinkStoryblok extends SbBlokData {
+  link: string;
+  icon: Pick<Asset, "filename" | "alt">;
 }
 
 export interface PropertiesStoryblok {
@@ -68,17 +102,4 @@ export interface FooterStoryblok {
   social: { title: string; url: string }[];
   _uid: string;
   component: "footer";
-}
-
-export interface Story<T = unknown> {
-  id: number;
-  uuid: string;
-  name: string;
-  slug: string;
-  full_slug: string;
-  content: T;
-  created_at: string;
-  published_at: string;
-  first_published_at: string;
-  lang: string;
 }

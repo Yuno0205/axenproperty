@@ -1,12 +1,8 @@
-import { SbBlokData, storyblokEditable } from "@storyblok/react";
+import { NavLinkStoryblok } from "@/types/storyblok";
+import { storyblokEditable } from "@storyblok/react";
 import Link from "next/link";
 
-interface INavLinkStoryblok extends SbBlokData {
-  label: string;
-  link: string;
-}
-
-const NavLink = ({ blok }: { blok: INavLinkStoryblok }) => (
+const NavLink = ({ blok }: { blok: NavLinkStoryblok }) => (
   <Link
     {...storyblokEditable(blok)}
     href={blok.link ?? "/"}

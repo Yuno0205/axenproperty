@@ -8,6 +8,7 @@ import { Suspense } from "react";
 
 import { getStoryblokApi } from "@/lib/storyblok";
 import { draftMode } from "next/headers";
+import StoryblokProvider from "@/components/StoryblokProvider";
 
 const proximaNova = localFont({
   src: "./fonts/ProximaNovaRegular.otf",
@@ -114,15 +115,17 @@ export default async function RootLayout({
   const globalData = await getGlobalData();
 
   return (
-    <html lang="vi">
+    <html lang="en">
       <body
         className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable} antialiased bg-[#f4f4f4]`}
       >
-        <Suspense>
-          <Header blok={globalData} />
-          {children}
-          <Footer blok={globalData} />
-        </Suspense>
+        <StoryblokProvider>
+          <Suspense>
+            <Header blok={globalData} />
+            {children}
+            <Footer blok={globalData} />
+          </Suspense>
+        </StoryblokProvider>
       </body>
     </html>
   );

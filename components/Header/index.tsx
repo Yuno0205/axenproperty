@@ -1,124 +1,72 @@
 "use client";
 
-import { fetchContentfulData } from "@/lib/fetchContentful";
 import logo from "@/public/static/images/new/logo-ngang.png";
-import { HeaderFields } from "@/types/contentful";
+import { StoryblokComponent, storyblokEditable } from "@storyblok/react";
 import clsx from "clsx";
 import { ChevronDown, Earth } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 
-import { Button } from "../ui/button";
+import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import LoadingPage from "@/app/loading";
+import { GlobalConfigBlok } from "@/types/storyblok";
 
-export default function Header({ blok }: { blok: any }) {
+export default function Header({ blok }: { blok: GlobalConfigBlok }) {
+  console.log(blok);
+
   const [open, setOpen] = useState(false);
-  const [data, setData] = useState<HeaderFields>();
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  // Lấy locale từ URL, mặc định là "en"
-  const currentLocale = searchParams.get("locale") || "en";
-
-  // Fetch dữ liệu từ Contentful khi component mount
-  useEffect(() => {
-    async function loadData() {
-      const result = await fetchContentfulData(
-        "header",
-        currentLocale === "vi" ? "vi" : "en-US"
-      );
-      setData(result[0]); // Lấy phần tử đầu tiên từ danh sách dữ liệu
-    }
-    loadData();
-  }, [currentLocale]);
-
-  // Mapping giữa tên ngôn ngữ hiển thị và mã ngôn ngữ thực tế
-  const languageMap: Record<string, "vi" | "en"> = {
-    "Tiếng Việt": "vi",
-    "Tiếng Anh": "en",
-    Vietnamese: "vi",
-    English: "en",
-  };
-
-  // Chuyển đổi ngôn ngữ bằng cách cập nhật query param ?locale=
-  const switchLanguage = (selectedLanguage: string) => {
-    const langCode = languageMap[selectedLanguage];
-    if (langCode && langCode !== currentLocale) {
-      const newParams = new URLSearchParams(searchParams);
-      newParams.set("locale", langCode);
-      router.replace(`${pathname}?${newParams.toString()}`);
-    }
-  };
-
-  if (!data) return <LoadingPage />;
 
   return (
-    <div>
+    <div {...storyblokEditable(blok)}>
       <header className="w-full h-full bg-white z-50 relative sticky top-0">
         <section className="container mx-auto flex z-20 relative justify-between h-36">
-          {/* Logo */}
           <div className="w-1/5 flex items-center sm:w-1/3 2xs:w-1/2 py-4">
             <div className="w-full h-full xs:w-full">
               <Link href="/" className="flex w-full h-full items-center px-4">
                 <Image
-                  src={logo}
-                  alt="logo"
+                  src={blok?.logo.filename || logo}
+                  alt={blok?.logo?.alt || "Axenproperty Logo"}
                   height={154}
+                  width={173}
                   className="object-cover w-full"
                   priority
                 />
               </Link>
             </div>
           </div>
-          {/* Navigation */}
           <div className="flex w-3/5 items-center justify-center sm:hidden px-4">
             <nav className="uppercase flex items-center text-[#575F57] justify-center sm:hidden gap-10">
-              {data?.navigation &&
-                data?.navigation.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.url}
-                    className="pb-2.5 border-b-2 border-transparent hover:border-amber-500"
-                    prefetch
-                  >
-                    <span className="font-proxima text-xs font-black">
-                      {item.label}
-                    </span>
-                  </Link>
+              {blok.navigation_links &&
+                blok.navigation_links.map((navItem) => (
+                  <StoryblokComponent blok={navItem} key={navItem._uid} />
                 ))}
             </nav>
           </div>
-          {/* Language & Menu */}
           <div className="w-1/5 pl-5 flex flex-col sm:pl-2 sm:w-1/3 2xs:w-1/2 items-center">
             <div className="w-full flex items-end py-2 pr-5 items-center sm:h-full sm:pr-2 justify-center">
               <div className="flex flex-col uppercase pt-4 px-2.5">
                 <span className="text-xs font-bold font-proximaBold line-clamp-1">
-                  {currentLocale === "vi" ? "Chọn ngôn ngữ" : "Select language"}
+                  Select language
                 </span>
                 <div className="flex">
                   <Earth size={20} className="mr-2" />
                   <DropdownMenu>
                     <DropdownMenuTrigger className="flex outline-none font-proximaBold text-sm">
-                      {currentLocale === "vi" ? "Tiếng Việt" : "English"}
+                      English
                       <ChevronDown size={20} className="ml-1" />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="p-6">
-                      {data.languages.map((lang) => (
+                      {["Tiếng Việt", "English"].map((lang) => (
                         <DropdownMenuItem
                           key={lang}
                           className={`font-proximaBold pt-4 pb-1 mb-2.5 bg-white border-b-2 border-transparent hover:border-amber-500 cursor-pointer ${
-                            lang === currentLocale ? "text-amber-500" : ""
+                            lang === "English" ? "text-amber-500" : ""
                           }`}
-                          onClick={() => switchLanguage(lang)}
                         >
                           {lang}
                         </DropdownMenuItem>
@@ -148,14 +96,14 @@ export default function Header({ blok }: { blok: any }) {
               </div>
             </div>
             <div className="flex pr-5 justify-between py-2.5 items-center gap-2 sm:hidden">
-              <Button className="py-3 px-10 mb-2.5 h-auto rounded-full">
-                <span className="text-base capitalize">{data.btnText}</span>
-              </Button>
+              {blok.cta_button &&
+                blok.cta_button.map((buttonBlok) => (
+                  <StoryblokComponent blok={buttonBlok} key={buttonBlok._uid} />
+                ))}
             </div>
           </div>
         </section>
       </header>
-      {/* Mobile Menu */}
       <div
         style={{ backgroundColor: "rgb(28 28 28 / 90%)" }}
         className={clsx(
@@ -164,18 +112,19 @@ export default function Header({ blok }: { blok: any }) {
         )}
       >
         <div className="w-full pt-32">
-          <nav className="uppercase flex flex-col items-center justify-center text-[#575F57] py-5 text-center text-white">
-            {data?.navigation &&
-              data?.navigation.map((item, index) => (
-                <Link key={index} href={item.url} className="pb-2.5 w-full">
-                  <span className="font-proximaBold text-xs">{item.label}</span>
-                </Link>
+          <nav className="uppercase flex flex-col items-center justify-center text-white py-5 text-center">
+            {blok.navigation_links &&
+              blok.navigation_links.map((navItem) => (
+                <div key={navItem._uid} className="py-2">
+                  <StoryblokComponent blok={navItem} />
+                </div>
               ))}
           </nav>
-          <div className="flex justify-center">
-            <Button className="py-3 px-10 mb-2.5 h-auto rounded-full mt-5 ">
-              <span className="text-base capitalize">Contact axen</span>
-            </Button>
+          <div className="flex justify-center mt-5">
+            {blok.cta_button &&
+              blok.cta_button.map((buttonBlok) => (
+                <StoryblokComponent blok={buttonBlok} key={buttonBlok._uid} />
+              ))}
           </div>
         </div>
       </div>
