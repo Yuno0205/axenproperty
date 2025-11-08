@@ -78,7 +78,7 @@ export default function Footer({ blok }: { blok: GlobalConfigBlok }) {
         <div className="border-t border-[#797979] max-w-[1200px] mx-auto w-full mt-10"></div>
 
         <div className="flex gap-2 items-center justify-between mt-4 px-20 sm:flex-col sm:gap-4 sm:px-0">
-          <span className="text-[#606576]">© 2025 Axen Property</span>
+          <span className="text-[#606576]">{blok.copyright_text}</span>
           <div className="flex gap-4 sm:order-first">
             {/* {blok.social_links.map(
               (item: SocialLinkStoryblok, index: number) => (

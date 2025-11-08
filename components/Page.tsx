@@ -4,8 +4,6 @@ import type { SbBlokData } from "@storyblok/react";
 type PageBlok = SbBlokData & { body?: SbBlokData[] };
 
 export default function Page({ blok }: { blok: PageBlok }) {
-  console.log(blok);
-
   return (
     <main>
       {blok.body?.map((nestedBlok) => (

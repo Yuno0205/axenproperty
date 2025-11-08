@@ -7,7 +7,6 @@ import "./globals.css";
 import { Suspense } from "react";
 
 import { getStoryblokApi } from "@/lib/storyblok";
-import { draftMode } from "next/headers";
 import StoryblokProvider from "@/components/StoryblokProvider";
 
 const proximaNova = localFont({
@@ -92,19 +91,9 @@ export const metadata: Metadata = {
 };
 
 async function getGlobalData() {
-  const { isEnabled } = await draftMode();
-  const version = isEnabled ? "draft" : "published";
-
-  try {
-    const { data } = await getStoryblokApi().get(`cdn/stories/global`, {
-      version: version,
-      cv: isEnabled ? Math.random() : undefined,
-    });
-    return data.story.content;
-  } catch (error) {
-    console.error("Error fetching global data:", error);
-    return null;
-  }
+  const storyblokApi = getStoryblokApi();
+  const version = process.env.NODE_ENV === "production" ? "published" : "draft";
+  return await storyblokApi.get(`cdn/stories/global`, { version });
 }
 
 export default async function RootLayout({
@@ -112,7 +101,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const globalData = await getGlobalData();
+  const { data } = await getGlobalData();
+  const globalData = data.story.content;
 
   if (!globalData) {
     return (
