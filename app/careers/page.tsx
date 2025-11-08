@@ -14,16 +14,10 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { fetchContentfulData } from "@/lib/contentful";
 import clsx from "clsx";
-import { Inter, Open_Sans } from "next/font/google";
-import Image from "next/image";
-import Link from "next/link";
-import job from "@/public/static/images/new/job.png";
-import exp from "@/public/static/images/new/exp.png";
-import adress_icon from "@/public/static/images/new/adress_icon.png";
-import { Suspense } from "react";
 import { Metadata } from "next";
+import { Inter, Open_Sans } from "next/font/google";
+import { Suspense } from "react";
 
 const inter = Inter({
   subsets: ["latin", "vietnamese"],
@@ -70,9 +64,6 @@ const Careers = async () => {
     },
   ];
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const data = (await fetchContentfulData("recruitment")).items as any;
-
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <section className="min-h-screen w-full bg-white">
@@ -94,41 +85,38 @@ const Careers = async () => {
                 Các vị trí đang tuyển
               </h2>
               <span className="text-gray-600 text-lg font-bold">
-                {data.length} Vị trí tuyển dụng
+                {/* {data.length} Vị trí tuyển dụng */}
               </span>
             </div>
 
             <div className={clsx(openSans.className, "")}>
               {/*  eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {data.map((item: any, index: number) => (
+              {/* {data.map((item: any, index: number) => (
                 <div
                   key={index}
                   className="border-y p-8 2xs:p-4 hover:shadow-md transition-shadow cursor-pointer"
                 >
                   <Link href={`/careers/${item.fields.slug}`} prefetch>
                     <h3 className="text-lg font-semibold text-[#202325] mb-2">
-                      {item.fields.name} {/* Hiển thị tên công việc */}
+                      {item.fields.name}
                     </h3>
                     <div className="flex flex-wrap justify-between gap-4 text-sm text-gray-600">
                       <div className="flex items-center gap-1">
-                        {/* Lĩnh vực */}
                         <Image src={job} alt="job" />
                         <span>{item.fields.field}</span>
                       </div>
                       <div className="flex items-center gap-1 ">
-                        {/* Kinh nghiệm */}
                         <Image src={exp} alt="exp" />
                         <span>{item.fields.experience}</span>
                       </div>
                       <div className="flex items-center gap-1 ">
-                        {/* Địa chỉ */}
                         <Image src={adress_icon} alt="exp" />
                         <span>{item.fields.address}</span>
                       </div>
                     </div>
                   </Link>
                 </div>
-              ))}
+              ))} */}
             </div>
           </div>
           <div className="py-10 w-full mx-auto">

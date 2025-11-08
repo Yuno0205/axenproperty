@@ -1,14 +1,8 @@
 "use client";
 
-import { fetchContentfulData } from "@/lib/fetchContentful";
-import { PropertiesFields } from "@/types/contentful";
 import clsx from "clsx";
 import { motion } from "motion/react";
 import { Poppins } from "next/font/google";
-import Image from "next/image";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
 
 const poppins = Poppins({
   subsets: ["latin", "latin-ext"],
@@ -16,26 +10,6 @@ const poppins = Poppins({
 });
 
 export const Properties = () => {
-  const [data, setData] = useState<PropertiesFields>();
-  const searchParams = useSearchParams();
-
-  // Lấy locale từ URL, mặc định là "en"
-  const currentLocale = searchParams.get("locale") || "en";
-
-  // Fetch dữ liệu từ Contentful khi component mount
-  useEffect(() => {
-    async function loadData() {
-      const result = await fetchContentfulData(
-        "properties",
-        currentLocale === "vi" ? "vi" : "en-US"
-      );
-      setData(result[0]); // Lấy phần tử đầu tiên từ danh sách dữ liệu
-    }
-    loadData();
-  }, [currentLocale]);
-
-  if (!data) return <Skeleton height={300} />;
-
   return (
     <section className="mt-10 aspect-video bg-cover text-center bg-no-repeat bg-center w-full relative">
       {/* Image background */}
@@ -45,14 +19,14 @@ export const Properties = () => {
         transition={{ duration: 0.8, ease: "easeInOut", once: true }}
         className="w-full h-full relative min-h-[300px]"
       >
-        <Image
+        {/* <Image
           src={`${data?.backgroundImage.url}`}
           alt="banner"
           fill
           className="object-cover z-0"
           quality={75}
           priority
-        />
+        /> */}
       </motion.div>
 
       {/* Tiêu đề và nội dung */}
@@ -69,7 +43,7 @@ export const Properties = () => {
             "text-6xl font-bold text-[#666666] xs:text-4xl xs:text-white"
           )}
         >
-          {data.title}
+          {/* {data.title} */}
         </h2>
 
         {/* Nội dung */}
@@ -80,8 +54,8 @@ export const Properties = () => {
           transition={{ duration: 0.8, delay: 0.4, ease: "easeInOut" }}
           className="w-2/3 max-w-[780px] mx-auto text-justify text-[#666666] py-5 xs:text-center px-4 xs:w-full xs:text-white"
         >
-          <span className="font-semibold">{data.content[0]}</span>{" "}
-          {data.content[1]}
+          {/* <span className="font-semibold">{data.content[0]}</span>{" "}
+          {data.content[1]} */}
         </motion.div>
       </motion.div>
     </section>
