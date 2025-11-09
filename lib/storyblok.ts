@@ -1,5 +1,5 @@
 import { Banner } from "@/components/Banner";
-import Page from "@/components/Page";
+import Page from "@/components/StoryBlok/Page";
 import StoryblokButton from "@/components/StoryBlok/Button";
 import FooterLink from "@/components/StoryBlok/FooterLink";
 import LinkColumn from "@/components/StoryBlok/LinkColumn";
