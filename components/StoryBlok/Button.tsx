@@ -13,38 +13,47 @@ const StoryblokButton = ({ blok }: { blok: SbButton }) => {
   const normalizedSize: "default" | "sm" | "lg" =
     size === "md" || !size ? "default" : size;
 
-  return (
-    <Button
-      asChild
-      {...storyblokEditable(blok)}
-      className={"w-full"}
-      variant={variant}
-      size={normalizedSize}
-      style={style}
-    >
-      <Link href={link || "/"}>
-        {icon?.filename && icon_position === "left" && (
-          <Image
-            src={icon.filename}
-            alt={icon.alt || "icon"}
-            width={20}
-            height={20}
-            className="mr-2"
-          />
-        )}
-        {label}
-        {icon?.filename && icon_position === "right" && (
-          <Image
-            src={icon.filename}
-            alt={icon.alt || "icon"}
-            width={20}
-            height={20}
-            className="ml-2"
-          />
-        )}
-      </Link>
-    </Button>
+  const buttonChildren = (
+    <>
+      {icon?.filename && icon_position === "left" && (
+        <Image
+          src={icon.filename}
+          alt={icon.alt || "icon"}
+          width={20}
+          height={20}
+          className="mr-2"
+        />
+      )}
+      {label}
+      {icon?.filename && icon_position === "right" && (
+        <Image
+          src={icon.filename}
+          alt={icon.alt || "icon"}
+          width={20}
+          height={20}
+          className="ml-2"
+        />
+      )}
+    </>
   );
+
+  const buttonProps = {
+    ...storyblokEditable(blok),
+    className: "w-full",
+    variant,
+    size: normalizedSize,
+    style,
+  } as const;
+
+  if (link) {
+    return (
+      <Button asChild {...buttonProps}>
+        <Link href={link}>{buttonChildren}</Link>
+      </Button>
+    );
+  }
+
+  return <Button {...buttonProps}>{buttonChildren}</Button>;
 };
 
 export default StoryblokButton;

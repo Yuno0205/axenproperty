@@ -25,13 +25,16 @@ export default function Header({ blok }: { blok: GlobalConfigBlok }) {
         <section className="container mx-auto flex z-20 relative justify-between h-36">
           <div className="w-1/5 flex items-center sm:w-1/3 2xs:w-1/2 py-4">
             <div className="w-full h-full xs:w-full">
-              <Link href="/" className="flex w-full h-full items-center px-4">
+              <Link
+                href="/"
+                className="flex w-full h-full items-center px-4 justify-center"
+              >
                 <Image
                   src={blok?.logo.filename || logo}
                   alt={blok?.logo?.alt || "Axenproperty Logo"}
                   height={154}
                   width={173}
-                  className="object-cover w-full"
+                  className="object-contain"
                   priority
                 />
               </Link>

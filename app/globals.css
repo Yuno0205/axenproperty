@@ -84,25 +84,3 @@ body {
     @apply bg-background text-foreground;
   }
 }
-
-@layer utilities {
-  .animate-draw-text {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    animation: draw-text 3s ease-in-out forwards;
-  }
-}
-
-@keyframes draw-text {
-  0% {
-    stroke-dashoffset: 1000;
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    stroke-dashoffset: 0;
-    opacity: 1;
-  }
-}
