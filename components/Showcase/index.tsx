@@ -8,6 +8,11 @@ import { Poppins } from "next/font/google";
 import Image from "next/image";
 import DOMPurify from "dompurify";
 
+const sanitizeHtml = (html: string) => {
+  if (typeof window === "undefined") return html;
+  return DOMPurify.sanitize(html);
+};
+
 const poppins = Poppins({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -94,7 +99,7 @@ export default function Showcase({ blok }: { blok: ShowcaseBlok }) {
           {blok.content && (
             <div
               dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(
+                __html: sanitizeHtml(
                   (renderRichText(blok.content) ?? "") as string
                 ),
               }}

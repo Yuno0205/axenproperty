@@ -10,6 +10,11 @@ import "./style.css";
 import Skeleton from "react-loading-skeleton";
 import DOMPurify from "dompurify";
 
+const sanitizeHtml = (html: string) => {
+  if (typeof window === "undefined") return html;
+  return DOMPurify.sanitize(html);
+};
+
 const openSans = Open_Sans({
   subsets: ["latin", "vietnamese"],
   weight: ["400", "700"],
@@ -92,7 +97,7 @@ const JobDescription = ({ data: jobs }: { data: any[] }) => {
         <div
           className="p-4 prose leading-7 docx-content"
           dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(htmlContent),
+            __html: sanitizeHtml(htmlContent),
           }}
         />
       </div>

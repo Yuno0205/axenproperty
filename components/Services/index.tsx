@@ -6,15 +6,17 @@ import {
   renderRichText,
   storyblokEditable,
 } from "@storyblok/react";
+import DOMPurify from "dompurify";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
 import Skeleton from "react-loading-skeleton";
-import DOMPurify from "dompurify";
+
+const sanitizeHtml = (html: string) => {
+  if (typeof window === "undefined") return html;
+  return DOMPurify.sanitize(html);
+};
 
 export default function Services({ blok }: { blok: ServicesBlok }) {
-  const ref = useRef(null);
-
   if (!blok?.title) return <Skeleton height={300} />;
 
   return (
@@ -30,7 +32,6 @@ export default function Services({ blok }: { blok: ServicesBlok }) {
         ></div>
 
         <motion.div
-          ref={ref}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
@@ -84,9 +85,7 @@ export default function Services({ blok }: { blok: ServicesBlok }) {
             }}
             className="pt-2.5 pb-5 prose prose-lg"
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(
-                (renderRichText(blok.text) ?? "") as string
-              ),
+              __html: sanitizeHtml((renderRichText(blok.text) ?? "") as string),
             }}
           />
 

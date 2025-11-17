@@ -33,7 +33,7 @@ export type GlobalConfigBlok = {
   hotline: string;
   email: string;
   link_columns: StoryBlokLinkColumn[];
-  social_links: SocialLinkStoryblok[];
+  social_media: SocialLinkStoryblok[];
 };
 
 export interface NavLinkStoryblok extends SbBlokData {
