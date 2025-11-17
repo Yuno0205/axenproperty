@@ -38,7 +38,12 @@ export type GlobalConfigBlok = {
 
 export interface NavLinkStoryblok extends SbBlokData {
   label: string;
-  link: string;
+  link: {
+    url: string;
+    cached_url: string;
+    target: string;
+    linktype: string;
+  };
 }
 
 export interface SbButton extends SbBlokData {
@@ -47,6 +52,7 @@ export interface SbButton extends SbBlokData {
     url: string;
     cached_url: string;
     target: string;
+    linktype: string;
   };
   padding: "default" | "sm" | "md" | "lg";
   variant:
@@ -74,7 +80,12 @@ export interface StoryBlokLinkColumn extends SbBlokData {
 }
 
 export interface SocialLinkStoryblok extends SbBlokData {
-  link: string;
+  link: {
+    url: string;
+    cached_url: string;
+    target: string;
+    linktype: string;
+  };
   icon: Pick<Asset, "filename" | "alt">;
 }
 

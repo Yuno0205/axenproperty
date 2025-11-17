@@ -1,3 +1,4 @@
+"use client";
 import { GlobalConfigBlok } from "@/types/storyblok";
 import { StoryblokComponent, storyblokEditable } from "@storyblok/react";
 import clsx from "clsx";
