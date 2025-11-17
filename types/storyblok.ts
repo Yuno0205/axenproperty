@@ -43,9 +43,21 @@ export interface NavLinkStoryblok extends SbBlokData {
 
 export interface SbButton extends SbBlokData {
   label: string;
-  link: string;
-  variant: "link" | "default" | "destructive" | "outline" | "ghost";
+  link: {
+    url: string;
+    cached_url: string;
+    target: string;
+  };
+  padding: "default" | "sm" | "md" | "lg";
+  variant:
+    | "link"
+    | "default"
+    | "destructive"
+    | "outline"
+    | "ghost"
+    | "secondary";
   size: "md" | "sm" | "lg";
+  border_radius: "default" | "none" | "sm" | "lg" | "full";
   icon: Pick<Asset, "filename" | "alt">;
   icon_position: "left" | "right";
   background_color: string;
