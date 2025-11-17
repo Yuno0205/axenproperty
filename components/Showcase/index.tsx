@@ -1,12 +1,12 @@
 "use client";
 
-import { renderRichText, storyblokEditable } from "@storyblok/react";
 import { ShowcaseBlok } from "@/types/storyblok";
+import { renderRichText, storyblokEditable } from "@storyblok/react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
-import Skeleton from "react-loading-skeleton";
+import DOMPurify from "isomorphic-dompurify";
 
 const poppins = Poppins({
   subsets: ["latin", "latin-ext"],
@@ -38,9 +38,6 @@ const getObjectPosition = (position?: string) => {
 };
 
 export default function Showcase({ blok }: { blok: ShowcaseBlok }) {
-  console.log(blok);
-  if (!blok?.title) return <Skeleton height={300} />;
-
   const textAlignClass = getTextAlign(blok.text_alignment);
   const objectPositionClass = getObjectPosition(blok.background_position);
 
@@ -52,7 +49,7 @@ export default function Showcase({ blok }: { blok: ShowcaseBlok }) {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeInOut", once: true }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
         className="w-full h-full relative min-h-[300px]"
       >
         <Image
@@ -97,7 +94,9 @@ export default function Showcase({ blok }: { blok: ShowcaseBlok }) {
           {blok.content && (
             <div
               dangerouslySetInnerHTML={{
-                __html: renderRichText(blok.content) ?? "",
+                __html: DOMPurify.sanitize(
+                  String(renderRichText(blok.content) ?? "")
+                ),
               }}
             />
           )}

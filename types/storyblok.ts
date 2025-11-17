@@ -79,7 +79,6 @@ export interface SocialLinkStoryblok extends SbBlokData {
 }
 
 export interface ShowcaseBlok extends Omit<SbBlokData, "content"> {
-  component: "showcase";
   title: string;
   background_image: Asset;
   content?: StoryblokRichTextNode<string | TrustedHTML>;
@@ -87,32 +86,10 @@ export interface ShowcaseBlok extends Omit<SbBlokData, "content"> {
   background_position?: "center" | "top" | "bottom";
 }
 
-export interface DevelopmentStoryblok {
+export interface ExplorationBlok extends SbBlokData {
   title: string;
   text: string;
-  btnText: string;
-  backgroundImage: Asset;
-  _uid: string;
-  component: "development";
-}
-
-export interface SolutionStoryblok {
-  title: string;
-  text: string[];
-  btnText: string;
-  backgroundImage: Asset;
-  logo: Asset;
-  _uid: string;
-  component: "solution";
-}
-
-export interface FooterStoryblok {
-  logo: Asset;
-  companyName: string;
-  location: string;
-  hotline: string[];
-  email: string;
-  social: { title: string; url: string }[];
-  _uid: string;
-  component: "footer";
+  background_image: Asset;
+  cta_button: SbButton[];
+  card_position?: "left" | "right";
 }
