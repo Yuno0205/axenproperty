@@ -32,8 +32,8 @@ export default function Header({ blok }: { blok: GlobalConfigBlok }) {
                 <Image
                   src={blok?.logo.filename || logo}
                   alt={blok?.logo?.alt || "Axenproperty Logo"}
-                  height={154}
                   width={173}
+                  height={154}
                   className="object-contain"
                   priority
                 />

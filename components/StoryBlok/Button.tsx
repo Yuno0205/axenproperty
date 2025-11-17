@@ -68,8 +68,6 @@ const StoryblokButton = ({ blok }: { blok: SbButton }) => {
     size: normalizedSize,
   } as const;
 
-  console.log(link);
-
   const linkTarget = link?.target ? link.target : "_self";
   const linkHref = link?.url ? link.url : link?.cached_url;
 

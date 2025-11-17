@@ -6,13 +6,13 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Asset } from "@/types/storyblok";
 
-interface IBannerStoryblok extends SbBlokData {
+interface IHeroSectionStoryblok extends SbBlokData {
   title: string;
   background_image: Pick<Asset, "filename" | "alt">;
   logo: Pick<Asset, "filename" | "alt">;
 }
 
-export const Banner = ({ blok }: { blok: IBannerStoryblok }) => {
+export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
   return (
     <section
       {...storyblokEditable(blok)}
@@ -30,7 +30,8 @@ export const Banner = ({ blok }: { blok: IBannerStoryblok }) => {
         <Image
           src={blok.background_image.filename || "/images/placeholder.png"}
           alt={
-            blok.background_image?.alt || `Axenproperty banner - ${blok.title}`
+            blok.background_image?.alt ||
+            `Axenproperty HeroSection - ${blok.title}`
           }
           fill
           className="object-cover"
@@ -40,7 +41,7 @@ export const Banner = ({ blok }: { blok: IBannerStoryblok }) => {
         />
 
         {/* Content */}
-        <div className="h-full w-5/6 bg-[#F2F3F5D9] flex flex-col items-center justify-center text-center gap-5 py-10 z-10">
+        <div className="h-full w-5/6 bg-[#EBF0FF] flex flex-col items-center justify-center text-center gap-2 py-10 z-10 opacity-80">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -55,11 +56,11 @@ export const Banner = ({ blok }: { blok: IBannerStoryblok }) => {
             >
               <Image
                 src={blok.logo.filename}
-                alt={blok.logo.alt || "Banner Logo"}
-                width={173}
+                alt={blok.logo.alt || "HeroSection Logo"}
+                width={303}
                 height={154}
-                className="object-cover w-full"
-                loading="lazy"
+                className="object-cover"
+                priority
               />
             </Link>
           </motion.div>
@@ -70,7 +71,7 @@ export const Banner = ({ blok }: { blok: IBannerStoryblok }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="avenir text-[#666666] w-full text-5xl flex flex-col font-light capitalize sm:text-4xl px-4 pt-10 2xs:pt-0 pb-10"
+            className="avenir text-[#666666] w-full text-5xl flex flex-col font-light capitalize sm:text-4xl px-4 pb-10 2xs:px-0 2xs:pb-2"
           >
             <h1 className="line-clamp-3" id="main-title">
               {blok.title}
