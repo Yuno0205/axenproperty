@@ -6,6 +6,7 @@ import NavLink from "@/components/StoryBlok/NavLink";
 import SocialLink from "@/components/StoryBlok/SocialLink";
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc";
 import { HeroSection } from "@/components/HeroSection";
+import Showcase from "@/components/Showcase";
 
 export const getStoryblokApi = storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
@@ -13,6 +14,7 @@ export const getStoryblokApi = storyblokInit({
   components: {
     page: Page,
     hero_section: HeroSection,
+    showcase: Showcase,
     nav_link: NavLink,
     button: StoryblokButton,
     link_column: LinkColumn,

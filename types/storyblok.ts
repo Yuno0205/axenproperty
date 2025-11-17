@@ -1,4 +1,4 @@
-import { SbBlokData } from "@storyblok/react";
+import { SbBlokData, type StoryblokRichTextNode } from "@storyblok/react";
 
 export interface Asset {
   alt: string;
@@ -78,12 +78,13 @@ export interface SocialLinkStoryblok extends SbBlokData {
   icon: Pick<Asset, "filename" | "alt">;
 }
 
-export interface PropertiesStoryblok {
+export interface ShowcaseBlok extends Omit<SbBlokData, "content"> {
+  component: "showcase";
   title: string;
-  content: string[];
-  backgroundImage: Asset;
-  _uid: string;
-  component: "properties";
+  background_image: Asset;
+  content?: StoryblokRichTextNode<string | TrustedHTML>;
+  text_alignment?: "left" | "center" | "right";
+  background_position?: "center" | "top" | "bottom";
 }
 
 export interface DevelopmentStoryblok {
