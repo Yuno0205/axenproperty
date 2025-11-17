@@ -6,7 +6,6 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
-import DOMPurify from "isomorphic-dompurify";
 
 const poppins = Poppins({
   subsets: ["latin", "latin-ext"],
@@ -94,9 +93,7 @@ export default function Showcase({ blok }: { blok: ShowcaseBlok }) {
           {blok.content && (
             <div
               dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(
-                  String(renderRichText(blok.content) ?? "")
-                ),
+                __html: renderRichText(blok.content) ?? "",
               }}
             />
           )}

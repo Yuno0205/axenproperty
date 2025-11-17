@@ -93,3 +93,12 @@ export interface ExplorationBlok extends SbBlokData {
   cta_button: SbButton[];
   card_position?: "left" | "right";
 }
+
+export interface ServicesBlok extends SbBlokData {
+  component: "services";
+  title: string;
+  logo: Asset;
+  background_image: Asset;
+  text: StoryblokRichTextNode<string | TrustedHTML>; // Kiểu của Rich Text
+  cta_button: SbButton[];
+}
