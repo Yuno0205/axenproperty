@@ -30,7 +30,7 @@ export default function Exploration({ blok }: { blok: ExplorationBlok }) {
         <div
           className={clsx(
             "w-2/5 sm:w-full px-4",
-            isCardLeft ? "ml-12 sm:mx-auto" : "mr-12 ml-auto sm:mx-auto" // Căn lề động
+            isCardLeft ? "ml-12 sm:mx-auto" : "mr-12 ml-auto sm:mx-auto"
           )}
         >
           <motion.div

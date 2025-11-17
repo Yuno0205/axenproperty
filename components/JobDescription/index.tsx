@@ -8,6 +8,7 @@ import CallToAction from "../CallToAction/CallToAction";
 import { Button } from "../ui/button";
 import "./style.css";
 import Skeleton from "react-loading-skeleton";
+import DOMPurify from "dompurify";
 
 const openSans = Open_Sans({
   subsets: ["latin", "vietnamese"],
@@ -90,7 +91,9 @@ const JobDescription = ({ data: jobs }: { data: any[] }) => {
       <div className="max-w-5xl mx-auto mt-10">
         <div
           className="p-4 prose leading-7 docx-content"
-          dangerouslySetInnerHTML={{ __html: htmlContent }}
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(htmlContent),
+          }}
         />
       </div>
       {showForm && <CallToAction onClose={() => setShowForm(false)} />}

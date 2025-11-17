@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
 import Skeleton from "react-loading-skeleton";
+import DOMPurify from "dompurify";
 
 export default function Services({ blok }: { blok: ServicesBlok }) {
   const ref = useRef(null);
@@ -83,7 +84,9 @@ export default function Services({ blok }: { blok: ServicesBlok }) {
             }}
             className="pt-2.5 pb-5 prose prose-lg"
             dangerouslySetInnerHTML={{
-              __html: renderRichText(blok.text) ?? "",
+              __html: DOMPurify.sanitize(
+                (renderRichText(blok.text) ?? "") as string
+              ),
             }}
           />
 

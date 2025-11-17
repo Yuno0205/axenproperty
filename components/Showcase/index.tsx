@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
+import DOMPurify from "dompurify";
 
 const poppins = Poppins({
   subsets: ["latin", "latin-ext"],
@@ -86,14 +87,16 @@ export default function Showcase({ blok }: { blok: ShowcaseBlok }) {
           transition={{ duration: 0.8, delay: 0.4, ease: "easeInOut" }}
           className={clsx(
             "w-2/3 max-w-[780px] text-[#666666] py-5 xs:text-white px-4 xs:w-full",
-            "prose prose-lg prose-p:text-[#666666] prose-strong:text-[#666666] xs:prose-p:text-white xs:prose-strong:text-white", // Cập nhật style cho Rich Text
+            "prose prose-lg prose-p:text-[#666666] prose-strong:text-[#666666] xs:prose-p:text-white xs:prose-strong:text-white",
             textAlignClass
           )}
         >
           {blok.content && (
             <div
               dangerouslySetInnerHTML={{
-                __html: renderRichText(blok.content) ?? "",
+                __html: DOMPurify.sanitize(
+                  (renderRichText(blok.content) ?? "") as string
+                ),
               }}
             />
           )}
