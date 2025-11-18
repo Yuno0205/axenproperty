@@ -5,11 +5,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Asset } from "@/types/storyblok";
+import { cn } from "@/lib/utils";
 
 interface IHeroSectionStoryblok extends SbBlokData {
   title: string;
   background_image: Pick<Asset, "filename" | "alt">;
   logo: Pick<Asset, "filename" | "alt">;
+  background_fit?: "object-cover" | "object-contain" | "object-auto";
+  background_position?:
+    | "object-center"
+    | "object-top"
+    | "object-bottom"
+    | "object-left"
+    | "object-right";
 }
 
 export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
@@ -24,7 +32,7 @@ export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="w-full relative bg-cover bg-no-repeat flex items-center justify-center bg-center py-20 xs:py-10 2xs:h-96"
+        className="w-full relative bg-cover bg-center bg-no-repeat flex items-center justify-center  py-20 xs:py-10 2xs:h-96"
       >
         {/* Background Image  */}
         <Image
@@ -34,7 +42,11 @@ export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
             `Axenproperty HeroSection - ${blok.title}`
           }
           fill
-          className="object-cover"
+          className={cn(
+            "z-0",
+            blok.background_position || "object-center",
+            blok.background_fit || "object-auto"
+          )}
           quality={100}
           priority
           sizes="100vw"
