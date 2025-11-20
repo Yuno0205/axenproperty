@@ -91,13 +91,14 @@ export const metadata: Metadata = {
   },
 };
 
-async function getGlobalData() {
+async function getGlobalData(locale: string) {
   const { isEnabled } = await draftMode();
   const version = isEnabled ? "draft" : "published";
 
   try {
     const { data } = await getStoryblokApi().get(`cdn/stories/global`, {
       version: version,
+      language: locale,
       cv: isEnabled ? Math.random() : undefined,
     });
     return data.story.content;
@@ -109,10 +110,13 @@ async function getGlobalData() {
 
 export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: { lang: string };
 }>) {
-  const globalData = await getGlobalData();
+  const currentLocale = params.lang || "en";
+  const globalData = await getGlobalData(currentLocale);
 
   if (!globalData) {
     return (
@@ -125,7 +129,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="vi">
+    <html lang={currentLocale}>
       <body
         className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable} antialiased bg-[#f4f4f4]`}
       >
