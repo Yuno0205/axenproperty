@@ -23,7 +23,11 @@ async function fetchData(locale: string) {
   }
 }
 
-export default async function Home({ params }: { params: { lang: string } }) {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
   const { lang } = await params;
   const locale = lang || "en";
 
