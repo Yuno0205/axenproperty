@@ -1,31 +1,18 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "react-loading-skeleton/dist/skeleton.css";
-import "./globals.css";
 import { Suspense } from "react";
-
+import "react-loading-skeleton/dist/skeleton.css";
+import "../globals.css";
+import { Montserrat } from "next/font/google";
+import StoryblokProvider from "@/components/StoryblokProvider";
 import { getStoryblokApi } from "@/lib/storyblok";
 import { draftMode } from "next/headers";
-import StoryblokProvider from "@/components/StoryblokProvider";
 
-const proximaNova = localFont({
-  src: "./fonts/ProximaNovaRegular.otf",
-  variable: "--font-proxima-nova",
-  weight: "400 500 600 700 800 900",
-});
-
-const proximaBold = localFont({
-  src: "./fonts/ProximaNovaBold.otf",
-  variable: "--font-proxima-nova-bold",
-  weight: "400 500 600 700 800 900",
-});
-
-const avenir = localFont({
-  src: "./fonts/AvenirLTStd-Book.otf",
-  variable: "--font-avenir",
-  weight: "400 500 600 700 800 900",
+const montserrat = Montserrat({
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-montserrat",
 });
 
 export const metadata: Metadata = {
@@ -121,7 +108,7 @@ export default async function RootLayout({
   if (!globalData) {
     return (
       <html lang="vi">
-        <body className={`${proximaNova.variable} antialiased bg-[#f4f4f4]`}>
+        <body className={`${montserrat.className} antialiased bg-[#f4f4f4]`}>
           {children}
         </body>
       </html>
@@ -130,9 +117,7 @@ export default async function RootLayout({
 
   return (
     <html lang={currentLocale}>
-      <body
-        className={`${proximaNova.variable} ${proximaBold.variable} ${avenir.variable} antialiased bg-[#f4f4f4]`}
-      >
+      <body className={`${montserrat.className} antialiased bg-[#f4f4f4]`}>
         <StoryblokProvider>
           <Suspense>
             <Header blok={globalData} />

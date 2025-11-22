@@ -4,7 +4,7 @@ const locales = ["en", "vi"];
 const defaultLocale = "en";
 
 export function middleware(request: NextRequest) {
-  // Lấy pathname (ví dụ: /careers)
+  // Lấy pathname (ví dụ: /careers hoặc /)
   const { pathname } = request.nextUrl;
 
   // Kiểm tra xem pathname có bắt đầu bằng /en hoặc /vi không
@@ -16,12 +16,13 @@ export function middleware(request: NextRequest) {
     return; // Không làm gì cả, để request tiếp tục
   }
 
-  // Nếu không có locale, redirect
-  // (Chúng ta có thể làm thông minh hơn bằng cách check 'Accept-Language' hoặc cookie)
+  // Nếu không có locale, redirect đến default locale
+  // Xử lý đặc biệt cho root path "/"
   const locale = defaultLocale;
-  request.nextUrl.pathname = `/${locale}${pathname}`;
+  const newPath = pathname === "/" ? `/${locale}` : `/${locale}${pathname}`;
+  request.nextUrl.pathname = newPath;
 
-  // Ví dụ: /careers -> /en/careers
+  // Ví dụ: / -> /en, /careers -> /en/careers
   return NextResponse.redirect(request.nextUrl);
 }
 
