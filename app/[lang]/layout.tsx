@@ -102,12 +102,13 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: string };
 }>) {
-  const currentLocale = params.lang || "en";
+  const { lang } = await params;
+  const currentLocale = lang || "en";
   const globalData = await getGlobalData(currentLocale);
 
   if (!globalData) {
     return (
-      <html lang="vi">
+      <html lang={currentLocale}>
         <body className={`${montserrat.className} antialiased bg-[#f4f4f4]`}>
           {children}
         </body>
@@ -119,7 +120,7 @@ export default async function RootLayout({
     <html lang={currentLocale}>
       <body className={`${montserrat.className} antialiased bg-[#f4f4f4]`}>
         <StoryblokProvider>
-          <Suspense>
+          <Suspense fallback={<div className="min-h-screen bg-[#f4f4f4]" />}>
             <Header blok={globalData} />
             {children}
             <Footer blok={globalData} />

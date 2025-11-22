@@ -24,7 +24,8 @@ async function fetchData(locale: string) {
 }
 
 export default async function Home({ params }: { params: { lang: string } }) {
-  const locale = params.lang || "en";
+  const { lang } = await params;
+  const locale = lang || "en";
 
   const data = await fetchData(locale);
 
