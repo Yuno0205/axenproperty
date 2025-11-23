@@ -1,0 +1,132 @@
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import "react-loading-skeleton/dist/skeleton.css";
+import "../globals.css";
+import { Montserrat } from "next/font/google";
+import StoryblokProvider from "@/components/StoryblokProvider";
+import { getStoryblokApi } from "@/lib/storyblok";
+import { draftMode } from "next/headers";
+
+const montserrat = Montserrat({
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-montserrat",
+});
+
+export const metadata: Metadata = {
+  title: {
+    default: "Axenproperty -Cung cấp các giải pháp bất động sản chuyên nghiệp",
+    template: "%s | Axenproperty",
+  },
+  description:
+    "Khám phá các dự án bất động sản cao cấp tại Việt Nam với Axenproperty - đối tác tin cậy của bạn.",
+  keywords: [
+    "bất động sản",
+    "nhà đất",
+    "dự án",
+    "Axenproperty",
+    "đầu tư bất động sản",
+    "chung cư",
+    "căn hộ",
+    "resort",
+  ],
+  openGraph: {
+    title: "Axenproperty -Cung cấp các giải pháp bất động sản chuyên nghiệp",
+    description:
+      "Khám phá các dự án bất động sản cao cấp tại Việt Nam với Axenproperty.",
+    url: "https://axenproperty.com",
+    siteName: "Axenproperty",
+    images: [
+      {
+        url: "https://axenproperty.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Axenproperty Showcase",
+      },
+    ],
+    locale: "vi_VN",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Axenproperty - Cung cấp các giải pháp bất động sản chuyên nghiệp",
+    description: "Khám phá các dự án bất động sản cao cấp tại Việt Nam.",
+    images: ["https://axenproperty.com/twitter-image.jpg"],
+  },
+  verification: {
+    google: "4okLy_RckJkUnDQ6GcRG24UqJ1AvX40KQZr0biLtvP4",
+  },
+  alternates: {
+    canonical: "https://axenproperty.com",
+    languages: {
+      en: "https://axenproperty.com?locale=en",
+      vi: "https://axenproperty.com?locale=vi",
+    },
+  },
+};
+
+async function getGlobalData(locale: string) {
+  const { isEnabled } = await draftMode();
+  const version = isEnabled ? "draft" : "published";
+
+  try {
+    const { data } = await getStoryblokApi().get(`cdn/stories/global`, {
+      version: version,
+      language: locale,
+      cv: isEnabled ? Math.random() : undefined,
+    });
+    return data.story.content;
+  } catch (error) {
+    console.error("Error fetching global data:", error);
+    return null;
+  }
+}
+
+export default async function RootLayout({
+  children,
+  params,
+}: Readonly<{
+  children: React.ReactNode;
+  params: Promise<{ lang: string }>;
+}>) {
+  const { lang } = await params;
+  const currentLocale = lang || "en";
+  const globalData = await getGlobalData(currentLocale);
+
+  if (!globalData) {
+    return (
+      <html lang={currentLocale}>
+        <body className={`${montserrat.className} antialiased bg-[#f4f4f4]`}>
+          {children}
+        </body>
+      </html>
+    );
+  }
+
+  return (
+    <html lang={currentLocale}>
+      <body className={`${montserrat.className} antialiased bg-[#f4f4f4]`}>
+        <StoryblokProvider>
+          <Suspense fallback={<div className="min-h-screen bg-[#f4f4f4]" />}>
+            <Header blok={globalData} />
+            {children}
+            <Footer blok={globalData} />
+          </Suspense>
+        </StoryblokProvider>
+      </body>
+    </html>
+  );
+}

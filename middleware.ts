@@ -1,8 +1,35 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export function middleware(req: NextRequest) {
-  let locale = req.cookies.get("NEXT_LOCALE")?.value || "en";
-  req.nextUrl.searchParams.set("locale", locale);
-  return NextResponse.rewrite(req.nextUrl);
+const locales = ["en", "vi"];
+const defaultLocale = "en";
+
+export function middleware(request: NextRequest) {
+  // Lấy pathname (ví dụ: /careers hoặc /)
+  const { pathname } = request.nextUrl;
+
+  // Kiểm tra xem pathname có bắt đầu bằng /en hoặc /vi không
+  const pathnameHasLocale = locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  );
+
+  if (pathnameHasLocale) {
+    return; // Không làm gì cả, để request tiếp tục
+  }
+
+  // Nếu không có locale, redirect đến default locale
+  // Xử lý đặc biệt cho root path "/"
+  const locale = defaultLocale;
+  const newPath = pathname === "/" ? `/${locale}` : `/${locale}${pathname}`;
+  request.nextUrl.pathname = newPath;
+
+  // Ví dụ: / -> /en, /careers -> /en/careers
+  return NextResponse.redirect(request.nextUrl);
 }
+
+// Config matcher để middleware chỉ chạy khi cần thiết
+export const config = {
+  matcher: [
+    // Bỏ qua các file (api, _next, static, favicon.ico)
+    "/((?!api|_next/static|_next/image|static|favicon.ico|.*\\..*).*)",
+  ],
+};
