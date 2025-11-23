@@ -49,7 +49,7 @@ export default function Header({ blok }: { blok: GlobalConfigBlok }) {
           <div className="w-1/5 flex items-center sm:w-1/3 2xs:w-1/2 py-4">
             <div className="w-full h-full xs:w-full">
               <Link
-                href="/"
+                href={`/${currentLang}`}
                 className="flex w-full h-full items-center px-4 justify-center"
               >
                 <Image

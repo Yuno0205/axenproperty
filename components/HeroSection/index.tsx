@@ -36,7 +36,9 @@ export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
       >
         {/* Background Image  */}
         <Image
-          src={blok.background_image.filename || "/images/placeholder.png"}
+          src={
+            blok.background_image?.filename?.trim() || "/images/placeholder.png"
+          }
           alt={
             blok.background_image?.alt ||
             `Axenproperty HeroSection - ${blok.title}`
@@ -64,11 +66,11 @@ export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
           >
             <Link
               href="/"
-              className="flex w-full h-full items-center px-4 relative z-2"
+              className="flex w-full h-full items-center px-4 relative z-10"
             >
               <Image
-                src={blok.logo.filename}
-                alt={blok.logo.alt || "HeroSection Logo"}
+                src={blok.logo?.filename?.trim() || "/images/placeholder.png"}
+                alt={blok.logo?.alt || "HeroSection Logo"}
                 width={303}
                 height={154}
                 className="object-cover"
