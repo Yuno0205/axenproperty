@@ -1,6 +1,7 @@
 "use client";
 
 import logo from "@/public/static/images/new/logo-ngang.png";
+import { getStoryblokAssetDimensions } from "@/lib/utils";
 import { StoryblokComponent, storyblokEditable } from "@storyblok/react";
 import clsx from "clsx";
 import { ChevronDown, Earth } from "lucide-react";
@@ -20,6 +21,9 @@ export default function Header({ blok }: { blok: GlobalConfigBlok }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+  const headerLogoDimensions = getStoryblokAssetDimensions(
+    blok?.logo?.filename
+  );
 
   // Determine current language based on the URL path (e.g., /en/... or /vi/...)
   // Default to 'en' if not found or on root
@@ -49,15 +53,23 @@ export default function Header({ blok }: { blok: GlobalConfigBlok }) {
           <div className="w-1/5 flex items-center sm:w-1/3 2xs:w-1/2 py-4">
             <div className="w-full h-full xs:w-full">
               <Link
-                href="/"
+                href={`/${currentLang}`}
                 className="flex w-full h-full items-center px-4 justify-center"
               >
                 <Image
                   src={blok?.logo?.filename || logo}
                   alt={blok?.logo?.alt || "Axenproperty Logo"}
-                  width={173}
-                  height={154}
-                  className="object-contain"
+                  width={
+                    blok?.logo?.filename
+                      ? headerLogoDimensions?.width ?? 173
+                      : 173
+                  }
+                  height={
+                    blok?.logo?.filename
+                      ? headerLogoDimensions?.height ?? 154
+                      : 154
+                  }
+                  className="w-full h-auto max-w-[170px]"
                   priority
                 />
               </Link>
@@ -78,13 +90,13 @@ export default function Header({ blok }: { blok: GlobalConfigBlok }) {
           <div className="w-1/5 pl-5 flex flex-col sm:pl-2 sm:w-1/3 2xs:w-1/2 items-center">
             <div className="w-full flex items-end py-2 pr-5 items-center sm:h-full sm:pr-2 justify-center">
               <div className="flex flex-col uppercase pt-4 px-2.5">
-                <span className="text-xs font-bold font-proximaBold line-clamp-1">
+                <span className="text-xs font-semibold line-clamp-1">
                   {currentLang === "vi" ? "Chọn ngôn ngữ" : "Select language"}
                 </span>
                 <div className="flex">
                   <Earth size={20} className="mr-2" />
                   <DropdownMenu>
-                    <DropdownMenuTrigger className="flex outline-none font-proximaBold text-sm uppercase">
+                    <DropdownMenuTrigger className="flex outline-none text-xs font-bold uppercase">
                       {currentLang === "vi" ? "Tiếng Việt" : "English"}
                       <ChevronDown size={20} className="ml-1" />
                     </DropdownMenuTrigger>

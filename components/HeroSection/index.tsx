@@ -5,7 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Asset } from "@/types/storyblok";
-import { cn } from "@/lib/utils";
+import { cn, getStoryblokAssetDimensions } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 interface IHeroSectionStoryblok extends SbBlokData {
   title: string;
@@ -21,6 +22,10 @@ interface IHeroSectionStoryblok extends SbBlokData {
 }
 
 export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
+  const heroLogoDimensions = getStoryblokAssetDimensions(blok.logo?.filename);
+  const pathname = usePathname();
+  const currentLang = pathname?.split("/")[1] === "vi" ? "vi" : "en";
+
   return (
     <section
       {...storyblokEditable(blok)}
@@ -36,24 +41,26 @@ export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
       >
         {/* Background Image  */}
         <Image
-          src={blok.background_image.filename || "/images/placeholder.png"}
+          src={
+            blok.background_image?.filename?.trim() || "/images/placeholder.png"
+          }
           alt={
             blok.background_image?.alt ||
             `Axenproperty HeroSection - ${blok.title}`
           }
           fill
+          fetchPriority="high"
+          quality={100}
+          priority
           className={cn(
             "z-0",
             blok.background_position || "object-center",
             blok.background_fit || "object-auto"
           )}
-          quality={100}
-          priority
-          sizes="100vw"
         />
 
         {/* Content */}
-        <div className="h-full w-5/6 bg-[#EBF0FF] flex flex-col items-center justify-center text-center gap-2 py-10 z-10 opacity-80">
+        <div className="h-full w-2/3 bg-[#EBF0FF] flex flex-col items-center justify-center text-center gap-2 py-10 z-10 opacity-80">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -63,16 +70,18 @@ export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
             className="w-72 xs:w-52"
           >
             <Link
-              href="/"
-              className="flex w-full h-full items-center px-4 relative z-2"
+              href={`/${currentLang}`}
+              className="flex w-full h-full items-center px-4 relative z-10"
             >
               <Image
-                src={blok.logo.filename}
-                alt={blok.logo.alt || "HeroSection Logo"}
-                width={303}
-                height={154}
-                className="object-cover"
-                priority
+                src={
+                  blok.logo?.filename?.trim() ||
+                  "/static/images/placeholder.png"
+                }
+                alt={blok.logo?.alt || "HeroSection Logo"}
+                width={heroLogoDimensions?.width ?? 303}
+                height={heroLogoDimensions?.height ?? 154}
+                className="w-full h-auto max-w-[300px]"
               />
             </Link>
           </motion.div>
@@ -83,7 +92,7 @@ export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="avenir text-[#666666] w-full text-5xl flex flex-col font-light capitalize sm:text-4xl px-4 pb-10 2xs:px-0 2xs:pb-2"
+            className="avenir text-[#666666] w-full text-4xl flex flex-col font-light capitalize sm:text-4xl px-4 pb-10 2xs:px-0 2xs:pb-2"
           >
             <h1 className="line-clamp-3" id="main-title">
               {blok.title}

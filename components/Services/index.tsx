@@ -58,6 +58,7 @@ export default function Services({ blok }: { blok: ServicesBlok }) {
                 width={206}
                 height={180}
                 className="object-contain"
+                priority
               />
             </motion.div>
           )}
@@ -83,7 +84,7 @@ export default function Services({ blok }: { blok: ServicesBlok }) {
               delay: 0.6,
               ease: "easeOut",
             }}
-            className="pt-2.5 pb-5 prose prose-lg"
+            className="pt-2.5 pb-5 prose prose-lg text-center"
             dangerouslySetInnerHTML={{
               __html: sanitizeHtml((renderRichText(blok.text) ?? "") as string),
             }}

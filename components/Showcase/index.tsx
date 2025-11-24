@@ -49,7 +49,7 @@ export default function Showcase({ blok }: { blok: ShowcaseBlok }) {
   return (
     <section
       {...storyblokEditable(blok)}
-      className="mt-10 aspect-video bg-cover text-center bg-no-repeat w-full relative"
+      className="aspect-video bg-cover text-center bg-no-repeat w-full relative"
     >
       <motion.div
         initial={{ opacity: 0 }}

@@ -4,8 +4,6 @@ import { StoryblokStory } from "@storyblok/react/rsc";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 
-export const revalidate = 3600;
-
 async function fetchData(locale: string) {
   const { isEnabled } = await draftMode();
   const version = isEnabled ? "draft" : "published";
