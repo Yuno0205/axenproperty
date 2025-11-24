@@ -74,12 +74,14 @@ export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
               className="flex w-full h-full items-center px-4 relative z-10"
             >
               <Image
-                src={blok.logo?.filename?.trim() || "/images/placeholder.png"}
+                src={
+                  blok.logo?.filename?.trim() ||
+                  "/static/images/placeholder.png"
+                }
                 alt={blok.logo?.alt || "HeroSection Logo"}
                 width={heroLogoDimensions?.width ?? 303}
                 height={heroLogoDimensions?.height ?? 154}
                 className="w-full h-auto max-w-[300px]"
-                priority
               />
             </Link>
           </motion.div>
