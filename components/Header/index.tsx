@@ -70,6 +70,7 @@ export default function Header({ blok }: { blok: GlobalConfigBlok }) {
                       : 154
                   }
                   className="w-full h-auto max-w-[170px]"
+                  priority
                 />
               </Link>
             </div>

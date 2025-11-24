@@ -49,13 +49,14 @@ export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
             `Axenproperty HeroSection - ${blok.title}`
           }
           fill
+          fetchPriority="high"
+          quality={100}
+          priority
           className={cn(
             "z-0",
             blok.background_position || "object-center",
             blok.background_fit || "object-auto"
           )}
-          quality={100}
-          priority
         />
 
         {/* Content */}
