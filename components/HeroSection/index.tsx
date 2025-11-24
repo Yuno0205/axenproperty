@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Asset } from "@/types/storyblok";
 import { cn, getStoryblokAssetDimensions } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 interface IHeroSectionStoryblok extends SbBlokData {
   title: string;
@@ -22,6 +23,8 @@ interface IHeroSectionStoryblok extends SbBlokData {
 
 export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
   const heroLogoDimensions = getStoryblokAssetDimensions(blok.logo?.filename);
+  const pathname = usePathname();
+  const currentLang = pathname?.split("/")[1] === "vi" ? "vi" : "en";
 
   return (
     <section
@@ -66,7 +69,7 @@ export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
             className="w-72 xs:w-52"
           >
             <Link
-              href="/"
+              href={`/${currentLang}`}
               className="flex w-full h-full items-center px-4 relative z-10"
             >
               <Image

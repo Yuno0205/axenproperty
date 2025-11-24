@@ -44,7 +44,7 @@ export default function Exploration({ blok }: { blok: ExplorationBlok }) {
             viewport={{ once: true }}
             className="mt-[-300px] sm:mt-[-50px] h-[365px] px-16 py-12 bg-white w-full flex flex-col justify-center shadow-lg z-2 relative xs:text-center"
           >
-            <h2 className="avenir text-3xl font-light uppercase">
+            <h2 className="avenir text-3xl font-semibold uppercase">
               {blok.title}
             </h2>
             <span className="my-2.5">{blok.text}</span>

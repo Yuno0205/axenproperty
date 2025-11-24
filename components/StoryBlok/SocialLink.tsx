@@ -20,7 +20,7 @@ export default function SocialLink({ blok }: { blok: SocialLinkStoryblok }) {
       rel={isExternal ? "noopener noreferrer" : ""}
     >
       <Image
-        src={blok.icon.filename}
+        src={blok.icon.filename || ""}
         alt={blok.icon.alt || "Social Icon"}
         width={iconDimensions?.width ?? 36}
         height={iconDimensions?.height ?? 36}
