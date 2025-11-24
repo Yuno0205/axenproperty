@@ -1,5 +1,6 @@
 "use client";
 
+import { getStoryblokAssetDimensions } from "@/lib/utils";
 import { SocialLinkStoryblok } from "@/types/storyblok";
 import { storyblokEditable } from "@storyblok/react";
 import Image from "next/image";
@@ -9,6 +10,7 @@ export default function SocialLink({ blok }: { blok: SocialLinkStoryblok }) {
   const isExternal = blok.link.linktype === "url";
 
   const href = blok.link.cached_url || "/";
+  const iconDimensions = getStoryblokAssetDimensions(blok.icon?.filename);
 
   return (
     <Link
@@ -20,8 +22,8 @@ export default function SocialLink({ blok }: { blok: SocialLinkStoryblok }) {
       <Image
         src={blok.icon.filename}
         alt={blok.icon.alt || "Social Icon"}
-        width={36}
-        height={36}
+        width={iconDimensions?.width ?? 36}
+        height={iconDimensions?.height ?? 36}
       />
     </Link>
   );
