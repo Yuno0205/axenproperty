@@ -13,5 +13,16 @@ export async function GET(request: Request) {
   const draft = await draftMode();
   draft.enable();
 
-  redirect(`/${slug ? slug : ""}`);
+  // Validate slug is a relative path without ".." or absolute URLs
+  const sanitizedSlug = slug?.replace(/^\/+/, "").replace(/\.\.+/g, "") || "";
+
+  // Ensure it's not an absolute URL
+  if (
+    sanitizedSlug.startsWith("http://") ||
+    sanitizedSlug.startsWith("https://")
+  ) {
+    return new Response("Invalid slug", { status: 400 });
+  }
+
+  redirect(`/${sanitizedSlug}`);
 }
