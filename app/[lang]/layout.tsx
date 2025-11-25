@@ -1,11 +1,11 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Footer from "@/components/StoryBlok/layout/Footer";
+import Header from "@/components/StoryBlok/layout/Header";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import "react-loading-skeleton/dist/skeleton.css";
 import "../globals.css";
 import { Montserrat } from "next/font/google";
-import StoryblokProvider from "@/components/StoryblokProvider";
+import StoryblokProvider from "@/components/StoryBlok/StoryblokProvider";
 import { getStoryblokApi } from "@/lib/storyblok";
 import { draftMode } from "next/headers";
 

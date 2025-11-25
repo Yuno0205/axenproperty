@@ -1,16 +1,17 @@
 "use client";
 
 import { storyblokInit, apiPlugin } from "@storyblok/react";
-import StoryblokButton from "@/components/StoryBlok/Button";
-import FooterLink from "@/components/StoryBlok/FooterLink";
-import LinkColumn from "@/components/StoryBlok/LinkColumn";
-import NavLink from "@/components/StoryBlok/NavLink";
-import SocialLink from "@/components/StoryBlok/SocialLink";
-import Page from "./StoryBlok/Page";
-import { HeroSection } from "./HeroSection";
-import Showcase from "./Showcase";
-import Exploration from "./Exploration";
-import Services from "./Services";
+import StoryblokButton from "@/components/StoryBlok/ui/Button";
+import FooterLink from "@/components/StoryBlok/ui/FooterLink";
+import LinkColumn from "@/components/StoryBlok/ui/LinkColumn";
+import NavLink from "@/components/StoryBlok/ui/NavLink";
+import SocialLink from "@/components/StoryBlok/ui/SocialLink";
+import Page from "./Page";
+import { HeroSection } from "./bloks/HeroSection";
+
+import Exploration from "./bloks/Exploration";
+import Services from "./bloks/Services";
+import Showcase from "./bloks/Showcase";
 
 storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
