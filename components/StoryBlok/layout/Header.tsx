@@ -1,6 +1,5 @@
 "use client";
 
-import logo from "@/public/static/images/new/logo-ngang.png";
 import { getStoryblokAssetDimensions } from "@/lib/utils";
 import { StoryblokComponent, storyblokEditable } from "@storyblok/react";
 import clsx from "clsx";
@@ -57,7 +56,7 @@ export default function Header({ blok }: { blok: GlobalConfigBlok }) {
                 className="flex w-full h-full items-center px-4 justify-center"
               >
                 <Image
-                  src={blok?.logo?.filename || logo}
+                  src={blok?.logo?.filename || ""}
                   alt={blok?.logo?.alt || "Axenproperty Logo"}
                   width={
                     blok?.logo?.filename
