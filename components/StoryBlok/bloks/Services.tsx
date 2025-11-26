@@ -58,7 +58,6 @@ export default function Services({ blok }: { blok: ServicesBlok }) {
                 width={206}
                 height={180}
                 className="object-contain"
-                priority
               />
             </motion.div>
           )}
