@@ -4,19 +4,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import clsx from "clsx";
 import { Inter, Open_Sans } from "next/font/google";
-import Link from "next/link";
+import JobList from "./JobList";
 
 import { Metadata } from "next";
 
@@ -120,7 +111,9 @@ const Careers = () => {
       <div
         style={{ backgroundPosition: "50% 30%", backgroundSize: "cover" }}
         className="h-[360px] relative bg-[url('/static/images/new/team.jpg')] bg-cover"
-      >THis is Banner Image</div>
+      >
+        THis is Banner Image
+      </div>
       {/* Content */}
       <div className="w-full">
         <div className="max-w-5xl mx-auto px-20 py-24 xs:px-10 xs:py-12">
@@ -138,60 +131,7 @@ const Careers = () => {
             </span>
           </div>
 
-          <div className={clsx(openSans.className, "")}>
-            {data.map((item, index) => (
-              <div
-                key={index}
-                className="border-y p-8 2xs:p-4 hover:shadow-md transition-shadow cursor-pointer"
-              >
-                <Link href={`/careers/${item.fields.slug}`} prefetch>
-                  <h3 className="text-lg font-semibold text-[#202325] mb-2">
-                    {item.fields.name}
-                  </h3>
-                  <div className="flex flex-wrap justify-between gap-4 text-sm text-gray-600">
-                    <div className="flex items-center gap-1">
-                      job
-                      <span>{item.fields.field}</span>
-                    </div>
-                    <div className="flex items-center gap-1 ">
-                      exp
-                      <span>{item.fields.experience}</span>
-                    </div>
-                    <div className="flex items-center gap-1 ">
-                      add
-                      <span>{item.fields.address}</span>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="py-10 w-full mx-auto">
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious href="#" />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#">1</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#" isActive>
-                  2
-                </PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#">3</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationNext href="#" />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
+          <JobList data={data} />
         </div>
         <div className="w-full mx-auto py-10">
           <h3

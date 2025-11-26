@@ -23,6 +23,7 @@ export default function Exploration({ blok }: { blok: ExplorationBlok }) {
               fill
               className="w-full object-cover h-full"
               quality={85}
+              sizes="100vw"
             />
           )}
         </div>
