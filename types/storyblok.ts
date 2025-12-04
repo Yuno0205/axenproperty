@@ -113,3 +113,12 @@ export interface ServicesBlok extends SbBlokData {
   text: StoryblokRichTextNode<string | TrustedHTML>; // Kiểu của Rich Text
   cta_button: SbButton[];
 }
+
+export interface JobPostStoryblok extends SbBlokData {
+  name: string;
+  field: string;
+  experience: string;
+  location: string;
+  salary: string;
+  description: StoryblokRichTextNode<string | TrustedHTML>;
+}

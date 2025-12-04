@@ -9,6 +9,7 @@ import { HeroSection } from "@/components/StoryBlok/bloks/HeroSection";
 import Exploration from "@/components/StoryBlok/bloks/Exploration";
 import Services from "@/components/StoryBlok/bloks/Services";
 import Showcase from "@/components/StoryBlok/bloks/Showcase";
+import JobListBlock from "@/components/StoryBlok/bloks/JobList";
 
 export const getStoryblokApi = storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
@@ -24,6 +25,7 @@ export const getStoryblokApi = storyblokInit({
     link_column: LinkColumn,
     footer_link: FooterLink,
     social_link: SocialLink,
+    job_list: JobListBlock,
   },
   apiOptions: {
     region: "eu",
