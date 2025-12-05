@@ -114,7 +114,12 @@ export interface ServicesBlok extends SbBlokData {
   cta_button: SbButton[];
 }
 
-export interface JobPostStoryblok extends SbBlokData {
+export interface JobListBlok extends SbBlokData {
+  title: string;
+  jobs: JobPostStoryblok[];
+}
+
+export interface JobPostStoryblok {
   name: string;
   field: string;
   experience: string;

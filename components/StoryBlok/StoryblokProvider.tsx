@@ -12,6 +12,7 @@ import { HeroSection } from "./bloks/HeroSection";
 import Exploration from "./bloks/Exploration";
 import Services from "./bloks/Services";
 import Showcase from "./bloks/Showcase";
+import JobListBlock from "./bloks/JobList";
 
 storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
@@ -27,6 +28,7 @@ storyblokInit({
     link_column: LinkColumn,
     footer_link: FooterLink,
     social_link: SocialLink,
+    job_list: JobListBlock,
   },
 });
 
