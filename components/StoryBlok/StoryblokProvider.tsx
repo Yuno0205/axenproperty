@@ -12,9 +12,10 @@ import { HeroSection } from "./bloks/HeroSection";
 import Exploration from "./bloks/Exploration";
 import Services from "./bloks/Services";
 import Showcase from "./bloks/Showcase";
-import JobListBlock from "./bloks/JobList";
+import JobListBlock from "./bloks/JobListBlock";
 import HiringProcess from "./bloks/HiringProcess";
 import FaqSection from "./bloks/FaqSection";
+import CoverImage from "./ui/CoverImage";
 
 storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
@@ -33,6 +34,7 @@ storyblokInit({
     job_list: JobListBlock,
     hiring_process: HiringProcess,
     faq_section: FaqSection,
+    cover_image: CoverImage,
   },
 });
 

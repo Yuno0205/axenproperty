@@ -51,7 +51,7 @@ export default async function Careers({
   if (!story) return notFound();
 
   return (
-    <div className="page-careers">
+    <div>
       <StoryblokStory story={story} blokProps={jobs} />
     </div>
   );
