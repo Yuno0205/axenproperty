@@ -1,5 +1,6 @@
 import { getStoryblokApi } from "@/lib/storyblok";
 import { StoryblokStory } from "@storyblok/react/rsc";
+import { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 
@@ -25,7 +26,7 @@ async function fetchJobs(locale: string) {
     const { data } = await api.get(`cdn/stories`, {
       version: isEnabled ? "draft" : "published",
       language: locale,
-      starts_with: "jobs/", // Lấy tất cả bài trong folder jobs
+      starts_with: "jobs/",
       content_type: "job_post",
     });
     return data.stories;
@@ -33,6 +34,21 @@ async function fetchJobs(locale: string) {
     console.error("Error fetching jobs:", e);
     return [];
   }
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = lang || "en";
+  const story = await fetchCareerPage(locale);
+
+  return {
+    title: story?.content?.title || "Careers",
+    description: story?.content?.description || "",
+  };
 }
 
 export default async function Careers({
