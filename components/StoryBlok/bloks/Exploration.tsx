@@ -22,7 +22,7 @@ export default function Exploration({ blok }: { blok: ExplorationBlok }) {
               alt={blok.background_image.alt || blok.title}
               fill
               className="w-full object-cover h-full"
-              quality={85}
+              quality={75}
               sizes="100vw"
             />
           )}
