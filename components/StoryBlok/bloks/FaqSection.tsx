@@ -24,7 +24,7 @@ export default function FaqSection({ blok }: { blok: FaqSectionBlok }) {
   return (
     <section
       {...storyblokEditable(blok)}
-      className="max-w-5xl mx-auto px-5 py-16 bg-white"
+      className="w-full mx-auto px-5 py-16 bg-white"
     >
       <h3
         className={clsx(

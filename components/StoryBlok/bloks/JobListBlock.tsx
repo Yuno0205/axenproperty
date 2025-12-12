@@ -2,7 +2,15 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Briefcase, MapPin, Clock, Search, X } from "lucide-react";
+import {
+  Briefcase,
+  MapPin,
+  Clock,
+  Search,
+  X,
+  ArrowRight,
+  RefreshCcw,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { JobListBlok, JobPostStoryblok } from "@/types/storyblok";
@@ -12,7 +20,7 @@ import { Open_Sans } from "next/font/google";
 
 const openSans = Open_Sans({
   subsets: ["latin", "vietnamese"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 type JobStory = {
@@ -65,7 +73,6 @@ export default function JobListBlock({
   const [selectedLocation, setSelectedLocation] = useState<string>("all");
   const [selectedField, setSelectedField] = useState<string>("all");
 
-  // Extract unique locations and fields from data
   const locations = useMemo(() => {
     const locationSet = new Set<string>();
     mappedJobs.forEach((job) => {
@@ -81,7 +88,6 @@ export default function JobListBlock({
     return Array.from(fieldSet).sort();
   }, [mappedJobs]);
 
-  // Filter jobs
   const filteredJobs = useMemo(() => {
     return mappedJobs.filter((job) => {
       const matchesSearch =
@@ -111,154 +117,202 @@ export default function JobListBlock({
   const hasActiveFilters =
     searchTerm !== "" || selectedLocation !== "all" || selectedField !== "all";
 
+  // Common style cho input/select để đồng bộ
+  const inputStyles =
+    "h-10 bg-white border-gray-200 focus-visible:ring-0 focus-visible:border-gray-500 focus-visible:ring-offset-0 hover:border-gray-400 transition-colors text-sm";
+
   return (
     <div
       {...storyblokEditable(blok)}
-      className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
+      className={clsx(openSans.className, "w-full bg-white min-h-screen")}
     >
-      {blok.title && (
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-900 px-4">
-          {blok.title}
-        </h2>
-      )}
-
-      <div className={clsx(openSans.className, "w-full")}>
-        {/* Search and Filter Section */}
-        <div className="mb-8 sm:mb-10 space-y-4 sm:space-y-5">
-          {/* Search Input */}
-          <div className="relative">
-            <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 sm:w-6 sm:h-6 text-gray-400" />
-            <Input
-              type="text"
-              placeholder="Tìm kiếm theo tên hoặc lĩnh vực..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 sm:pl-12 pr-10 sm:pr-12 h-12 sm:h-14 text-sm sm:text-base border-2 border-gray-200 focus:border-gray-400 rounded-lg shadow-sm hover:shadow-md transition-shadow"
-            />
-            {searchTerm && (
-              <button
-                onClick={() => setSearchTerm("")}
-                className="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                aria-label="Clear search"
-              >
-                <X className="w-5 h-5 sm:w-6 sm:h-6" />
-              </button>
-            )}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        {/* Header */}
+        {blok.title && (
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 tracking-tight">
+              {blok.title}
+            </h2>
+            <p className="text-gray-500 mt-2 text-sm">
+              Hiện có{" "}
+              <span className="font-semibold text-gray-900">
+                {mappedJobs.length}
+              </span>{" "}
+              vị trí đang mở.
+            </p>
           </div>
+        )}
 
-          {/* Filter Section */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-3">
-            {/* Filter Controls */}
-            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:items-center">
-              <span className="text-sm sm:text-base font-semibold text-gray-700 sm:mr-2 block sm:inline">
-                Lọc theo:
-              </span>
-
-              {/* Location Filter */}
-              <div className="flex items-center gap-2 w-full sm:w-auto">
-                <select
-                  value={selectedLocation}
-                  onChange={(e) => setSelectedLocation(e.target.value)}
-                  className="w-full sm:w-auto px-4 py-2.5 border-2 border-gray-200 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 bg-white hover:border-gray-300 transition-colors shadow-sm"
+        {/* --- COMPACT FILTER BAR --- */}
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-8 shadow-sm">
+          <div className="flex flex-col lg:flex-row gap-3">
+            {/* Search Input - Flex grow để chiếm phần còn lại */}
+            <div className="relative flex-grow">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+              <Input
+                placeholder="Tìm kiếm vị trí..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className={clsx(inputStyles, "pl-9")}
+              />
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                 >
-                  <option value="all">Tất cả địa điểm</option>
-                  {locations.map((location) => (
-                    <option key={location} value={location}>
-                      {location}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Field Filter */}
-              <div className="flex items-center gap-2 w-full sm:w-auto">
-                <select
-                  value={selectedField}
-                  onChange={(e) => setSelectedField(e.target.value)}
-                  className="w-full sm:w-auto px-4 py-2.5 border-2 border-gray-200 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 bg-white hover:border-gray-300 transition-colors shadow-sm"
-                >
-                  <option value="all">Tất cả lĩnh vực</option>
-                  {fields.map((field) => (
-                    <option key={field} value={field}>
-                      {field}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Clear Filters Button */}
-              {hasActiveFilters && (
-                <Button
-                  variant="outline"
-                  onClick={clearFilters}
-                  className="w-full sm:w-auto text-sm sm:text-base px-4 py-2.5 border-2 hover:bg-gray-50"
-                >
-                  Xóa bộ lọc
-                </Button>
+                  <X className="w-4 h-4" />
+                </button>
               )}
             </div>
 
-            {/* Results Count */}
-            <div className="text-sm sm:text-base text-gray-600 sm:text-right">
-              Tìm thấy{" "}
-              <span className="font-semibold text-gray-900">
-                {filteredJobs.length}
-              </span>{" "}
-              vị trí tuyển dụng
-              {hasActiveFilters && " phù hợp"}
+            {/* Location Select - Width cố định vừa phải trên desktop */}
+            <div className="relative lg:w-48 flex-shrink-0">
+              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
+              <select
+                value={selectedLocation}
+                onChange={(e) => setSelectedLocation(e.target.value)}
+                className={clsx(
+                  inputStyles,
+                  "w-full pl-9 pr-8 appearance-none border rounded-md cursor-pointer outline-none"
+                )}
+              >
+                <option value="all">Địa điểm</option>
+                {locations.map((loc) => (
+                  <option key={loc} value={loc}>
+                    {loc}
+                  </option>
+                ))}
+              </select>
+              <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                <svg
+                  className="w-3 h-3 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </div>
             </div>
+
+            {/* Field Select */}
+            <div className="relative lg:w-48 flex-shrink-0">
+              <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
+              <select
+                value={selectedField}
+                onChange={(e) => setSelectedField(e.target.value)}
+                className={clsx(
+                  inputStyles,
+                  "w-full pl-9 pr-8 appearance-none border rounded-md cursor-pointer outline-none"
+                )}
+              >
+                <option value="all">Lĩnh vực</option>
+                {fields.map((f) => (
+                  <option key={f} value={f}>
+                    {f}
+                  </option>
+                ))}
+              </select>
+              <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                <svg
+                  className="w-3 h-3 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+
+            {/* Clear Button */}
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={clearFilters}
+              disabled={!hasActiveFilters}
+              className="h-10 w-10 flex-shrink-0 border-gray-200 hover:bg-gray-100 hover:text-gray-900 disabled:opacity-30"
+              title="Xóa bộ lọc"
+            >
+              <RefreshCcw className="w-4 h-4" />
+            </Button>
           </div>
+
+          {/* Kết quả tìm kiếm text nhỏ */}
+          {hasActiveFilters && (
+            <div className="mt-2 text-xs text-gray-500 px-1">
+              Tìm thấy {filteredJobs.length} kết quả phù hợp.
+            </div>
+          )}
         </div>
 
-        {/* Job List */}
-        {filteredJobs.length > 0 ? (
-          <div className="space-y-0 rounded-lg overflow-hidden border border-gray-200 shadow-sm">
-            {filteredJobs.map((item, index) => (
+        {/* --- JOB LIST (GRID) --- */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {filteredJobs.length > 0 ? (
+            filteredJobs.map((item, index) => (
               <Link
                 key={`${item.fields.slug}-${index}`}
                 href={`/careers/${item.fields.slug}`}
                 prefetch
-                className="block group"
+                className="group block bg-white rounded-lg border border-gray-200 p-5 hover:border-gray-400 hover:shadow-sm transition-all duration-200"
               >
-                <div className="border-t border-gray-200 first:border-t-0 p-6 sm:p-8 hover:bg-gray-50/80 active:bg-gray-100 transition-all duration-200 cursor-pointer bg-white">
-                  <div className="flex flex-col gap-4 sm:gap-5">
-                    <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 group-hover:text-gray-800 transition-colors leading-tight">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <span className="inline-block px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-600 mb-2 group-hover:bg-gray-200 transition-colors">
+                      {item.fields.field}
+                    </span>
+                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-black mb-1 line-clamp-1">
                       {item.fields.name}
                     </h3>
-                    <div className="flex flex-wrap gap-4 sm:gap-6 text-sm sm:text-base text-gray-600">
-                      <div className="flex items-center gap-2">
-                        <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0" />
-                        <span className="font-medium">{item.fields.field}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0" />
-                        <span>{item.fields.experience}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0" />
-                        <span>{item.fields.address}</span>
-                      </div>
-                    </div>
                   </div>
+                  <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-gray-600 transform group-hover:translate-x-1 transition-all" />
+                </div>
+
+                <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-gray-500">
+                  <div className="flex items-center">
+                    <MapPin className="w-3.5 h-3.5 mr-1.5" />
+                    {item.fields.address}
+                  </div>
+                  <div className="flex items-center">
+                    <Clock className="w-3.5 h-3.5 mr-1.5" />
+                    {item.fields.experience}
+                  </div>
+                  {item.fields.salary && (
+                    <div className="flex items-center font-medium text-gray-700">
+                      <span className="mr-1.5">💰</span>
+                      {item.fields.salary}
+                    </div>
+                  )}
                 </div>
               </Link>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-16 sm:py-20 lg:py-24 border border-gray-200 rounded-lg bg-gray-50/50">
-            <div className="max-w-md mx-auto px-4">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gray-200 rounded-full flex items-center justify-center">
-                <Search className="w-8 h-8 text-gray-400" />
+            ))
+          ) : (
+            <div className="col-span-full py-16 text-center border border-dashed border-gray-300 rounded-lg bg-white/50">
+              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <Search className="w-6 h-6 text-gray-400" />
               </div>
-              <p className="text-gray-700 text-lg sm:text-xl font-semibold mb-2">
-                Không tìm thấy vị trí nào phù hợp
+              <p className="text-gray-900 font-medium">
+                Không tìm thấy công việc nào
               </p>
-              <p className="text-gray-500 text-sm sm:text-base">
-                Vui lòng thử lại với từ khóa hoặc bộ lọc khác
-              </p>
+              <button
+                onClick={clearFilters}
+                className="text-sm text-gray-500 hover:text-gray-900 underline mt-1"
+              >
+                Xóa bộ lọc để thử lại
+              </button>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
