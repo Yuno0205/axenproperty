@@ -18,8 +18,9 @@ const openSans = Open_Sans({
 });
 
 export default function FaqSection({ blok }: { blok: FaqSectionBlok }) {
-  // Get first tab as default
-  const defaultTab = blok.categories?.[0]?._uid || "";
+  const categories = blok.categories ?? [];
+  if (categories.length === 0) return null;
+  const defaultTab = categories[0]?._uid ?? "cat-0";
 
   return (
     <section

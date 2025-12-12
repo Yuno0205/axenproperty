@@ -77,7 +77,7 @@ export default function JobListBlock({
     const locationSet = new Set<string>();
     mappedJobs.forEach((job) => {
       job.fields.address
-        .split(", ")
+        .split(/[,;]+/)
         .forEach((loc) => locationSet.add(loc.trim()));
     });
     return Array.from(locationSet).sort();
@@ -134,11 +134,11 @@ export default function JobListBlock({
               {blok.title}
             </h2>
             <p className="text-gray-500 mt-2 text-sm">
-              Hiện có{" "}
+              There are currently{" "}
               <span className="font-semibold text-gray-900">
                 {mappedJobs.length}
               </span>{" "}
-              vị trí đang mở.
+              jobs available.
             </p>
           </div>
         )}
@@ -146,11 +146,10 @@ export default function JobListBlock({
         {/* --- COMPACT FILTER BAR --- */}
         <div className="bg-white rounded-lg border border-gray-200 p-3 mb-8 shadow-sm">
           <div className="flex flex-col lg:flex-row gap-3">
-            {/* Search Input - Flex grow để chiếm phần còn lại */}
             <div className="relative flex-grow">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
               <Input
-                placeholder="Tìm kiếm vị trí..."
+                placeholder="Search for a job..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className={clsx(inputStyles, "pl-9")}
@@ -165,7 +164,6 @@ export default function JobListBlock({
               )}
             </div>
 
-            {/* Location Select - Width cố định vừa phải trên desktop */}
             <div className="relative lg:w-48 flex-shrink-0">
               <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
               <select
@@ -176,7 +174,7 @@ export default function JobListBlock({
                   "w-full pl-9 pr-8 appearance-none border rounded-md cursor-pointer outline-none"
                 )}
               >
-                <option value="all">Địa điểm</option>
+                <option value="all">Location</option>
                 {locations.map((loc) => (
                   <option key={loc} value={loc}>
                     {loc}
@@ -200,7 +198,6 @@ export default function JobListBlock({
               </div>
             </div>
 
-            {/* Field Select */}
             <div className="relative lg:w-48 flex-shrink-0">
               <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
               <select
@@ -211,7 +208,7 @@ export default function JobListBlock({
                   "w-full pl-9 pr-8 appearance-none border rounded-md cursor-pointer outline-none"
                 )}
               >
-                <option value="all">Lĩnh vực</option>
+                <option value="all">Field</option>
                 {fields.map((f) => (
                   <option key={f} value={f}>
                     {f}
@@ -235,28 +232,26 @@ export default function JobListBlock({
               </div>
             </div>
 
-            {/* Clear Button */}
             <Button
               variant="outline"
               size="icon"
               onClick={clearFilters}
               disabled={!hasActiveFilters}
               className="h-10 w-10 flex-shrink-0 border-gray-200 hover:bg-gray-100 hover:text-gray-900 disabled:opacity-30"
-              title="Xóa bộ lọc"
+              title="Clear filters"
             >
               <RefreshCcw className="w-4 h-4" />
             </Button>
           </div>
 
-          {/* Kết quả tìm kiếm text nhỏ */}
           {hasActiveFilters && (
             <div className="mt-2 text-xs text-gray-500 px-1">
-              Tìm thấy {filteredJobs.length} kết quả phù hợp.
+              Found {filteredJobs.length} matching results.
             </div>
           )}
         </div>
 
-        {/* --- JOB LIST (GRID) --- */}
+        {/* --- JOB LIST  --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {filteredJobs.length > 0 ? (
             filteredJobs.map((item, index) => (
@@ -271,7 +266,7 @@ export default function JobListBlock({
                     <span className="inline-block px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-600 mb-2 group-hover:bg-gray-200 transition-colors">
                       {item.fields.field}
                     </span>
-                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-black mb-1 line-clamp-1">
+                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-black mb-1 line-clamp-1 capitalize">
                       {item.fields.name}
                     </h3>
                   </div>
@@ -301,14 +296,12 @@ export default function JobListBlock({
               <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Search className="w-6 h-6 text-gray-400" />
               </div>
-              <p className="text-gray-900 font-medium">
-                Không tìm thấy công việc nào
-              </p>
+              <p className="text-gray-900 font-medium">Not matching any jobs</p>
               <button
                 onClick={clearFilters}
                 className="text-sm text-gray-500 hover:text-gray-900 underline mt-1"
               >
-                Xóa bộ lọc để thử lại
+                Clear filters to try again
               </button>
             </div>
           )}

@@ -31,7 +31,7 @@ export default function HiringProcess({ blok }: { blok: HiringProcessBlok }) {
 
         <div className="max-w-[1300px] mx-auto px-4">
           <div className="grid grid-cols-5 justify-items-center gap-4 xs:grid-cols-2 xs:gap-5 md:grid-cols-3 md:gap-6 xl:grid-cols-5 xl:gap-4">
-            {blok.steps?.map((step) => (
+            {blok.steps.map((step) => (
               <div
                 key={step._uid}
                 className="flex flex-col items-center w-full mb-8 xl:mb-0"
