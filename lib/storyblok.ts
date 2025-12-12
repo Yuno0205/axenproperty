@@ -9,6 +9,10 @@ import { HeroSection } from "@/components/StoryBlok/bloks/HeroSection";
 import Exploration from "@/components/StoryBlok/bloks/Exploration";
 import Services from "@/components/StoryBlok/bloks/Services";
 import Showcase from "@/components/StoryBlok/bloks/Showcase";
+import JobListBlock from "@/components/StoryBlok/bloks/JobListBlock";
+import HiringProcess from "@/components/StoryBlok/bloks/HiringProcess";
+import FaqSection from "@/components/StoryBlok/bloks/FaqSection";
+import CoverImage from "@/components/StoryBlok/ui/CoverImage";
 
 export const getStoryblokApi = storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
@@ -24,6 +28,10 @@ export const getStoryblokApi = storyblokInit({
     link_column: LinkColumn,
     footer_link: FooterLink,
     social_link: SocialLink,
+    job_list: JobListBlock,
+    hiring_process: HiringProcess,
+    faq_section: FaqSection,
+    cover_image: CoverImage,
   },
   apiOptions: {
     region: "eu",

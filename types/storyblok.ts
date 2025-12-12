@@ -113,3 +113,46 @@ export interface ServicesBlok extends SbBlokData {
   text: StoryblokRichTextNode<string | TrustedHTML>; // Kiểu của Rich Text
   cta_button: SbButton[];
 }
+
+// --- JOB LIST ---
+export interface JobListBlok extends SbBlokData {
+  title: string;
+  jobs: JobPostStoryblok[];
+}
+
+// --- JOB POST ---
+export interface JobPostStoryblok {
+  name: string;
+  field: string;
+  experience: string;
+  location: string;
+  salary: string;
+  description: StoryblokRichTextNode<string | TrustedHTML>;
+}
+
+// --- HIRING PROCESS ---
+export interface HiringStepBlok extends SbBlokData {
+  number: string;
+  title: string;
+}
+
+export interface HiringProcessBlok extends SbBlokData {
+  title: string;
+  steps: HiringStepBlok[];
+}
+
+// --- FAQ ---
+export interface FaqItemBlok extends SbBlokData {
+  question: string;
+  answer: string;
+}
+
+export interface FaqCategoryBlok extends SbBlokData {
+  name: string;
+  items: FaqItemBlok[];
+}
+
+export interface FaqSectionBlok extends SbBlokData {
+  title: string;
+  categories: FaqCategoryBlok[];
+}

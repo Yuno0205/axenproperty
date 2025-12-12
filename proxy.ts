@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 const locales = ["en", "vi"];
 const defaultLocale = "en";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // Lấy pathname (ví dụ: /careers hoặc /)
   const { pathname } = request.nextUrl;
 

@@ -50,7 +50,7 @@ export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
           }
           fill
           fetchPriority="high"
-          quality={85}
+          quality={75}
           priority
           sizes="100vw"
           className={cn(
