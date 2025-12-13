@@ -2,17 +2,8 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import {
-  Briefcase,
-  MapPin,
-  Clock,
-  Search,
-  X,
-  ArrowRight,
-  RefreshCcw,
-} from "lucide-react";
+import { Search, MapPin, Briefcase, X, Clock } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { JobListBlok, JobPostStoryblok } from "@/types/storyblok";
 import { storyblokEditable } from "@storyblok/react";
 import clsx from "clsx";
@@ -20,9 +11,10 @@ import { Open_Sans } from "next/font/google";
 
 const openSans = Open_Sans({
   subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600", "700"],
 });
 
+// --- Types giữ nguyên ---
 type JobStory = {
   name: string;
   slug: string;
@@ -77,7 +69,7 @@ export default function JobListBlock({
     const locationSet = new Set<string>();
     mappedJobs.forEach((job) => {
       job.fields.address
-        .split(/[,;]+/)
+        .split(", ")
         .forEach((loc) => locationSet.add(loc.trim()));
     });
     return Array.from(locationSet).sort();
@@ -94,16 +86,13 @@ export default function JobListBlock({
         searchTerm === "" ||
         job.fields.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         job.fields.field.toLowerCase().includes(searchTerm.toLowerCase());
-
       const matchesLocation =
         selectedLocation === "all" ||
         job.fields.address
           .toLowerCase()
           .includes(selectedLocation.toLowerCase());
-
       const matchesField =
         selectedField === "all" || job.fields.field === selectedField;
-
       return matchesSearch && matchesLocation && matchesField;
     });
   }, [mappedJobs, searchTerm, selectedLocation, selectedField]);
@@ -114,194 +103,154 @@ export default function JobListBlock({
     setSelectedField("all");
   };
 
-  const hasActiveFilters =
-    searchTerm !== "" || selectedLocation !== "all" || selectedField !== "all";
-
-  // Common style cho input/select để đồng bộ
-  const inputStyles =
-    "h-10 bg-white border-gray-200 focus-visible:ring-0 focus-visible:border-gray-500 focus-visible:ring-offset-0 hover:border-gray-400 transition-colors text-sm";
+  // Class chung cho input/select để đồng bộ
+  const inputClass =
+    "h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all";
 
   return (
     <div
       {...storyblokEditable(blok)}
-      className={clsx(openSans.className, "w-full bg-white min-h-screen")}
+      className={clsx(
+        openSans.className,
+        "w-full py-12 px-4 sm:px-6 lg:px-8 bg-white"
+      )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="max-w-4xl mx-auto">
         {/* Header */}
         {blok.title && (
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 tracking-tight">
-              {blok.title}
-            </h2>
-            <p className="text-gray-500 mt-2 text-sm">
-              There are currently{" "}
-              <span className="font-semibold text-gray-900">
-                {mappedJobs.length}
-              </span>{" "}
-              jobs available.
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl font-bold text-gray-900">{blok.title}</h2>
+            <p className="mt-2 text-gray-600">
+              Found {filteredJobs.length} jobs
             </p>
           </div>
         )}
 
-        {/* --- COMPACT FILTER BAR --- */}
-        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-8 shadow-sm">
-          <div className="flex flex-col lg:flex-row gap-3">
-            <div className="relative flex-grow">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+        {/* --- 1. FILTER BAR (Đơn giản hóa) --- */}
+        <div className="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-100">
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
+            {/* Search */}
+            <div className="sm:col-span-6 relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
-                placeholder="Search for a job..."
+                placeholder="Search jobs..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className={clsx(inputStyles, "pl-9")}
+                className={clsx(inputClass, "pl-9")}
               />
               {searchTerm && (
                 <button
                   onClick={() => setSearchTerm("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="h-4 w-4 text-gray-400 hover:text-gray-600" />
                 </button>
               )}
             </div>
 
-            <div className="relative lg:w-48 flex-shrink-0">
-              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
+            {/* Location Select */}
+            <div className="sm:col-span-3">
               <select
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
-                className={clsx(
-                  inputStyles,
-                  "w-full pl-9 pr-8 appearance-none border rounded-md cursor-pointer outline-none"
-                )}
+                className={clsx(inputClass, "appearance-none cursor-pointer")}
               >
-                <option value="all">Location</option>
+                <option value="all">All locations</option>
                 {locations.map((loc) => (
                   <option key={loc} value={loc}>
                     {loc}
                   </option>
                 ))}
               </select>
-              <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                <svg
-                  className="w-3 h-3 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  ></path>
-                </svg>
-              </div>
             </div>
 
-            <div className="relative lg:w-48 flex-shrink-0">
-              <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
+            {/* Field Select */}
+            <div className="sm:col-span-3">
               <select
                 value={selectedField}
                 onChange={(e) => setSelectedField(e.target.value)}
-                className={clsx(
-                  inputStyles,
-                  "w-full pl-9 pr-8 appearance-none border rounded-md cursor-pointer outline-none"
-                )}
+                className={clsx(inputClass, "appearance-none cursor-pointer")}
               >
-                <option value="all">Field</option>
+                <option value="all">All fields</option>
                 {fields.map((f) => (
                   <option key={f} value={f}>
                     {f}
                   </option>
                 ))}
               </select>
-              <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                <svg
-                  className="w-3 h-3 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  ></path>
-                </svg>
-              </div>
             </div>
-
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={clearFilters}
-              disabled={!hasActiveFilters}
-              className="h-10 w-10 flex-shrink-0 border-gray-200 hover:bg-gray-100 hover:text-gray-900 disabled:opacity-30"
-              title="Clear filters"
-            >
-              <RefreshCcw className="w-4 h-4" />
-            </Button>
           </div>
 
-          {hasActiveFilters && (
-            <div className="mt-2 text-xs text-gray-500 px-1">
-              Found {filteredJobs.length} matching results.
+          {/* Nút Clear Filter (chỉ hiện khi cần) */}
+          {(searchTerm ||
+            selectedLocation !== "all" ||
+            selectedField !== "all") && (
+            <div className="mt-3 text-right">
+              <button
+                onClick={clearFilters}
+                className="text-sm text-red-500 hover:text-red-700 font-medium hover:underline"
+              >
+                Clear filters
+              </button>
             </div>
           )}
         </div>
 
-        {/* --- JOB LIST  --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* --- 2. JOB LIST (Quay về dạng List đơn giản) --- */}
+        <div className="space-y-4">
           {filteredJobs.length > 0 ? (
             filteredJobs.map((item, index) => (
               <Link
                 key={`${item.fields.slug}-${index}`}
                 href={`/careers/${item.fields.slug}`}
-                prefetch
-                className="group block bg-white rounded-lg border border-gray-200 p-5 hover:border-gray-400 hover:shadow-sm transition-all duration-200"
+                className="block group bg-white rounded-lg border border-gray-200 p-5 hover:border-blue-400 hover:shadow-md transition-all duration-200"
               >
-                <div className="flex justify-between items-start">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  {/* Left: Info */}
                   <div>
-                    <span className="inline-block px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-600 mb-2 group-hover:bg-gray-200 transition-colors">
-                      {item.fields.field}
-                    </span>
-                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-black mb-1 line-clamp-1 capitalize">
+                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
                       {item.fields.name}
                     </h3>
-                  </div>
-                  <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-gray-600 transform group-hover:translate-x-1 transition-all" />
-                </div>
 
-                <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-gray-500">
-                  <div className="flex items-center">
-                    <MapPin className="w-3.5 h-3.5 mr-1.5" />
-                    {item.fields.address}
-                  </div>
-                  <div className="flex items-center">
-                    <Clock className="w-3.5 h-3.5 mr-1.5" />
-                    {item.fields.experience}
-                  </div>
-                  {item.fields.salary && (
-                    <div className="flex items-center font-medium text-gray-700">
-                      <span className="mr-1.5">💰</span>
-                      {item.fields.salary}
+                    <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-gray-500">
+                      <div className="flex items-center gap-1.5">
+                        <Briefcase className="h-4 w-4 text-gray-400" />
+                        <span>{item.fields.field}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <MapPin className="h-4 w-4 text-gray-400" />
+                        <span>{item.fields.address}</span>
+                      </div>
+                      {/* Thêm kinh nghiệm nếu cần */}
+                      <div className="hidden sm:flex items-center gap-1.5">
+                        <Clock className="h-4 w-4 text-gray-400" />
+                        <span>{item.fields.experience}</span>
+                      </div>
                     </div>
-                  )}
+                  </div>
+
+                  {/* Right: Salary or Action */}
+                  <div className="flex items-center justify-between sm:justify-end gap-4 mt-2 sm:mt-0 pt-3 sm:pt-0 border-t sm:border-t-0 border-gray-100">
+                    {item.fields.salary && (
+                      <span className="text-sm font-semibold text-green-600 bg-green-50 px-2 py-1 rounded">
+                        {item.fields.salary}
+                      </span>
+                    )}
+                    <span className="text-sm font-medium text-blue-600 group-hover:translate-x-1 transition-transform">
+                      View details &rarr;
+                    </span>
+                  </div>
                 </div>
               </Link>
             ))
           ) : (
-            <div className="col-span-full py-16 text-center border border-dashed border-gray-300 rounded-lg bg-white/50">
-              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <Search className="w-6 h-6 text-gray-400" />
-              </div>
-              <p className="text-gray-900 font-medium">Not matching any jobs</p>
+            <div className="text-center py-12 border-2 border-dashed border-gray-200 rounded-lg">
+              <p className="text-gray-500">Not found any job</p>
               <button
                 onClick={clearFilters}
-                className="text-sm text-gray-500 hover:text-gray-900 underline mt-1"
+                className="mt-2 text-blue-600 font-medium hover:underline"
               >
-                Clear filters to try again
+                Try to clear filters
               </button>
             </div>
           )}
