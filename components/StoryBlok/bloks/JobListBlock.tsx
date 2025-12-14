@@ -14,7 +14,6 @@ const openSans = Open_Sans({
   weight: ["400", "600", "700"],
 });
 
-// --- Types giữ nguyên ---
 type JobStory = {
   name: string;
   slug: string;
@@ -103,7 +102,6 @@ export default function JobListBlock({
     setSelectedField("all");
   };
 
-  // Class chung cho input/select để đồng bộ
   const inputClass =
     "h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all";
 
@@ -126,7 +124,6 @@ export default function JobListBlock({
           </div>
         )}
 
-        {/* --- 1. FILTER BAR (Đơn giản hóa) --- */}
         <div className="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-100">
           <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
             {/* Search */}

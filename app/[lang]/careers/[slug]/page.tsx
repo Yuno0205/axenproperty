@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { getStoryblokApi } from "@/lib/storyblok";
 import { storyblokEditable, renderRichText } from "@storyblok/react";
+import { ClockIcon, DollarSignIcon, LocateIcon } from "lucide-react";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 
@@ -30,13 +31,19 @@ export default async function CareerDetail({
     return (
       <main
         {...storyblokEditable(content)}
-        className="container mx-auto py-20 px-4"
+        className="container mx-auto py-20 px-4 bg-white"
       >
         <h1 className="text-4xl font-bold mb-4">{content.name}</h1>
         <div className="flex gap-4 mb-8 text-gray-600">
-          <span>📍 {content.location}</span>
-          <span>💰 {content.salary}</span>
-          <span>⏳ {content.experience}</span>
+          <span className="flex items-center gap-2">
+            <LocateIcon className="w-4 h-4" /> {content.location}
+          </span>
+          <span className="flex items-center gap-2">
+            <DollarSignIcon className="w-4 h-4" /> {content.salary}
+          </span>
+          <span className="flex items-center gap-2">
+            <ClockIcon className="w-4 h-4" /> {content.experience}
+          </span>
         </div>
         <div
           className="prose prose-lg max-w-none text-gray-700"

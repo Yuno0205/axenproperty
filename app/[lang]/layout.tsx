@@ -109,7 +109,7 @@ export default async function RootLayout({
   if (!globalData) {
     return (
       <html lang={currentLocale}>
-        <body className={`${montserrat.className} antialiased bg-[#f4f4f4]`}>
+        <body className={`${montserrat.className} antialiased bg-transparent`}>
           {children}
         </body>
       </html>
@@ -118,9 +118,9 @@ export default async function RootLayout({
 
   return (
     <html lang={currentLocale}>
-      <body className={`${montserrat.className} antialiased bg-[#f4f4f4]`}>
+      <body className={`${montserrat.className} antialiased bg-transparent`}>
         <StoryblokProvider>
-          <Suspense fallback={<div className="min-h-screen bg-[#f4f4f4]" />}>
+          <Suspense fallback={<div className="min-h-screen bg-transparent" />}>
             <Header blok={globalData} />
             {children}
             <Footer blok={globalData} />
