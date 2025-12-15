@@ -30,15 +30,14 @@ export default function FaqSection({ blok }: { blok: FaqSectionBlok }) {
       <h3
         className={clsx(
           inter.className,
-          "text-center font-bold text-3xl mb-10 text-gray-900"
+          "text-center font-bold text-2xl mb-10 text-gray-900"
         )}
       >
         {blok.title}
       </h3>
 
-      <div className={clsx(openSans.className, "w-full")}>
+      <div className={clsx(openSans.className, "max-w-7xl mx-auto")}>
         <Tabs defaultValue={defaultTab} className="w-full">
-          {/* Danh sách các Tabs (Categories) */}
           <TabsList className="w-full flex flex-wrap justify-center h-auto gap-2 bg-transparent mb-8">
             {blok.categories?.map((cat) => (
               <TabsTrigger
@@ -51,7 +50,6 @@ export default function FaqSection({ blok }: { blok: FaqSectionBlok }) {
             ))}
           </TabsList>
 
-          {/* Nội dung từng Tab */}
           {blok.categories?.map((cat) => (
             <TabsContent key={cat._uid} value={cat._uid || ""} className="mt-0">
               <Accordion type="single" collapsible className="w-full space-y-4">

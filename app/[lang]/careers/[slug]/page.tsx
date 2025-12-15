@@ -60,7 +60,7 @@ export default async function CareerDetail({
         <div className="container max-w-6xl mx-auto px-4 sm:px-6">
           {/* Breadcrumb / Back Button */}
           <Link
-            href="/careers"
+            href={`/${lang}/careers`}
             className="inline-flex items-center text-sm text-gray-500 hover:text-black transition-colors mb-6 font-medium"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />

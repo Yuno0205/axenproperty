@@ -1,18 +1,12 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import Link from "next/link";
-import { Search, MapPin, X, Filter, BarChart3 } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { JobPostStoryblok } from "@/types/storyblok";
 import { SbBlokData, storyblokEditable } from "@storyblok/react";
 import clsx from "clsx";
-import { Open_Sans } from "next/font/google";
-import { JobPostStoryblok } from "@/types/storyblok";
-
-const openSans = Open_Sans({
-  subsets: ["latin", "vietnamese"],
-  weight: ["400", "600", "700"],
-});
+import { BarChart3, Filter, MapPin, Search, X } from "lucide-react";
+import Link from "next/link";
+import { useMemo, useState } from "react";
 
 export default function JobListBlock({
   blok,
@@ -72,14 +66,14 @@ export default function JobListBlock({
     "h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-all";
 
   return (
-    <div
+    <section
       {...storyblokEditable(blok)}
-      className={clsx(
-        openSans.className,
-        "w-full py-12 px-4 sm:px-6 lg:px-8 bg-white"
-      )}
+      className={clsx("w-full py-12 px-4 sm:px-6 lg:px-8 bg-white")}
     >
       <div className="max-w-7xl mx-auto">
+        <h2 className="text-2xl font-bold text-gray-900 text-center mb-10">
+          Hiring Jobs
+        </h2>
         {blok.title && (
           <div className="mb-10">
             <h2 className="text-3xl font-bold text-gray-900">
@@ -236,6 +230,6 @@ export default function JobListBlock({
           </main>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
