@@ -123,8 +123,8 @@ export interface JobListBlok extends SbBlokData {
 // --- JOB POST ---
 export interface JobPostStoryblok {
   name: string;
-  field: string;
-  experience: string;
+  level: "Entry" | "Intern" | "Fresher" | "Junior" | "Mid" | "Senior" | "Lead";
+  type: "Full-time" | "Part-time" | "Contract" | "Freelance" | "Remote";
   location: string;
   salary: string;
   description: StoryblokRichTextNode<string | TrustedHTML>;
