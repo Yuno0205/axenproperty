@@ -1,24 +1,26 @@
 import { Button } from "@/components/ui/button";
 import { getStoryblokApi } from "@/lib/storyblok";
+import { JobPostStoryblok } from "@/types/storyblok";
+import { renderRichText, storyblokEditable } from "@storyblok/react";
+import clsx from "clsx";
 import {
-  storyblokEditable,
-  renderRichText,
-  SbBlokData,
-} from "@storyblok/react";
-import {
-  Briefcase,
-  MapPin,
-  DollarSign,
   ArrowLeft,
   BarChart3,
+  Briefcase,
+  DollarSign,
+  MapPin,
   Share2,
 } from "lucide-react";
-import { draftMode } from "next/headers";
-import { notFound } from "next/navigation";
-import Link from "next/link";
 import { Open_Sans } from "next/font/google";
-import clsx from "clsx";
-import { JobPostStoryblok } from "@/types/storyblok";
+import { draftMode } from "next/headers";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import DOMPurify from "dompurify";
+
+const sanitizeHtml = (html: string) => {
+  if (typeof window === "undefined") return html;
+  return DOMPurify.sanitize(html);
+};
 
 const openSans = Open_Sans({
   subsets: ["latin", "vietnamese"],
@@ -46,11 +48,10 @@ export default async function CareerDetail({
     if (!story) return notFound();
 
     const content = story.content as JobPostStoryblok;
-    const htmlDescription = renderRichText(content.description);
 
     return (
       <main
-        {...storyblokEditable(content as unknown as SbBlokData)}
+        {...storyblokEditable(story)}
         className={clsx(
           openSans.className,
           "min-h-screen bg-white pb-20 pt-10"
@@ -99,7 +100,9 @@ export default async function CareerDetail({
               <div className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-600 prose-li:text-gray-600 prose-strong:text-gray-900">
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: htmlDescription as string,
+                    __html: sanitizeHtml(
+                      (renderRichText(content.description) ?? "") as string
+                    ),
                   }}
                 />
               </div>
