@@ -11,9 +11,11 @@ import { useMemo, useState } from "react";
 export default function JobListBlock({
   blok,
   blokProps,
+  lang = "en",
 }: {
   blok: SbBlokData;
   blokProps?: { content: JobPostStoryblok; slug: string }[];
+  lang?: string;
 }) {
   const jobs = blokProps || [];
 
@@ -29,6 +31,41 @@ export default function JobListBlock({
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLocation, setSelectedLocation] = useState<string>("all");
   const [selectedLevel, setSelectedLevel] = useState<string>("all");
+
+  const locale = lang?.toLowerCase() === "vi" ? "vi" : "en";
+
+  const translations = {
+    en: {
+      heading: "Hiring Jobs",
+      filters: "Filters",
+      keyword: "Keyword...",
+      location: "Location",
+      allLocations: "All locations",
+      level: "Level",
+      allLevels: "All levels",
+      clearAll: "Clear all filters",
+      foundOpenings: "Found",
+      openPositions: "open positions",
+      empty: "No jobs found matching your criteria",
+      clear: "Clear filters",
+    },
+    vi: {
+      heading: "Tuyển dụng",
+      filters: "Bộ lọc",
+      keyword: "Từ khóa...",
+      location: "Địa điểm",
+      allLocations: "Tất cả địa điểm",
+      level: "Cấp bậc",
+      allLevels: "Tất cả cấp bậc",
+      clearAll: "Xóa tất cả bộ lọc",
+      foundOpenings: "Tìm thấy",
+      openPositions: "vị trí đang mở",
+      empty: "Không tìm thấy công việc phù hợp",
+      clear: "Xóa bộ lọc",
+    },
+  } as const;
+
+  const t = translations[locale];
 
   const locations = useMemo(() => {
     const set = new Set(mappedJobs.map((j) => j.location).filter(Boolean));
@@ -47,7 +84,9 @@ export default function JobListBlock({
         job.name.toLowerCase().includes(searchTerm.toLowerCase());
       const matchLocation =
         selectedLocation === "all" ||
-        job.location.toLowerCase().includes(selectedLocation.toLowerCase());
+        (job.location?.toLowerCase() ?? "").includes(
+          selectedLocation.toLowerCase()
+        );
       const matchLevel = selectedLevel === "all" || job.level === selectedLevel;
       return matchSearch && matchLocation && matchLevel;
     });
@@ -72,7 +111,7 @@ export default function JobListBlock({
     >
       <div className="max-w-7xl mx-auto">
         <h2 className="text-2xl font-bold text-gray-900 text-center mb-10">
-          Hiring Jobs
+          {t.heading}
         </h2>
         {blok.title && (
           <div className="mb-10">
@@ -80,11 +119,11 @@ export default function JobListBlock({
               {blok.title as string}
             </h2>
             <p className="mt-2 text-gray-600">
-              Found{" "}
+              {t.foundOpenings}{" "}
               <span className="font-semibold text-black">
                 {filteredJobs.length}
               </span>{" "}
-              open positions
+              {t.openPositions}
             </p>
           </div>
         )}
@@ -95,14 +134,14 @@ export default function JobListBlock({
             <div className="p-5 bg-transparent rounded-lg border border-gray-200">
               <div className="flex items-center gap-2 mb-4 text-gray-900 font-bold">
                 <Filter className="w-4 h-4" />
-                <span>Filters</span>
+                <span>{t.filters}</span>
               </div>
 
               <div className="space-y-4">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <Input
-                    placeholder="Keyword..."
+                    placeholder={t.keyword}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className={clsx(inputClass, "pl-9")}
@@ -119,7 +158,7 @@ export default function JobListBlock({
 
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold text-gray-600 uppercase">
-                    Location
+                    {t.location}
                   </label>
                   <div className="relative">
                     <select
@@ -130,7 +169,7 @@ export default function JobListBlock({
                         "appearance-none cursor-pointer"
                       )}
                     >
-                      <option value="all">All locations</option>
+                      <option value="all">{t.allLocations}</option>
                       {locations.map((loc) => (
                         <option key={loc} value={loc}>
                           {loc}
@@ -143,7 +182,7 @@ export default function JobListBlock({
 
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold text-gray-600 uppercase">
-                    Level
+                    {t.level}
                   </label>
                   <div className="relative">
                     <select
@@ -154,7 +193,7 @@ export default function JobListBlock({
                         "appearance-none cursor-pointer"
                       )}
                     >
-                      <option value="all">All levels</option>
+                      <option value="all">{t.allLevels}</option>
                       {levels.map((lvl) => (
                         <option key={lvl} value={lvl}>
                           {lvl}
@@ -170,7 +209,7 @@ export default function JobListBlock({
                     onClick={clearFilters}
                     className="w-full mt-2 py-2 text-sm text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors font-semibold"
                   >
-                    Clear all filters
+                    {t.clearAll}
                   </button>
                 )}
               </div>
@@ -216,14 +255,12 @@ export default function JobListBlock({
             ) : (
               <div className="flex flex-col items-center justify-center py-16 border-2 border-dashed border-gray-200 rounded-lg bg-gray-50">
                 <Search className="h-10 w-10 text-gray-400 mb-3" />
-                <p className="text-gray-600 font-medium">
-                  No jobs found matching your criteria
-                </p>
+                <p className="text-gray-600 font-medium">{t.empty}</p>
                 <button
                   onClick={clearFilters}
                   className="mt-2 text-sm text-black font-bold hover:underline"
                 >
-                  Clear filters
+                  {t.clear}
                 </button>
               </div>
             )}

@@ -68,7 +68,7 @@ export default async function Careers({
 
   return (
     <div>
-      <StoryblokStory story={story} blokProps={jobs} />
+      <StoryblokStory story={story} blokProps={jobs} lang={locale} />
     </div>
   );
 }
