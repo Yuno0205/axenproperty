@@ -15,11 +15,10 @@ import { Open_Sans } from "next/font/google";
 import { draftMode } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import DOMPurify from "dompurify";
+import sanitizeHtml from "sanitize-html";
 
-const sanitizeHtml = (html: string) => {
-  if (typeof window === "undefined") return html;
-  return DOMPurify.sanitize(html);
+const sanitize = (html: string) => {
+  return sanitizeHtml(html);
 };
 
 const openSans = Open_Sans({
@@ -100,7 +99,7 @@ export default async function CareerDetail({
               <div className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-600 prose-li:text-gray-600 prose-strong:text-gray-900">
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: sanitizeHtml(
+                    __html: sanitize(
                       (renderRichText(content.description) ?? "") as string
                     ),
                   }}
