@@ -1,312 +1,272 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import Link from "next/link";
-import {
-  Briefcase,
-  MapPin,
-  Clock,
-  Search,
-  X,
-  ArrowRight,
-  RefreshCcw,
-} from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { JobListBlok, JobPostStoryblok } from "@/types/storyblok";
-import { storyblokEditable } from "@storyblok/react";
+import { JobPostStoryblok } from "@/types/storyblok";
+import { SbBlokData, storyblokEditable } from "@storyblok/react";
 import clsx from "clsx";
-import { Open_Sans } from "next/font/google";
-
-const openSans = Open_Sans({
-  subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700"],
-});
-
-type JobStory = {
-  name: string;
-  slug: string;
-  full_slug: string;
-  uuid: string;
-  content: JobPostStoryblok;
-};
-
-type JobData = {
-  fields: {
-    slug: string;
-    name: string;
-    field: string;
-    experience: string;
-    address: string;
-    salary?: string;
-  };
-};
+import { BarChart3, Filter, MapPin, Search, X } from "lucide-react";
+import Link from "next/link";
+import { useMemo, useState } from "react";
 
 export default function JobListBlock({
   blok,
   blokProps,
+  lang = "en",
 }: {
-  blok: JobListBlok;
-  blokProps?: JobStory[];
+  blok: SbBlokData;
+  blokProps?: { content: JobPostStoryblok; slug: string }[];
+  lang?: string;
 }) {
   const jobs = blokProps || [];
 
-  const mappedJobs: JobData[] = jobs.map((job) => {
-    const fieldDisplay =
-      !job.content.field || job.content.field === "Not defined"
-        ? "General"
-        : job.content.field;
-
-    return {
-      fields: {
-        slug: job.slug,
-        name: job.content.name,
-        field: fieldDisplay,
-        experience: job.content.experience,
-        address: job.content.location,
-        salary: job.content.salary,
-      },
-    };
-  });
+  const mappedJobs = jobs.map((job) => ({
+    slug: job.slug,
+    name: job.content.name,
+    level: job.content.level,
+    type: job.content.type,
+    location: job.content.location,
+    salary: job.content.salary,
+  }));
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLocation, setSelectedLocation] = useState<string>("all");
-  const [selectedField, setSelectedField] = useState<string>("all");
+  const [selectedLevel, setSelectedLevel] = useState<string>("all");
+
+  const locale = lang?.toLowerCase() === "vi" ? "vi" : "en";
+
+  const translations = {
+    en: {
+      heading: "Hiring Jobs",
+      filters: "Filters",
+      keyword: "Keyword...",
+      location: "Location",
+      allLocations: "All locations",
+      level: "Level",
+      allLevels: "All levels",
+      clearAll: "Clear all filters",
+      foundOpenings: "Found",
+      openPositions: "open positions",
+      empty: "No jobs found matching your criteria",
+      clear: "Clear filters",
+    },
+    vi: {
+      heading: "Tuyển dụng",
+      filters: "Bộ lọc",
+      keyword: "Từ khóa...",
+      location: "Địa điểm",
+      allLocations: "Tất cả địa điểm",
+      level: "Cấp bậc",
+      allLevels: "Tất cả cấp bậc",
+      clearAll: "Xóa tất cả bộ lọc",
+      foundOpenings: "Tìm thấy",
+      openPositions: "vị trí đang mở",
+      empty: "Không tìm thấy công việc phù hợp",
+      clear: "Xóa bộ lọc",
+    },
+  } as const;
+
+  const t = translations[locale];
 
   const locations = useMemo(() => {
-    const locationSet = new Set<string>();
-    mappedJobs.forEach((job) => {
-      job.fields.address
-        .split(/[,;]+/)
-        .forEach((loc) => locationSet.add(loc.trim()));
-    });
-    return Array.from(locationSet).sort();
+    const set = new Set(mappedJobs.map((j) => j.location).filter(Boolean));
+    return Array.from(set).sort();
   }, [mappedJobs]);
 
-  const fields = useMemo(() => {
-    const fieldSet = new Set(mappedJobs.map((job) => job.fields.field));
-    return Array.from(fieldSet).sort();
+  const levels = useMemo(() => {
+    const set = new Set(mappedJobs.map((j) => j.level).filter(Boolean));
+    return Array.from(set);
   }, [mappedJobs]);
 
   const filteredJobs = useMemo(() => {
     return mappedJobs.filter((job) => {
-      const matchesSearch =
-        searchTerm === "" ||
-        job.fields.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        job.fields.field.toLowerCase().includes(searchTerm.toLowerCase());
-
-      const matchesLocation =
+      const matchSearch =
+        !searchTerm ||
+        job.name.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchLocation =
         selectedLocation === "all" ||
-        job.fields.address
-          .toLowerCase()
-          .includes(selectedLocation.toLowerCase());
-
-      const matchesField =
-        selectedField === "all" || job.fields.field === selectedField;
-
-      return matchesSearch && matchesLocation && matchesField;
+        (job.location?.toLowerCase() ?? "").includes(
+          selectedLocation.toLowerCase()
+        );
+      const matchLevel = selectedLevel === "all" || job.level === selectedLevel;
+      return matchSearch && matchLocation && matchLevel;
     });
-  }, [mappedJobs, searchTerm, selectedLocation, selectedField]);
+  }, [mappedJobs, searchTerm, selectedLocation, selectedLevel]);
 
   const clearFilters = () => {
     setSearchTerm("");
     setSelectedLocation("all");
-    setSelectedField("all");
+    setSelectedLevel("all");
   };
 
-  const hasActiveFilters =
-    searchTerm !== "" || selectedLocation !== "all" || selectedField !== "all";
+  const isFiltering =
+    searchTerm !== "" || selectedLocation !== "all" || selectedLevel !== "all";
 
-  // Common style cho input/select để đồng bộ
-  const inputStyles =
-    "h-10 bg-white border-gray-200 focus-visible:ring-0 focus-visible:border-gray-500 focus-visible:ring-offset-0 hover:border-gray-400 transition-colors text-sm";
+  const inputClass =
+    "h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-all";
 
   return (
-    <div
+    <section
       {...storyblokEditable(blok)}
-      className={clsx(openSans.className, "w-full bg-white min-h-screen")}
+      className={clsx("w-full py-12 px-4 sm:px-6 lg:px-8 bg-white")}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {/* Header */}
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-2xl font-bold text-gray-900 text-center mb-10">
+          {t.heading}
+        </h2>
         {blok.title && (
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 tracking-tight">
-              {blok.title}
+          <div className="mb-10">
+            <h2 className="text-3xl font-bold text-gray-900">
+              {blok.title as string}
             </h2>
-            <p className="text-gray-500 mt-2 text-sm">
-              There are currently{" "}
-              <span className="font-semibold text-gray-900">
-                {mappedJobs.length}
+            <p className="mt-2 text-gray-600">
+              {t.foundOpenings}{" "}
+              <span className="font-semibold text-black">
+                {filteredJobs.length}
               </span>{" "}
-              jobs available.
+              {t.openPositions}
             </p>
           </div>
         )}
 
-        {/* --- COMPACT FILTER BAR --- */}
-        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-8 shadow-sm">
-          <div className="flex flex-col lg:flex-row gap-3">
-            <div className="relative flex-grow">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <Input
-                placeholder="Search for a job..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className={clsx(inputStyles, "pl-9")}
-              />
-              {searchTerm && (
-                <button
-                  onClick={() => setSearchTerm("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              )}
-            </div>
-
-            <div className="relative lg:w-48 flex-shrink-0">
-              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
-              <select
-                value={selectedLocation}
-                onChange={(e) => setSelectedLocation(e.target.value)}
-                className={clsx(
-                  inputStyles,
-                  "w-full pl-9 pr-8 appearance-none border rounded-md cursor-pointer outline-none"
-                )}
-              >
-                <option value="all">Location</option>
-                {locations.map((loc) => (
-                  <option key={loc} value={loc}>
-                    {loc}
-                  </option>
-                ))}
-              </select>
-              <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                <svg
-                  className="w-3 h-3 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  ></path>
-                </svg>
+        <div className="grid grid-cols-4 md:grid-cols-1 gap-8 items-start">
+          {/* --- SIDEBAR FILTER --- */}
+          <aside className="col-span-1 sticky top-4 md:static md:w-full space-y-6">
+            <div className="p-5 bg-transparent rounded-lg border border-gray-200">
+              <div className="flex items-center gap-2 mb-4 text-gray-900 font-bold">
+                <Filter className="w-4 h-4" />
+                <span>{t.filters}</span>
               </div>
-            </div>
 
-            <div className="relative lg:w-48 flex-shrink-0">
-              <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
-              <select
-                value={selectedField}
-                onChange={(e) => setSelectedField(e.target.value)}
-                className={clsx(
-                  inputStyles,
-                  "w-full pl-9 pr-8 appearance-none border rounded-md cursor-pointer outline-none"
-                )}
-              >
-                <option value="all">Field</option>
-                {fields.map((f) => (
-                  <option key={f} value={f}>
-                    {f}
-                  </option>
-                ))}
-              </select>
-              <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                <svg
-                  className="w-3 h-3 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={clearFilters}
-              disabled={!hasActiveFilters}
-              className="h-10 w-10 flex-shrink-0 border-gray-200 hover:bg-gray-100 hover:text-gray-900 disabled:opacity-30"
-              title="Clear filters"
-            >
-              <RefreshCcw className="w-4 h-4" />
-            </Button>
-          </div>
-
-          {hasActiveFilters && (
-            <div className="mt-2 text-xs text-gray-500 px-1">
-              Found {filteredJobs.length} matching results.
-            </div>
-          )}
-        </div>
-
-        {/* --- JOB LIST  --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {filteredJobs.length > 0 ? (
-            filteredJobs.map((item, index) => (
-              <Link
-                key={`${item.fields.slug}-${index}`}
-                href={`/careers/${item.fields.slug}`}
-                prefetch
-                className="group block bg-white rounded-lg border border-gray-200 p-5 hover:border-gray-400 hover:shadow-sm transition-all duration-200"
-              >
-                <div className="flex justify-between items-start">
-                  <div>
-                    <span className="inline-block px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-600 mb-2 group-hover:bg-gray-200 transition-colors">
-                      {item.fields.field}
-                    </span>
-                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-black mb-1 line-clamp-1 capitalize">
-                      {item.fields.name}
-                    </h3>
-                  </div>
-                  <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-gray-600 transform group-hover:translate-x-1 transition-all" />
-                </div>
-
-                <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-gray-500">
-                  <div className="flex items-center">
-                    <MapPin className="w-3.5 h-3.5 mr-1.5" />
-                    {item.fields.address}
-                  </div>
-                  <div className="flex items-center">
-                    <Clock className="w-3.5 h-3.5 mr-1.5" />
-                    {item.fields.experience}
-                  </div>
-                  {item.fields.salary && (
-                    <div className="flex items-center font-medium text-gray-700">
-                      <span className="mr-1.5">💰</span>
-                      {item.fields.salary}
-                    </div>
+              <div className="space-y-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Input
+                    placeholder={t.keyword}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className={clsx(inputClass, "pl-9")}
+                  />
+                  {searchTerm && (
+                    <button
+                      onClick={() => setSearchTerm("")}
+                      className="absolute right-3 top-1/2 -translate-y-1/2"
+                    >
+                      <X className="h-3 w-3 text-gray-400 hover:text-black" />
+                    </button>
                   )}
                 </div>
-              </Link>
-            ))
-          ) : (
-            <div className="col-span-full py-16 text-center border border-dashed border-gray-300 rounded-lg bg-white/50">
-              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <Search className="w-6 h-6 text-gray-400" />
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-gray-600 uppercase">
+                    {t.location}
+                  </label>
+                  <div className="relative">
+                    <select
+                      value={selectedLocation}
+                      onChange={(e) => setSelectedLocation(e.target.value)}
+                      className={clsx(
+                        inputClass,
+                        "appearance-none cursor-pointer"
+                      )}
+                    >
+                      <option value="all">{t.allLocations}</option>
+                      {locations.map((loc) => (
+                        <option key={loc} value={loc}>
+                          {loc}
+                        </option>
+                      ))}
+                    </select>
+                    <MapPin className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-gray-600 uppercase">
+                    {t.level}
+                  </label>
+                  <div className="relative">
+                    <select
+                      value={selectedLevel}
+                      onChange={(e) => setSelectedLevel(e.target.value)}
+                      className={clsx(
+                        inputClass,
+                        "appearance-none cursor-pointer"
+                      )}
+                    >
+                      <option value="all">{t.allLevels}</option>
+                      {levels.map((lvl) => (
+                        <option key={lvl} value={lvl}>
+                          {lvl}
+                        </option>
+                      ))}
+                    </select>
+                    <BarChart3 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+                  </div>
+                </div>
+
+                {isFiltering && (
+                  <button
+                    onClick={clearFilters}
+                    className="w-full mt-2 py-2 text-sm text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors font-semibold"
+                  >
+                    {t.clearAll}
+                  </button>
+                )}
               </div>
-              <p className="text-gray-900 font-medium">Not matching any jobs</p>
-              <button
-                onClick={clearFilters}
-                className="text-sm text-gray-500 hover:text-gray-900 underline mt-1"
-              >
-                Clear filters to try again
-              </button>
             </div>
-          )}
+          </aside>
+
+          {/* --- JOB LIST --- */}
+          <main className="col-span-3 md:col-span-1 space-y-3">
+            {filteredJobs.length > 0 ? (
+              filteredJobs.map((item, index) => (
+                <Link
+                  key={`${item.slug}-${index}`}
+                  href={`/careers/${item.slug}`}
+                  className="block group bg-white border border-transparent border-b-gray-200 hover:border-b-black py-4 px-2 transition-all duration-300"
+                >
+                  <div className="flex flex-col gap-2 min-h-[50px]">
+                    <h3 className="text-lg leading-relaxed text-gray-900 flex flex-wrap items-center gap-x-2">
+                      <span className="font-semibold whitespace-nowrap">
+                        [ {item.location} ]
+                      </span>
+
+                      <span className="text-gray-400 font-light">-</span>
+
+                      <span className="font-bold group-hover:underline underline-offset-4 decoration-2 decoration-black">
+                        {item.level} - ({item.name})
+                      </span>
+
+                      <span className="text-gray-400 font-light hidden sm:inline">
+                        -
+                      </span>
+
+                      <span className="whitespace-nowrap text-gray-700">
+                        {item.type}
+                      </span>
+
+                      <span className="whitespace-nowrap text-gray-700">
+                        ( {item.salary} )
+                      </span>
+                    </h3>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <div className="flex flex-col items-center justify-center py-16 border-2 border-dashed border-gray-200 rounded-lg bg-gray-50">
+                <Search className="h-10 w-10 text-gray-400 mb-3" />
+                <p className="text-gray-600 font-medium">{t.empty}</p>
+                <button
+                  onClick={clearFilters}
+                  className="mt-2 text-sm text-black font-bold hover:underline"
+                >
+                  {t.clear}
+                </button>
+              </div>
+            )}
+          </main>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
