@@ -23,6 +23,9 @@ export default function CoverImage({ blok }: { blok: CoverImageBlok }) {
           fill
           className="object-cover object-center"
           sizes="100vw"
+          fetchPriority="high"
+          quality={75}
+          priority
         />
       ) : (
         <div className="w-full h-full bg-slate-900" />
