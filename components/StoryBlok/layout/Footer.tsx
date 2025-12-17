@@ -3,13 +3,7 @@ import { getStoryblokAssetDimensions } from "@/lib/utils";
 import { GlobalConfigBlok } from "@/types/storyblok";
 import { StoryblokComponent, storyblokEditable } from "@storyblok/react";
 import clsx from "clsx";
-import { Inter } from "next/font/google";
 import Image from "next/image";
-
-const inter = Inter({
-  subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
 
 export default function Footer({ blok }: { blok: GlobalConfigBlok }) {
   const footerLogoDimensions = getStoryblokAssetDimensions(blok.logo?.filename);
@@ -17,7 +11,7 @@ export default function Footer({ blok }: { blok: GlobalConfigBlok }) {
   return (
     <footer
       {...storyblokEditable(blok)}
-      className={clsx(inter.className, " mt-10 bg-white flex flex-col")}
+      className={clsx(" mt-10 bg-white flex flex-col")}
     >
       <div className="container px-6 flex flex-col justify-between py-16 mx-auto sm:flex-wrap gap-2 sm:px-2">
         <div className="flex w-full px-20 sm:px-4 gap-4 sm:flex-col">
@@ -30,12 +24,14 @@ export default function Footer({ blok }: { blok: GlobalConfigBlok }) {
                   width={footerLogoDimensions?.width ?? 200}
                   height={footerLogoDimensions?.height ?? 160}
                   className="w-full h-auto max-w-[200px]"
+                  sizes="250px"
+                  quality={75}
                 />
               </div>
             )}
             <span className="font-bold  uppercase">{blok.company_name}</span>
 
-            <span>{blok.location}</span>
+            <p className="whitespace-pre-line">{blok.location}</p>
             <h5>
               Hotline:
               <span className="font-semibold"> {blok.hotline}</span>
