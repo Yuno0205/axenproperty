@@ -22,6 +22,7 @@ export default function SocialLink({ blok }: { blok: SocialLinkStoryblok }) {
         alt={blok.icon.alt || "Social Icon"}
         width={36}
         height={36}
+        className="aspect-square"
       />
     </Link>
   );

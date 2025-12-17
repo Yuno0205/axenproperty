@@ -32,13 +32,7 @@ export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
       className="w-full flex items-center justify-center"
     >
       {/* Background */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="w-full relative bg-cover bg-center bg-no-repeat flex items-center justify-center py-20 md:py-16 sm:py-12 xs:py-10 2xs:py-8 min-h-[500px] md:min-h-[450px] sm:min-h-[400px] xs:min-h-[350px] 2xs:min-h-[300px] 2xs:h-auto"
-      >
+      <div className="w-full relative bg-cover bg-center bg-no-repeat flex items-center justify-center py-20 md:py-16 sm:py-12 xs:py-10 2xs:py-8 min-h-[500px] md:min-h-[450px] sm:min-h-[400px] xs:min-h-[350px] 2xs:min-h-[300px] 2xs:h-auto">
         {/* Background Image  */}
         <Image
           src={
@@ -100,7 +94,7 @@ export const HeroSection = ({ blok }: { blok: IHeroSectionStoryblok }) => {
             </h1>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
