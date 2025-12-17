@@ -45,9 +45,67 @@ export async function generateMetadata({
   const locale = lang || "en";
   const story = await fetchCareerPage(locale);
 
+  const title = story?.content?.title || "Careers";
+  const description =
+    story?.content?.description ||
+    "Khám phá cơ hội nghề nghiệp tại Axenproperty - Nơi tài năng gặp gỡ cơ hội phát triển.";
+  const ogImage =
+    story?.content?.og_image?.filename ||
+    "https://axenproperty.com/og-image.jpg";
+  const canonicalUrl = `https://axenproperty.com/${locale}/careers`;
+
   return {
-    title: story?.content?.title || "Careers",
-    description: story?.content?.description || "",
+    title: title,
+    description: description,
+    keywords: [
+      "tuyển dụng",
+      "careers",
+      "cơ hội nghề nghiệp",
+      "việc làm",
+      "Axenproperty",
+      "tuyển dụng bất động sản",
+      "career opportunities",
+    ],
+    openGraph: {
+      title: title,
+      description: description,
+      url: canonicalUrl,
+      siteName: "Axenproperty",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+      locale: locale === "vi" ? "vi_VN" : "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title,
+      description: description,
+      images: [ogImage],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        en: "https://axenproperty.com/en/careers",
+        vi: "https://axenproperty.com/vi/careers",
+      },
+    },
   };
 }
 

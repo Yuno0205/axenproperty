@@ -64,6 +64,7 @@ export default function Showcase({ blok }: { blok: ShowcaseBlok }) {
           className={clsx("object-cover z-0", objectPositionClass)}
           quality={75}
           priority
+          fetchPriority="high"
           sizes="100vw"
         />
       </motion.div>
