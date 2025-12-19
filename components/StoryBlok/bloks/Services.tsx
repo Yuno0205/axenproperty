@@ -9,7 +9,6 @@ import {
 import DOMPurify from "dompurify";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Skeleton from "react-loading-skeleton";
 
 const sanitizeHtml = (html: string) => {
   if (typeof window === "undefined") return html;
@@ -17,19 +16,18 @@ const sanitizeHtml = (html: string) => {
 };
 
 export default function Services({ blok }: { blok: ServicesBlok }) {
-  if (!blok?.title) return <Skeleton height={300} />;
-
   return (
     <section {...storyblokEditable(blok)} className="w-full">
       <div className="w-full h-full pb-6">
-        <div
-          style={{
-            backgroundImage: `url(${blok.background_image?.filename})`,
-            backgroundPosition: "50% 50%",
-            backgroundSize: "cover",
-          }}
-          className="h-[375px] w-full relative"
-        ></div>
+        <div className="relative h-[375px] w-full">
+          <Image
+            src={blok.background_image.filename}
+            alt={blok.background_image.alt || blok.title}
+            fill
+            style={{ objectFit: "cover", objectPosition: "50% 50%" }}
+            sizes="100vw"
+          />
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}

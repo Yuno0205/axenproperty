@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import JobApplicationForm from "@/components/JobApplicationForm";
 import { getStoryblokApi } from "@/lib/storyblok";
 import { JobPostStoryblok } from "@/types/storyblok";
 import { renderRichText, storyblokEditable } from "@storyblok/react";
@@ -9,7 +9,6 @@ import {
   Briefcase,
   DollarSign,
   MapPin,
-  Share2,
 } from "lucide-react";
 import { Open_Sans } from "next/font/google";
 import { draftMode } from "next/headers";
@@ -53,12 +52,10 @@ export default async function CareerDetail({
         {...storyblokEditable(story)}
         className={clsx(
           openSans.className,
-          "min-h-screen bg-white pb-20 pt-10"
+          "min-h-screen bg-gray-50/30 pb-20 pt-10"
         )}
       >
-        {/* --- 1. HEADER SECTION --- */}
-        <div className="container max-w-6xl mx-auto px-4 sm:px-6">
-          {/* Breadcrumb / Back Button */}
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6">
           <Link
             href={`/${lang}/careers`}
             className="inline-flex items-center text-sm text-gray-500 hover:text-black transition-colors mb-6 font-medium"
@@ -67,7 +64,6 @@ export default async function CareerDetail({
             Back to Open Positions
           </Link>
 
-          {/* Job Title & Main Meta */}
           <div className="border-b border-gray-100 pb-8 mb-8">
             <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
               {content.name}
@@ -93,9 +89,8 @@ export default async function CareerDetail({
             </div>
           </div>
 
-          {/* --- 2. LAYOUT GRID (2 Columns) --- */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-            <div className="lg:col-span-8">
+          <div className="grid grid-cols-12 lg:grid-cols-1 gap-10 items-start">
+            <div className="col-span-8 lg:col-span-full bg-white p-6 md:p-8 rounded-xl border border-gray-100 shadow-sm">
               <div className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-600 prose-li:text-gray-600 prose-strong:text-gray-900">
                 <div
                   dangerouslySetInnerHTML={{
@@ -105,69 +100,37 @@ export default async function CareerDetail({
                   }}
                 />
               </div>
-
-              <div className="mt-10 pt-6 border-t border-gray-100 lg:hidden">
-                <h3 className="font-bold text-lg mb-4">
-                  Interested in this role?
-                </h3>
-                <Button className="w-full bg-black hover:bg-gray-800 text-white font-bold py-6 text-lg">
-                  Apply for this Job
-                </Button>
-              </div>
             </div>
 
-            <aside className="hidden lg:block lg:col-span-4">
-              <div className="sticky top-8 space-y-6">
-                {/* Apply Card */}
-                <div className="bg-gray-50 border border-gray-100 rounded-xl p-6 shadow-sm">
-                  <h3 className="font-bold text-gray-900 text-lg mb-2">
-                    Ready to apply?
-                  </h3>
-                  <p className="text-sm text-gray-500 mb-6">
-                    Please read the description carefully before applying.
-                  </p>
+            <aside className="col-span-4 lg:col-span-full space-y-6 sticky top-8 lg:static">
+              <JobApplicationForm position={content.name} />
 
-                  <Button className="w-full bg-black hover:bg-gray-800 text-white font-bold h-12 text-base shadow-lg hover:shadow-xl transition-all">
-                    Apply Now
-                  </Button>
-
-                  {/* Share button (Optional) */}
-                  <Button
-                    variant="outline"
-                    className="w-full mt-3 border-gray-300 hover:bg-white text-gray-600"
-                  >
-                    <Share2 className="w-4 h-4 mr-2" /> Share this job
-                  </Button>
-                </div>
-
-                {/* Quick Info Box (Optional) */}
-                <div className="bg-white border border-gray-200 rounded-xl p-6">
-                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">
-                    Job Overview
-                  </h4>
-                  <ul className="space-y-4">
-                    <li className="flex justify-between items-start">
-                      <span className="text-gray-500 text-sm">Published</span>
-                      <span className="text-gray-900 font-medium text-sm text-right">
-                        {new Date(
-                          story.published_at || story.created_at
-                        ).toLocaleDateString()}
-                      </span>
-                    </li>
-                    <li className="flex justify-between items-start">
-                      <span className="text-gray-500 text-sm">Experience</span>
-                      <span className="text-gray-900 font-medium text-sm text-right">
-                        {content.level}
-                      </span>
-                    </li>
-                    <li className="flex justify-between items-start">
-                      <span className="text-gray-500 text-sm">Work Type</span>
-                      <span className="text-gray-900 font-medium text-sm text-right">
-                        {content.type}
-                      </span>
-                    </li>
-                  </ul>
-                </div>
+              <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">
+                  Job Overview
+                </h4>
+                <ul className="space-y-4">
+                  <li className="flex justify-between items-start">
+                    <span className="text-gray-500 text-sm">Published</span>
+                    <span className="text-gray-900 font-medium text-sm text-right">
+                      {new Date(
+                        story.published_at || story.created_at
+                      ).toLocaleDateString()}
+                    </span>
+                  </li>
+                  <li className="flex justify-between items-start">
+                    <span className="text-gray-500 text-sm">Level</span>
+                    <span className="text-gray-900 font-medium text-sm text-right">
+                      {content.level}
+                    </span>
+                  </li>
+                  <li className="flex justify-between items-start">
+                    <span className="text-gray-500 text-sm">Type</span>
+                    <span className="text-gray-900 font-medium text-sm text-right">
+                      {content.type}
+                    </span>
+                  </li>
+                </ul>
               </div>
             </aside>
           </div>
