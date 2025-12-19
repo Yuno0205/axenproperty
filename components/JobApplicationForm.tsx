@@ -48,6 +48,26 @@ export default function JobApplicationForm({
       formData.append("achievements", data.achievements);
 
       if (data.cv && data.cv[0]) {
+        const file = data.cv[0];
+        const maxSize = 10 * 1024 * 1024; // 10MB
+        const allowedTypes = [
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        ];
+
+        if (file.size > maxSize) {
+          setError("File size must be less than 10MB");
+          setIsSubmitting(false);
+          return;
+        }
+
+        if (!allowedTypes.includes(file.type)) {
+          setError("Only PDF, DOC, and DOCX files are allowed");
+          setIsSubmitting(false);
+          return;
+        }
+
         formData.append("cv", data.cv[0]);
       }
 
