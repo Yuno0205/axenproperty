@@ -1,16 +1,16 @@
 # AxenProperty - Corporate Website
 
-Dự án website doanh nghiệp hiện đại, hỗ trợ đa ngôn ngữ, được xây dựng trên nền tảng **Next.js 15+ (App Router)** và quản lý nội dung thông qua **Storyblok CMS**.
+A modern corporate website supporting multiple languages, built on **Next.js 15+ (App Router)** and managed via **Storyblok CMS**.
 
-## 🚀 Tính năng nổi bật
+## 🚀 Key Features
 
-- **Công nghệ cốt lõi:** Next.js 15, React 19, TypeScript.
-- **CMS Headless:** Tích hợp Storyblok với chế độ Live Preview (Draft Mode).
-- **Styling:** Tailwind CSS với cấu hình **Desktop-first** (max-width breakpoints).
-- **Đa ngôn ngữ (i18n):** Hỗ trợ tiếng Anh (`/en`) và tiếng Việt (`/vi`) thông qua Middleware.
-- **Form ứng tuyển:** Tích hợp form nộp hồ sơ (có upload CV) và gửi email tự động qua Nodemailer.
-- **UI Components:** Sử dụng Radix UI và Lucide React cho các component tương tác.
-- **Hiệu ứng:** Mượt mà với Framer Motion.
+- **Core Technology:** Next.js 15, React 19, TypeScript.
+- **Headless CMS:** Integrated Storyblok with Live Preview (Draft Mode).
+- **Styling:** Tailwind CSS with **Desktop-first** configuration (max-width breakpoints).
+- **Multilingual (i18n):** Supports English (`/en`) and Vietnamese (`/vi`) via Middleware.
+- **Application Form:** Integrated job application form (with CV upload) and automatic email sending via Nodemailer.
+- **UI Components:** Uses Radix UI and Lucide React for interactive components.
+- **Animations:** Smooth animations with Framer Motion.
 
 ## 🛠 Tech Stack
 
@@ -23,17 +23,17 @@ Dự án website doanh nghiệp hiện đại, hỗ trợ đa ngôn ngữ, đư�
 - **Email Service:** Nodemailer
 - **State Management:** React Context (StoryblokProvider)
 
-## ⚙️ Cài đặt & Chạy dự án
+## ⚙️ Installation & Setup
 
-### 1. Yêu cầu hệ thống
-- Node.js (phiên bản 18.x trở lên)
-- Yarn hoặc NPM
+### 1. System Requirements
+- Node.js (version 18.x or later)
+- Yarn or NPM
 
-### 2. Cài đặt dependencies
+### 2. Install Dependencies
 
 ```bash
-# Sử dụng Yarn
+# Using Yarn
 yarn install
 
-# Hoặc sử dụng NPM
+# Or using NPM
 npm install
