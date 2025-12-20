@@ -32,10 +32,10 @@ export default function Footer({ blok }: { blok: GlobalConfigBlok }) {
             <span className="font-bold  uppercase">{blok.company_name}</span>
 
             <p className="whitespace-pre-line">{blok.location}</p>
-            <h5>
+            <p>
               Hotline:
               <span className="font-semibold"> {blok.hotline}</span>
-            </h5>
+            </p>
             <h5>
               Email:
               <span className="font-semibold"> {blok.email}</span>
