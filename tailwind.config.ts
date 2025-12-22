@@ -57,11 +57,7 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      fontFamily: {
-        proximaSemiBold: ["var(--font-proxima-nova-semi-bold)", "sans-serif"],
-        proximaBold: ["var(--font-proxima-nova-bold)", "sans-serif"],
-        avenir: ["var(--font-avenir)", "sans-serif"],
-      },
+
       screens: {
         "3xl": {
           max: "1920px",

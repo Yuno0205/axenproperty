@@ -2,7 +2,6 @@ import Footer from "@/components/StoryBlok/layout/Footer";
 import Header from "@/components/StoryBlok/layout/Header";
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import "react-loading-skeleton/dist/skeleton.css";
 import "../globals.css";
 import { Montserrat } from "next/font/google";
 import StoryblokProvider from "@/components/StoryBlok/StoryblokProvider";

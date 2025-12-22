@@ -8,6 +8,9 @@ import Image from "next/image";
 export default function Footer({ blok }: { blok: GlobalConfigBlok }) {
   const footerLogoDimensions = getStoryblokAssetDimensions(blok.logo?.filename);
 
+  const logoWidth = footerLogoDimensions?.width ?? 200;
+  const logoHeight = footerLogoDimensions?.height ?? 50;
+
   return (
     <footer
       {...storyblokEditable(blok)}
@@ -21,10 +24,14 @@ export default function Footer({ blok }: { blok: GlobalConfigBlok }) {
                 <Image
                   src={blok.logo.filename}
                   alt={blok.logo.alt || "Footer Logo"}
-                  width={footerLogoDimensions?.width ?? 200}
-                  height={footerLogoDimensions?.height ?? 160}
-                  className="w-full h-auto max-w-[200px]"
-                  sizes="250px"
+                  width={logoWidth}
+                  height={logoHeight}
+                  style={{
+                    aspectRatio: `${logoWidth} / ${logoHeight}`,
+                    height: "auto",
+                  }}
+                  className="w-full max-w-[200px]"
+                  sizes="(max-width: 640px) 100vw, 200px"
                   quality={75}
                 />
               </div>
@@ -32,17 +39,17 @@ export default function Footer({ blok }: { blok: GlobalConfigBlok }) {
             <span className="font-bold  uppercase">{blok.company_name}</span>
 
             <p className="whitespace-pre-line">{blok.location}</p>
-            <h5>
+            <p>
               Hotline:
               <span className="font-semibold"> {blok.hotline}</span>
-            </h5>
-            <h5>
+            </p>
+            <p>
               Email:
               <span className="font-semibold"> {blok.email}</span>
-            </h5>
+            </p>
           </div>
 
-          <div className="w-full flex text-[#606576] sm:w-full sm:flex-col sm:gap-4">
+          <div className="flex-1 flex text-[#606576] sm:w-full sm:flex-col sm:gap-4">
             {blok.link_columns?.map((columnBlok) => (
               <StoryblokComponent blok={columnBlok} key={columnBlok._uid} />
             ))}
