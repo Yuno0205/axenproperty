@@ -162,6 +162,7 @@ export default function JobListBlock({
                   </label>
                   <div className="relative">
                     <select
+                      aria-label="Select a location"
                       value={selectedLocation}
                       onChange={(e) => setSelectedLocation(e.target.value)}
                       className={clsx(
@@ -186,6 +187,7 @@ export default function JobListBlock({
                   </label>
                   <div className="relative">
                     <select
+                      aria-label="Select a level"
                       value={selectedLevel}
                       onChange={(e) => setSelectedLevel(e.target.value)}
                       className={clsx(

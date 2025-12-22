@@ -43,10 +43,10 @@ export default function Footer({ blok }: { blok: GlobalConfigBlok }) {
               Hotline:
               <span className="font-semibold"> {blok.hotline}</span>
             </p>
-            <h5>
+            <p>
               Email:
               <span className="font-semibold"> {blok.email}</span>
-            </h5>
+            </p>
           </div>
 
           <div className="flex-1 flex text-[#606576] sm:w-full sm:flex-col sm:gap-4">
