@@ -1,16 +1,10 @@
 "use client";
-import { getStoryblokAssetDimensions } from "@/lib/utils";
 import { GlobalConfigBlok } from "@/types/storyblok";
 import { StoryblokComponent, storyblokEditable } from "@storyblok/react";
 import clsx from "clsx";
 import Image from "next/image";
 
 export default function Footer({ blok }: { blok: GlobalConfigBlok }) {
-  const footerLogoDimensions = getStoryblokAssetDimensions(blok.logo?.filename);
-
-  const logoWidth = footerLogoDimensions?.width ?? 200;
-  const logoHeight = footerLogoDimensions?.height ?? 50;
-
   return (
     <footer
       {...storyblokEditable(blok)}
@@ -24,15 +18,10 @@ export default function Footer({ blok }: { blok: GlobalConfigBlok }) {
                 <Image
                   src={blok.logo.filename}
                   alt={blok.logo.alt || "Footer Logo"}
-                  width={logoWidth}
-                  height={logoHeight}
-                  style={{
-                    aspectRatio: `${logoWidth} / ${logoHeight}`,
-                    height: "auto",
-                  }}
-                  className="w-full max-w-[200px]"
-                  sizes="(max-width: 640px) 100vw, 200px"
-                  quality={75}
+                  width={303}
+                  height={265}
+                  className="w-full h-auto max-w-[150px]"
+                  sizes="(max-width: 640px) 100vw, 150px"
                 />
               </div>
             )}
