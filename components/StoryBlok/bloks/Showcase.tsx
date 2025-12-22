@@ -3,7 +3,7 @@
 import { ShowcaseBlok } from "@/types/storyblok";
 import { renderRichText, storyblokEditable } from "@storyblok/react";
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
 import DOMPurify from "dompurify";

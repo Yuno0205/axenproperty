@@ -7,7 +7,7 @@ import {
   storyblokEditable,
 } from "@storyblok/react";
 import DOMPurify from "dompurify";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Image from "next/image";
 
 const sanitizeHtml = (html: string) => {

@@ -3,7 +3,7 @@
 import { SbBlokData, storyblokEditable } from "@storyblok/react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Asset } from "@/types/storyblok";
 import { cn, getStoryblokAssetDimensions } from "@/lib/utils";
 import { usePathname } from "next/navigation";
