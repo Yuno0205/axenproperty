@@ -19,7 +19,7 @@ export default function Services({ blok }: { blok: ServicesBlok }) {
   return (
     <section {...storyblokEditable(blok)} className="w-full">
       <div className="w-full h-full pb-6">
-        <div className="relative h-[375px] w-full">
+        <div className="relative h-[375px] w-full bg-gray-100">
           <Image
             src={blok.background_image.filename}
             alt={blok.background_image.alt || blok.title}
@@ -30,26 +30,14 @@ export default function Services({ blok }: { blok: ServicesBlok }) {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.8,
-            ease: "easeOut",
-          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           style={{ width: "calc(100% - 100px)" }}
-          className="bg-white py-12 px-20 sm:px-5 sm:py-10 flex flex-col mx-auto items-center shadow-lg sm:text-center xs:!w-full"
+          className="bg-white py-12 px-20 sm:px-5 sm:py-10 flex flex-col mx-auto items-center shadow-lg sm:text-center xs:!w-full min-h-[500px] relative z-10 -mt-20"
         >
           {blok.logo?.filename && (
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.2,
-                ease: "easeOut",
-              }}
-              className="p-4 mb-5"
-            >
+            <div className="w-[206px] h-[180px] mb-5 flex items-center justify-center">
               <Image
                 src={blok.logo.filename}
                 alt={blok.logo.alt || blok.title}
@@ -57,52 +45,26 @@ export default function Services({ blok }: { blok: ServicesBlok }) {
                 height={180}
                 className="object-contain"
               />
-            </motion.div>
+            </div>
           )}
 
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.6,
-              delay: 0.4,
-              ease: "easeOut",
-            }}
-            className="avenir text-4xl font-light uppercase sm:text-3xl"
-          >
+          <h2 className="avenir text-4xl font-light uppercase sm:text-3xl">
             {blok.title}
-          </motion.h2>
+          </h2>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.6,
-              delay: 0.6,
-              ease: "easeOut",
-            }}
-            className="pt-2.5 pb-5 prose prose-lg text-center"
+          <div
+            className="pt-2.5 pb-5 prose prose-lg text-center min-h-[60px]"
             dangerouslySetInnerHTML={{
               __html: sanitizeHtml((renderRichText(blok.text) ?? "") as string),
             }}
           />
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.6,
-              delay: 0.8,
-              ease: "easeOut",
-            }}
-            className="my-5 py-3 px-10 mb-2.5 h-auto rounded-full sm:px-5"
-          >
-            {/* Render block button */}
+          <div className="my-5 py-3 px-10 mb-2.5 h-auto rounded-full sm:px-5 flex gap-4">
             {blok.cta_button &&
               blok.cta_button.map((buttonBlok: SbButton) => (
                 <StoryblokComponent blok={buttonBlok} key={buttonBlok._uid} />
               ))}
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>
